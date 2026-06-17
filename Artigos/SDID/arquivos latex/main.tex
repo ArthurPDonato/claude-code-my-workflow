@@ -1536,11 +1536,13 @@ não há tratamento detectável. A Figura~\ref{fig:forest} apresenta o
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{triangulacao_forest.png}
-\caption{Triangulação de estimadores — TWFE-DiD, Controle Sintético e SDiD
-(pool completo, $N_0 = 193$). Pontos representam a estimativa pontual do ATT
-e barras horizontais o IC95\%. Vermelho: IC95\% exclui zero; cinza: IC95\%
-inclui zero. IC95\% por permutação direta para SC e SDiD; gaussiano \textit{cluster-robust}
-para TWFE-DiD. Fonte: elaboração própria.}
+\caption{Triangulação de estimadores — TWFE-DiD, Controle Sintético (SC) e SDiD
+(pool completo, $N_0 = 193$). Pontos representam a estimativa pontual do ATT;
+barras horizontais, o IC95\%. \textbf{Cor:} vermelho = IC95\% exclui zero;
+cinza = IC95\% cruza zero. \textbf{Forma/traço:} círculo com linha contínua
+($\bullet$—) = inferência por permutação direta (SC e SDiD); triângulo com
+linha tracejada ($\blacktriangle$\,--\,--) = IC gaussiano por EP placebo
+(TWFE-DiD). Fonte: elaboração própria.}
 \label{fig:forest}
 \end{figure}
 
