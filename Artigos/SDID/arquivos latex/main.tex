@@ -117,6 +117,8 @@
   {../Resultados/SDID completo pool completo 6 municipios/}
   {../Resultados/SDID heterogeneidade dano/}
   {../Resultados/SDID triangulacao DiD SC SDID/}
+  {../Resultados/SDID sensibilidade pool/}
+  {../Resultados/SDID event study twfe/}
 }
 \usepackage{booktabs}
 \usepackage{threeparttable}
@@ -1344,6 +1346,54 @@ Fonte: elaboração própria.}
 \label{fig:permutacao}
 \end{figure}
 
+A robustez das estimativas à composição do pool doador foi avaliada reestimando o SDiD
+para os quatro municípios com efeito robusto ou provável — Eldorado do Sul, Mu\c{c}um,
+Roca Sales e Travesseiro — sob quatro limiares alternativos de exclusão: $0{,}5\%$
+(baseline), $1\%$, $5\%$ e $10\%$ da população atingida, expandindo o pool de
+$N_0 = 193$ a $N_0 = 291$ doadores.
+
+\begin{table}[htbp]
+\centering
+\caption{Sensibilidade do ATT ao limiar de exclusão do pool doador (SDiD, modo completo)}
+\label{tab:sensibilidade}
+\begin{threeparttable}
+\small
+\begin{tabular}{l c c c c}
+\toprule
+Município & $0{,}5\%$ ($N_0\!=\!193$) & $1\%$ ($N_0\!=\!216$) & $5\%$ ($N_0\!=\!263$) & $10\%$ ($N_0\!=\!291$) \\
+\midrule
+Eldorado do Sul & $-3{,}72^{*}$ & $-3{,}76^{*}$ & $-3{,}61^{*}$ & $-3{,}68^{*}$ \\
+Mu\c{c}um       & $-5{,}08^{*}$ & $-5{,}16^{*}$ & $-5{,}40^{*}$ & $-5{,}25^{*}$ \\
+Roca Sales      & $-3{,}72^{*}$ & $-3{,}69^{*}$ & $-3{,}38^{*}$ & $-3{,}33^{*}$ \\
+Travesseiro     & $-3{,}73^{*}$ & $-3{,}49^{*}$ & $-3{,}32^{*}$ & $-3{,}15^{*}$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item ATT em admissões por mil hab./mês. $^{*}$ IC95\% por permutação direta exclui zero
+($p < 0{,}05$ em todos os 16 casos). ICs completos na Figura~\ref{fig:sensibilidade}.
+\item Amplitude máxima entre limiares: $0{,}6$ adm./mil hab.\ ($< 15\%$ da estimativa baseline).
+\item Fonte: elaboração própria a partir de microdados do CAGED.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+Os resultados revelam estabilidade notável: todos os dezesseis ATTs são negativos e
+estatisticamente significantes a $5\%$, com variação máxima entre limiares inferior a
+$0{,}6$ admissão por mil habitante — menos de $15\%$ da estimativa baseline —,
+afastando a hipótese de contaminação do contrafactual por municípios parcialmente
+afetados (Seção~\ref{sub:pool}).
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{sensibilidade_forest.png}
+\caption{Sensibilidade do ATT ao limiar de exclusão do pool doador (SDiD, modo
+completo). Cada cor representa um limiar alternativo ($N_0$ entre 193 e 291 doadores).
+Círculos cheios: IC95\% exclui zero; vazios: inclui zero. IC95\% por permutação direta.
+Fonte: elaboração própria.}
+\label{fig:sensibilidade}
+\end{figure}
+
 \newpage
 % =====================================================================
 \subsection{Triangulação metodológica: TWFE-DiD, SC e SDiD}
@@ -1444,6 +1494,42 @@ inclui zero. IC95\% por permutação direta para SC e SDiD; gaussiano \textit{cl
 para TWFE-DiD. Fonte: elaboração própria.}
 \label{fig:forest}
 \end{figure}
+
+O estudo de evento TWFE-DiD fornece um diagnóstico complementar da suposição de
+tendências paralelas, estimando a especificação dinâmica descrita na
+Seção~\ref{sec:metodologia}:
+$Y_{it} = \alpha_i + \gamma_t + \sum_{k \neq -1} \delta_k \cdot
+\mathbf{1}\{r_{it} = k\} \cdot D_i + \varepsilon_{it}$,
+com $r_{it} = t - t^*$, janela $k \in [-12,\,+11]$ e referência $k = -1$
+(abril/2024). A Figura~\ref{fig:event_study} apresenta os coeficientes estimados
+com IC95\% \textit{cluster-robust} no município.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{event_study_twfe_todos.png}
+\caption{Estudo de evento TWFE-DiD — coeficientes dinâmicos $\hat{\delta}_k$ com
+IC95\% \textit{cluster-robust}. Linha vertical: $k = 0$ (mai./2024); referência
+$\hat{\delta}_{-1} = 0$ por normalização. Círculos cheios: IC95\% exclui zero.
+$N = 199$ municípios, $T = 51$ períodos. Fonte: elaboração própria.}
+\label{fig:event_study}
+\end{figure}
+
+Individualmente, nenhum dos onze coeficientes pré-tratamento é significante a $5\%$.
+O teste $F$ conjunto, contudo, rejeita a nulidade conjunta
+($F = 4{,}14$; $p < 0{,}001$; $g.l. = 11;\,198$), indicando que as trajetórias dos
+municípios tratados divergem sistematicamente das unidades de controle no TWFE sem
+\textit{reweighting}. Esse diagnóstico confirma, \textit{ex post}, a adequação do SDiD
+como estimador principal: seus pesos $\hat{w}_i$ e $\hat{\lambda}_t$ reequilibram
+exatamente as trajetórias que o TWFE canônico não consegue harmonizar
+\cite{arkhangelsky2021}. A seleção geográfica das áreas de risco produz precisamente esse
+padrão de pré-tendências divergentes, coerente com o argumento de
+\citeonline{elsner2024} sobre a necessidade de estratégias de estimação que acomodem
+essa heterogeneidade estrutural. No período pós-evento, o coeficiente de impacto
+imediato $\hat{\delta}_0 = -7{,}24$ ($p < 0{,}001$) reproduz o choque de maio/2024,
+e os picos em $\hat{\delta}_7$ e $\hat{\delta}_8$ ($-6{,}79$ e $-6{,}27$,
+ambos $p < 0{,}01$) são consistentes com a segunda onda de retração identificada
+na Subseção~\ref{sub:acumulado}.
+
 \newpage
 
 % =====================================================================
