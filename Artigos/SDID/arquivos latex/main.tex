@@ -125,7 +125,9 @@
 \usepackage{multirow}
 \usepackage{float}
 \usepackage{caption}
+\usepackage{subcaption}
 \captionsetup{font=small, labelfont=bf, justification=justified}
+\captionsetup[subfigure]{font=small, labelfont=bf, justification=centering}
 
 % ── Citações e referências ────────────────────────────────
 \usepackage[alf]{abntex2cite}
@@ -1298,20 +1300,51 @@ pré-especificados por critério objetivo anterior à estimação (proporção
 atingida $> 50\%$), o que atenua o problema de \textit{data dredging} que
 motiva as correções de múltipla hipótese \cite{angrist2009}.
 
-A Figura~\ref{fig:trajetorias_es} ilustra, para Eldorado do Sul, o ajuste
-pré-tratamento entre a unidade tratada e seu controle sintético e a abertura
-do \textit{gap} após o desastre que fundamenta a estimativa do ATT.
+A Figura~\ref{fig:trajetorias_todos} apresenta, para os seis municípios
+tratados, o ajuste pré-tratamento entre a unidade tratada e seu controle
+sintético SDiD, e a abertura do \textit{gap} após o desastre que fundamenta
+cada estimativa do ATT.
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=0.85\textwidth]{municipio_4306767_completo_trajetorias.png}
-\caption{Trajetórias da unidade tratada e do controle sintético — Eldorado do
-Sul (SDiD, pool completo). A área sombreada inferior representa os pesos
-temporais $\hat{\lambda}_t$ estimados; observe-se que o SDiD concentra peso
-nos períodos imediatamente anteriores ao desastre, em conformidade com a
-intuição de \citeonline{arkhangelsky2021} de privilegiar janelas pré-evento
-mais informativas sobre o contrafactual. Fonte: elaboração própria.}
-\label{fig:trajetorias_es}
+% ── Linha 1: municípios com IC95% inteiramente negativo ──────────────
+\subcaptionbox{Eldorado do Sul\label{fig:traj_es}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4306767_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Muçum$^{\dagger}$\label{fig:traj_mucum}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4312609_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Roca Sales\label{fig:traj_rs}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4315800_completo_trajetorias.png}}
+
+\vspace{0.6em}
+
+% ── Linha 2: Travesseiro (robusto) + municípios sem efeito ───────────
+\subcaptionbox{Travesseiro\label{fig:traj_trav}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4321626_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Arambaré\label{fig:traj_aram}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4300851_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Igrejinha\label{fig:traj_igrej}}
+  [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
+  {municipio_4310108_completo_trajetorias.png}}
+
+\caption{Trajetórias da unidade tratada e do controle sintético SDiD —
+pool completo ($N_0 = 193$). Linha vertical: mai./2024 (início do
+tratamento). Linha superior: municípios com ATT significante e IC95\%
+inteiramente negativo (efeito robusto), exceto Muçum ($^{\dagger}$RMSPE\,pré
+$> 5{,}0$ — ver Subseção~\ref{sub:robustez}). Linha inferior: Travesseiro
+(efeito robusto) e municípios sem efeito estatisticamente detectável.
+A área sombreada inferior representa os pesos temporais $\hat{\lambda}_t$;
+o SDiD concentra peso nos períodos imediatamente anteriores ao desastre, em
+conformidade com \citeonline{arkhangelsky2021}. Fonte: elaboração própria.}
+\label{fig:trajetorias_todos}
 \end{figure}
 \newpage
 
