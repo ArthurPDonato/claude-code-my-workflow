@@ -1195,23 +1195,25 @@ pandêmico de 2020--2021, sem exigir sua exclusão da amostra
 \caption{Efeito das enchentes sobre admissões formais por mil habitantes (SDiD, pool completo)}
 \label{tab:att_principal}
 \begin{threeparttable}
-\small
-\begin{tabular}{l r r r c l}
+\footnotesize
+\begin{tabular}{l r r r r r l}
 \toprule
-Município & \% atingidos & ATT & IC95\% (perm.) & $p$-valor\tnote{a} & Classificação \\
+Município & \% ating. & ATT & IC95\% (perm.) & $p$\tnote{a} & $p_{\text{Bonf}}$\tnote{b} & Classificação \\
 \midrule
-Eldorado do Sul & 82,18 & $-3{,}72$ & $[-7{,}04;\,-0{,}52]$ & 0,041 & Efeito robusto \\
-Mu\c{c}um        & 79,07 & $-5{,}08$ & $[-7{,}74;\,-2{,}17]$ & 0,016 & Efeito provável (inferência parcial) \\
-Roca Sales      & 54,52 & $-3{,}72$ & $[-6{,}37;\,-0{,}58]$ & 0,036 & Efeito robusto \\
-Travesseiro     & 51,02 & $-3{,}73$ & $[-7{,}11;\,-0{,}63]$ & 0,036 & Efeito robusto \\
-Arambaré        & 51,90 & $-0{,}06$ & $[-3{,}10;\,\phantom{-}3{,}03]$ & 0,943 & Sem efeito detectável \\
-Igrejinha       & 50,85 & $-1{,}34$ & $[-4{,}40;\,\phantom{-}1{,}78]$ & 0,207 & Sem efeito detectável \\
+Eldorado do Sul & 82,18 & $-3{,}72$ & $[-7{,}04;\,-0{,}52]$ & 0,041 & 0,246 & Efeito robusto \\
+Mu\c{c}um        & 79,07 & $-5{,}08$ & $[-7{,}74;\,-2{,}17]$ & 0,016 & 0,096 & Provável$^{\dagger}$ \\
+Roca Sales      & 54,52 & $-3{,}72$ & $[-6{,}37;\,-0{,}58]$ & 0,036 & 0,216 & Efeito robusto \\
+Travesseiro     & 51,02 & $-3{,}73$ & $[-7{,}11;\,-0{,}63]$ & 0,036 & 0,216 & Efeito robusto \\
+Arambaré        & 51,90 & $-0{,}06$ & $[-3{,}10;\,\phantom{-}3{,}03]$ & 0,943 & 1,000 & Sem efeito \\
+Igrejinha       & 50,85 & $-1{,}34$ & $[-4{,}40;\,\phantom{-}1{,}78]$ & 0,207 & 1,000 & Sem efeito \\
 \bottomrule
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item[a] $p$-valor bilateral por permutação direta sobre 193 doadores. ``Efeito robusto'': IC95\% inteiramente negativo e bom ajuste pré-tratamento (RMSPE pré $< 3{,}0$). ``Inferência parcial'': IC95\% inteiramente negativo, mas ajuste pré-tratamento pobre (RMSPE pré $> 5{,}0$).
-\item Fonte: elaboração própria a partir de microdados do CAGED (jan./2007–mar./2025).
+\item[a] $p$-valor bilateral por permutação direta sobre 193 doadores. ``Efeito robusto'': IC95\% inteiramente negativo, RMSPE\,pré $< 3{,}0$.
+\item[b] Correção de Bonferroni para $m = 6$ testes: $p_{\text{Bonf}} = \min(6p,\,1)$; limiar FWER ajustado $\alpha/6 = 0{,}008$ (nenhum município atingido). Pela correção de Benjamini--Hochberg (FDR $q = 0{,}10$), os quatro municípios com $p \leq 0{,}041$ são rejeitados ($p_{(4)} = 0{,}041 \leq q \cdot 4/6 = 0{,}067$).
+\item $^{\dagger}$ IC95\% inteiramente negativo; RMSPE\,pré $> 5{,}0$ (inferência parcial — ver Subseção~\ref{sub:robustez}).
+\item Fonte: elaboração própria a partir de microdados do CAGED.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
@@ -1229,6 +1231,22 @@ recebe leitura cautelosa pelas razões discutidas na
 Subseção~\ref{sub:robustez}. Por contraste, Arambaré e Igrejinha não exibem
 queda detectável, motivando a análise de canais da
 Subseção~\ref{sub:heterogeneidade}.
+
+A Tabela~\ref{tab:att_principal} reporta também os $p$-valores corrigidos pelo
+método de Bonferroni para a família de $m = 6$ testes simultâneos. Sob o
+critério de controle da taxa de erro familiar (\textit{family-wise error rate},
+FWER $\leq 0{,}05$), nenhum município atinge o limiar ajustado $\alpha/6 = 0{,}008$,
+refletindo a natureza conservadora da correção em um contexto em que os seis testes
+compartilham o mesmo pool de 193 doadores — violando a suposição de independência
+subjacente ao Bonferroni. Sob o critério menos restritivo de controle da taxa de
+falsas descobertas (\textit{false discovery rate}, FDR) de Benjamini--Hochberg,
+com $q = 0{,}10$, os quatro municípios com $p \leq 0{,}041$ são rejeitados
+conjuntamente: $p_{(4)} = 0{,}041 \leq q \cdot 4/6 = 0{,}067$ determina o
+limiar, coincidindo exatamente com os municípios classificados como ``efeito
+robusto'' ou ``provável''. Adicionalmente, os seis municípios tratados foram
+pré-especificados por critério objetivo anterior à estimação (proporção
+atingida $> 50\%$), o que atenua o problema de \textit{data dredging} que
+motiva as correções de múltipla hipótese \cite{angrist2009}.
 
 A Figura~\ref{fig:trajetorias_es} ilustra, para Eldorado do Sul, o ajuste
 pré-tratamento entre a unidade tratada e seu controle sintético e a abertura
