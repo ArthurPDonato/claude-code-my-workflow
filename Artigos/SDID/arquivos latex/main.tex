@@ -2021,9 +2021,11 @@ formal brasileiro em diferentes contextos regionais e institucionais.
 \bibliography{bib} % "referencias" é o nome do seu arquivo .bib
 
 % =============================================================
-%  APÊNDICE
+%  APÊNDICES
 % =============================================================
+\clearpage
 \appendix
+\renewcommand{\thesection}{Apêndice~\Alph{section}}
 
 \section{Robustez: saldo líquido de admissões}
 \label{apx:saldo}
@@ -2142,6 +2144,54 @@ do ajuste do controle sintético; a divergência após mai/2024 captura o efeito
 \label{fig:painel_adm_saldo}
 \end{figure}
 
+% =============================================================
+\clearpage
+\section{Trajetórias expandidas do SDiD --- admissões formais por município}
+\label{apx:trajetorias}
 
+Esta seção apresenta as trajetórias individuais entre a série observada e o controle
+sintético SDiD para as admissões formais por mil habitantes em escala ampliada,
+complementando a Figura~\ref{fig:trajetorias_todos} do texto principal. Para cada
+município, a linha vermelha representa a série observada e a linha azul tracejada
+o controle sintético estimado; a linha vertical cinza indica maio de 2024 (início
+do tratamento). A área sombreada inferior representa os pesos temporais ótimos
+$\hat{\lambda}_t$, que o SDiD concentra nos meses imediatamente anteriores ao
+evento \cite{arkhangelsky2021}. Os $p$-valores são bilaterais por permutação direta.
+
+% ── Par 1: Eldorado do Sul + Muçum ───────────────────────────
+\begin{figure}[htbp]
+\centering
+\subcaptionbox{Eldorado do Sul --- ATT\,$=-3{,}72$; IC95\%\,$[-7{,}04;\,-0{,}52]$; $p=0{,}041$\label{subfig:bex_es}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4306767_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Mu\c{c}um$^{\dagger}$ --- ATT\,$=-5{,}08$; IC95\%\,$[-7{,}74;\,-2{,}17]$; $p=0{,}016$\label{subfig:bex_mucum}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4312609_completo_trajetorias.png}}
+\caption{Trajetórias expandidas (1/3): municípios Eldorado do Sul e Muçum. $^{\dagger}$RMSPE\,pré\,$>5{,}0$ (inferência parcial). Pool completo, $N_0=193$. Fonte: elaboração própria.}
+\label{fig:bex_par1}
+\end{figure}
+
+% ── Par 2: Roca Sales + Travesseiro ──────────────────────────
+\begin{figure}[htbp]
+\centering
+\subcaptionbox{Roca Sales --- ATT\,$=-3{,}72$; IC95\%\,$[-6{,}37;\,-0{,}58]$; $p=0{,}036$\label{subfig:bex_rs}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4315800_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Travesseiro --- ATT\,$=-3{,}73$; IC95\%\,$[-7{,}11;\,-0{,}63]$; $p=0{,}036$\label{subfig:bex_trav}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4321626_completo_trajetorias.png}}
+\caption{Trajetórias expandidas (2/3): municípios Roca Sales e Travesseiro. Efeito robusto em ambos: IC95\% inteiramente negativo e placebo no tempo $p=0{,}040$. Pool completo, $N_0=193$. Fonte: elaboração própria.}
+\label{fig:bex_par2}
+\end{figure}
+
+% ── Par 3: Arambaré + Igrejinha ───────────────────────────────
+\begin{figure}[htbp]
+\centering
+\subcaptionbox{Arambaré --- ATT\,$=-0{,}06$; IC95\%\,$[-3{,}10;\,+3{,}03]$; $p=0{,}943$\label{subfig:bex_aram}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4300851_completo_trajetorias.png}}
+\hfill
+\subcaptionbox{Igrejinha --- ATT\,$=-1{,}34$; IC95\%\,$[-4{,}40;\,+1{,}78]$; $p=0{,}207$\label{subfig:bex_igrej}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4310108_completo_trajetorias.png}}
+\caption{Trajetórias expandidas (3/3): municípios Arambaré e Igrejinha. Nenhum dos estimadores detecta efeito significante em ambos os casos. Pool completo, $N_0=193$. Fonte: elaboração própria.}
+\label{fig:bex_par3}
+\end{figure}
 
 \end{document}
