@@ -1090,7 +1090,11 @@ A série utiliza o Novo CAGED, implantado a partir de janeiro de 2020 com a inco
 do eSocial ao sistema de declaração. Para garantir homogeneidade metodológica e excluir
 a dinâmica atípica do mercado de trabalho durante a pandemia de COVID-19, a janela de
 estimação inicia-se em janeiro de 2021, quando o mercado de trabalho formal havia
-retomado um regime de variação regular após a fase aguda de 2020.
+retomado um regime de variação regular após a fase aguda de 2020. A extensão para
+períodos anteriores não é recomendada: a transição do Caged Antigo para o Novo CAGED
+em janeiro de 2020 introduziria uma quebra estrutural na série que comprometeria a
+comparabilidade intertemporal dos dados e a validade dos pesos sintéticos estimados
+sobre o período pré-tratamento \cite{brasil2019portaria}.
 A janela encerra-se em março de 2025, último mês disponível no momento da extração,
 totalizando $T = 51$ períodos mensais. O ponto de intervenção é maio de 2024
 ($t^* = 40$), de modo que o período pré-tratamento abrange $T_0 = 40$ meses
@@ -1115,8 +1119,14 @@ Governança e Gestão (SPGG) do Estado do Rio Grande do Sul.
 O limiar de 50\% foi definido como critério de \emph{alta severidade relativa}: municípios
 abaixo desse patamar podem ter sofrido impactos parciais que não necessariamente se
 traduzem em deslocamento do mercado de trabalho formal, comprometendo a
-interpretação causal do estimador. Os seis municípios que satisfazem esse critério estão
-descritos na Tabela~\ref{tab:municipios_tratados}.
+interpretação causal do estimador. Trata-se de um critério substantivo de dominância —
+municípios acima desse patamar tiveram a maioria de suas populações residentes
+diretamente atingidas, caracterizando disrupção de escala municipal do espaço econômico
+local \cite{cavallo2013} —, e não de um ponto de corte de otimização estatística.
+A determinação do conjunto tratado foi pré-especificada com base na disponibilidade
+do MUPRS/SPGG-RS, anterior à estimação, atenuando preocupações de \textit{data
+dredging} na seleção das unidades tratadas \cite{angrist2009}. Os seis municípios que
+satisfazem esse critério estão descritos na Tabela~\ref{tab:municipios_tratados}.
 
 \begin{table}[htbp]
 \centering
@@ -1163,6 +1173,19 @@ intermediário — entre $0{,}5\%$ e $50\%$ da população atingida — são exc
 ambos os grupos, mitigando a contaminação do contrafactual por efeitos de transbordamento
 da enchente em municípios parcialmente afetados \cite{abadie2021}. Com esse filtro,
 $N_0 = 193$ municípios compõem o pool doador.
+
+A zona de exclusão \textit{donut} mitiga a contaminação direta por dano físico. Um canal
+adicional de violação de SUTVA — efeitos de transbordamento via cadeias produtivas entre
+municípios tratados e controles — é mitigado pela pequena escala econômica dos tratados:
+os seis municípios somam aproximadamente 93 mil habitantes e representam fração diminuta
+do PIB gaúcho; disrupções localizadas nessa escala dificilmente geram efeitos de
+equilíbrio geral detectáveis nos 193 municípios de controle, cuja base econômica é
+heterogênea e geograficamente dispersa. Adicionalmente, a estabilidade das estimativas
+SDiD sob quatro limiares alternativos do pool doador — que incorporam progressivamente
+municípios mais próximos dos tratados e, portanto, mais expostos a potenciais
+\textit{spillovers} produtivos — fornece evidência indireta de que a contaminação do
+contrafactual por esse canal é negligenciável
+(Tabela~\ref{tab:sensibilidade}; Seção~\ref{sub:robustez}).
 
 O painel de estimação é, portanto, formado por $N = 199$ unidades (6 tratados $+$
 193 doadores) observadas em $T = 51$ períodos mensais, totalizando 10.149 células.
@@ -1386,7 +1409,7 @@ Arambaré        & 0,92 & 0,920 & 0,534 & $-0{,}04$ & $[-0{,}21;\,\phantom{-}0{,
 \begin{tablenotes}[flushleft]
 \footnotesize
 \item[a] $p$-valor do placebo no tempo (datas falsas de tratamento ao longo do período pré-desastre).
-\item[b] $p$-valor unilateral do placebo no espaço (permutação direta sobre os 193 doadores).
+\item[b] $p$-valor unilateral do placebo no espaço (permutação direta sobre os 193 doadores, com correção de pequena amostra: $(1 + n_{\text{ext}})/(1 + N_0)$, \citeauthor{north2002}). O $p$-valor unilateral aqui reportado pode diferir de metade do bilateral correspondente da Tabela~\ref{tab:att_principal} quando a distribuição dos placebos é assimétrica em torno de zero — propriedade esperada e não indicativa de inconsistência de procedimento.
 \item[c] Efeito padronizado: $z = \hat{\tau} / \sigma_{\text{emp}}$, em que $\sigma_{\text{emp}}$ é o desvio-padrão da distribuição placebo.
 \item[d] Faixa do ATT sob exclusão de um doador por vez (\textit{leave-one-out}).
 \item Fonte: elaboração própria a partir de microdados do CAGED.
@@ -1881,44 +1904,16 @@ própria.}
 \subsection{Síntese dos resultados}
 \label{sub:sintese}
 
-Em conjunto, os achados sustentam quatro conclusões principais.
-
-Primeiro, as enchentes de maio de 2024 provocaram uma contração significante
-e persistente das admissões em emprego formal nos municípios mais severamente
-atingidos no plano produtivo. O efeito é robusto em Eldorado do Sul, Roca
-Sales e Travesseiro, com magnitudes notavelmente convergentes em torno de
-$-3{,}7$ admissões por mil habitantes por mês; é provável, porém com
-inferência parcial, em Mu\c{c}um, em razão do ajuste pré-tratamento
-deficiente; e não detectável em Igrejinha e Arambaré.
-
-Segundo, a triangulação metodológica entre TWFE-DiD, SC e SDiD reforça a
-robustez dos achados: nos municípios com efeito robusto, os três estimadores
-convergem em sinal e em ordem de grandeza, com amplitudes de até $1{,}00$
-admissão por mil. Essa convergência fornece evidência de identificação que
-nenhum estimador isolado oferece e atende à recomendação metodológica de
-\citeonline{botzen2019} para a literatura de desastres. O SDiD ocupa
-sistematicamente uma posição intermediária entre TWFE-DiD e SC, em
-conformidade com a propriedade de dupla robustez demonstrada por
-\citeonline{arkhangelsky2021}.
-
-Terceiro, em magnitudes absolutas, o desastre suprimiu cerca de $2.390$
-admissões formais ao longo de onze meses nos quatro municípios com efeito
-detectável, com destaque para Eldorado do Sul ($-1.619$). Em termos de
-política pública, isso quantifica o componente de \emph{oportunidades
-bloqueadas} do choque, que se soma a perdas patrimoniais e sociais não
-abrangidas neste estudo.
-
-Quarto, a heterogeneidade entre municípios é, descritivamente, mais bem
-explicada pelos canais de dano produtivo (firmas e infraestrutura viária)
-do que pelo dano residencial. A reposta do emprego formal parece operar
-predominantemente via os mecanismos de demanda por trabalho documentados
-por \citeonline{haddad2015economic} e de conectividade logística enfatizados por
-\citeonline{xiao2014}, com Arambaré exemplificando o caso em que o tecido
-produtivo é relativamente poupado e Igrejinha o caso em que a
-diversificação econômica atenua a transmissão. As implicações de política
-pública desses achados — em particular para o desenho de pacotes de
-recuperação que privilegiem firmas e infraestrutura, e não apenas
-domicílios — são discutidas na Seção~\ref{sec:consideracoes}.
+Em conjunto, os achados sustentam quatro conclusões: (i) retração significante e
+persistente nos municípios com dano produtivo severo, com efeitos convergentes em
+torno de $-3{,}7$ admissões por mil hab./mês nos três municípios com resultado robusto;
+(ii) triangulação metodológica com convergência de sinal e ordem de grandeza entre
+TWFE-DiD, SC e SDiD nos municípios com efeito detectável; (iii) déficit acumulado
+superior a $2{.}390$ admissões formais nos quatro municípios com efeito significante;
+e (iv) heterogeneidade explicada descritivamente pelos canais de dano produtivo
+(firmas e infraestrutura viária) e não pelo dano residencial isolado. As implicações
+de política pública e a agenda de pesquisa decorrentes são apresentadas na
+Seção~\ref{sec:consideracoes}.
 % =============================================================
 %  6. CONSIDERAÇÕES FINAIS
 % =============================================================
@@ -1942,6 +1937,10 @@ $-3{,}7$ admissões por mil habitantes ao mês, com intervalos de confiança de 
 excluem o zero nos três estimadores. Em Muçum, o resultado é provável, porém com
 inferência parcial em razão do ajuste pré-tratamento deficiente (RMSPE elevado). Em
 Igrejinha e Arambaré, nenhum dos estimadores detecta efeito estatisticamente significante.
+Esses resultados são complementares a \citeonline{teixeira2024}, que documentam efeito
+nulo sobre desligamentos no mesmo evento: a ausência de resposta na margem de saída,
+combinada com a retração detectada na margem de entrada, confirma que o ajuste do
+emprego formal operou predominantemente via bloqueio de novas contratações.
 \emph{Segundo}, a triangulação metodológica reforça a robustez dos achados: nos quatro
 municípios com efeito robusto ou provável, TWFE-DiD, Controle Sintético e SDiD convergem
 em sinal e em ordem de grandeza, com amplitudes de até $2{,}2$ admissões por mil entre os três
@@ -1987,14 +1986,14 @@ associativos não devem ser interpretados como evidência causal dos canais de t
 o choque: a dinâmica de Eldorado do Sul — com segundo pico de retração em janeiro de
 2025 — sugere que o processo de recuperação ainda não estava completo ao final da janela
 analisada, de modo que o déficit acumulado reportado deve ser entendido como uma
-estimativa parcial do impacto de longo prazo. \emph{Quarta}, a significância
-estatística formal repousa quase inteiramente na inferência por permutação do SDiD;
-para a maioria dos municípios, os ICs do TWFE-DiD e do SC cruzam zero — reflexo, em
-parte, das distinções estruturais de potência entre procedimentos de inferência
-detalhadas na Subseção~\ref{sub:triangulacao}. Isso não invalida a triangulação, mas
-implica que a leitura de robustez deve ser feita em termos de convergência de sinal e
-de ordem de grandeza, e não de replicação da significância estatística entre
-estimadores.
+estimativa parcial do impacto de longo prazo. Por fim, uma nota de interpretação: a significância estatística formal repousa
+principalmente na inferência por permutação do SDiD; para a maioria dos municípios,
+os ICs do TWFE-DiD e do SC cruzam zero — reflexo das distinções estruturais de
+potência entre procedimentos de inferência detalhadas na Subseção~\ref{sub:triangulacao}.
+Isso não é uma limitação do design empírico, mas uma propriedade estrutural dos
+estimadores com potências distintas: a robustez da triangulação deve ser lida em termos
+de convergência de sinal e de ordem de grandeza, e não de replicação da significância
+estatística entre métodos.
 
 A agenda de pesquisa aberta por este trabalho é ampla. Em primeiro lugar, a replicação do
 design com uma janela mais longa (por exemplo, até dezembro de 2025 ou além) permitirá
