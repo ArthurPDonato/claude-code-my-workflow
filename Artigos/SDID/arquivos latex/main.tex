@@ -1088,7 +1088,7 @@ A série utiliza o Novo CAGED, implantado a partir de janeiro de 2020 com a inco
 do eSocial ao sistema de declaração. Para garantir homogeneidade metodológica e excluir
 a dinâmica atípica do mercado de trabalho durante a pandemia de COVID-19, a janela de
 estimação inicia-se em janeiro de 2021, quando o mercado de trabalho formal havia
-retomado um regime de variação regular após a phase aguda de 2020.
+retomado um regime de variação regular após a fase aguda de 2020.
 A janela encerra-se em março de 2025, último mês disponível no momento da extração,
 totalizando $T = 51$ períodos mensais. O ponto de intervenção é maio de 2024
 ($t^* = 40$), de modo que o período pré-tratamento abrange $T_0 = 40$ meses
@@ -1274,15 +1274,18 @@ Subseção~\ref{sub:heterogeneidade}.
 Para contextualizar a magnitude dos efeitos, expressamos os ATTs em relação à
 média mensal de admissões formais observada no período pré-evento (maio de 2023 a
 abril de 2024). Nos três municípios com ``efeito robusto'', as reduções relativas
-convergem em torno de um quarto do fluxo habitual de contratações: $-23{,}1\%$
-em Eldorado do Sul (média pré: $16{,}1$ admissões por mil\,hab./mês), $-24{,}9\%$
-em Roca Sales (média pré: $15{,}0$) e $-24{,}2\%$ em Muçum (média pré: $21{,}0$).
-Para Travesseiro, o efeito relativo é mais intenso ($-44{,}0\%$), reflexo de uma
-base de atividade formal comparativamente menor ($8{,}5$ admissões por
-mil\,hab./mês) — coerente com o perfil de economia rural de pequeno porte do Vale
-do Taquari. Em Arambaré e Igrejinha, cujos ATTs não são estatisticamente
-significantes, as variações relativas são de $-1{,}7\%$ e $-7{,}9\%$,
-respectivamente.
+diferem em magnitude, explicadas pelo tamanho da base formal de cada economia:
+$-23{,}1\%$ em Eldorado do Sul (média pré: $16{,}1$ admissões por mil\,hab./mês),
+$-24{,}9\%$ em Roca Sales (média pré: $15{,}0$) e $-44{,}0\%$ em Travesseiro
+(média pré: $8{,}5$) — esta última mais intensa por reflexo de uma base de atividade
+formal comparativamente menor, coerente com o perfil de economia rural de pequeno
+porte do Vale do Taquari.
+Em Mu\c{c}um, classificado como ``provável'' com inferência parcial (RMSPE
+pré\,$> 5{,}0$; ver Subseção~\ref{sub:robustez}), o efeito relativo calculado
+sobre a média pré-evento seria de $-24{,}2\%$ (média pré: $21{,}0$), sujeito à
+ressalva técnica do ajuste pré-tratamento deficiente. Em Arambaré e Igrejinha,
+cujos ATTs não são estatisticamente significantes, as variações relativas são de
+$-1{,}7\%$ e $-7{,}9\%$, respectivamente.
 
 A Tabela~\ref{tab:att_principal} reporta também os $p$-valores corrigidos pelo
 método de Bonferroni para a família de $m = 6$ testes simultâneos. Sob o
@@ -1532,7 +1535,7 @@ Arambaré        & $-0{,}19$ $[-3{,}89;\,3{,}52]$ & $+0{,}29$ $[-2{,}18;\,4{,}91
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item[a] TWFE-DiD com erro-padrão clusterizado (\textit{cluster} no município) e IC95\% gaussiano \cite{bertrand2004}; reportado para comparabilidade com a literatura prévia.
+\item[a] TWFE-DiD com erro-padrão clusterizado (\textit{cluster} no município, $G = 199$) e IC95\% gaussiano \cite{bertrand2004}; reportado para comparabilidade com a literatura prévia.
 \item[b] SC e SDiD com inferência por permutação direta (IC95\% por quantis empíricos recentrados). Em negrito, a estimativa principal (SDiD).
 \item Amplitude $=$ $\max_k \hat{\tau}_k - \min_k \hat{\tau}_k$, $k \in \{\text{DiD, SC, SDiD}\}$, em admissões por mil.
 \item Fonte: elaboração própria a partir de microdados do CAGED.
@@ -1549,7 +1552,15 @@ e Roca Sales de $1{,}00$. Tal convergência fornece um tipo de evidência que
 nenhum estimador isolado oferece: o sinal e a ordem de grandeza do choque
 são invariantes ao conjunto de premissas de identificação assumidas, o que
 constitui o critério prático de robustez por triangulação metodológica
-\cite{abadie2021, chaisemartin2020}.
+\cite{abadie2021, chaisemartin2020}. Cabe notar que o TWFE-DiD é incluído
+sobretudo para comparabilidade com a literatura prévia \cite{teixeira2024}
+e deve ser lido com cautela adicional, dado que o teste $F$ conjunto rejeita
+a hipótese de tendências paralelas ($F=4{,}14$; $p<0{,}001$). Precisamente
+por isso, a convergência de magnitude entre TWFE-DiD e SDiD é
+\emph{mais informativa do que parece}: indica que o viés introduzido pela
+violação de pré-tendências não é suficientemente grande para alterar a
+ordem de grandeza do efeito estimado, reforçando a confiança nas
+estimativas do SDiD como estratégia principal.
 
 Segundo, em todos os casos de efeito robusto o SDiD situa-se \emph{entre} o
 TWFE-DiD e o SC. Esse comportamento é teoricamente esperado:
@@ -1660,10 +1671,14 @@ durante a inundação propriamente dita; segue-se uma fase intermediária com
 efeitos de menor magnitude entre junho e novembro, compatível com a
 retomada parcial da produção sob restrições logísticas; e há um segundo
 pico de retração no início de 2025 — janeiro registra o maior efeito negativo
-da série, $-10{,}15$ por mil. Esse padrão em ``W'' é consistente com a
-hipótese de \citeonline{xiao2014} de que danos à infraestrutura de transporte
-geram efeitos persistentes sobre os custos de operação, postergando a
-recuperação plena do mercado de trabalho local. As estimativas por mil
+da série, $-10{,}15$ por mil. Como o pool pré-tratamento incorpora quatro
+Januários anteriores ao choque (2021--2024), o controle sintético replica o
+padrão sazonal histórico de janeiro; o efeito de $-10{,}15$ é, portanto,
+estimado \emph{relativo} ao nível sazonal esperado, e não à sazonalidade
+bruta do mês. Esse padrão em ``W'' é consistente com a hipótese de
+\citeonline{xiao2014} de que danos à infraestrutura de transporte geram
+efeitos persistentes sobre os custos de operação, postergando a recuperação
+plena do mercado de trabalho local. As estimativas por mil
 habitantes traduzem-se em perdas absolutas de admissões formais quando
 reescaladas pela população municipal e somadas mês a mês. A
 Tabela~\ref{tab:acumulado} reporta o efeito acumulado em postos de trabalho.
