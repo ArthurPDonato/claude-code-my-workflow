@@ -119,6 +119,7 @@
   {../Resultados/SDID triangulacao DiD SC SDID/}
   {../Resultados/SDID sensibilidade pool/}
   {../Resultados/SDID event study twfe/}
+  {../Resultados/SDID robustez saldo/}
 }
 \usepackage{booktabs}
 \usepackage{threeparttable}
@@ -221,9 +222,9 @@ déficit acumulado superior a 2.390 oportunidades de trabalho ao longo de onze m
 A triangulação sistemática entre os três estimadores revela convergência de sinal e de
 magnitude nos municípios com efeito robusto, fornecendo evidência de identificação que
 nenhum estimador isolado oferece. Os testes de placebo no espaço e no tempo confirmam
-a especificidade do choque às localidades afetadas. As estimativas convergem com
-estudos recentes baseados em Diferenças em Diferenças, validando a magnitude do
-impacto econômico mensurado.
+a especificidade do choque às localidades afetadas. As estimativas convergem em sinal e ordem de grandeza com
+estudos recentes baseados em Diferenças em Diferenças, sendo consistentes com as
+magnitudes do impacto econômico reportadas na literatura.
 
 \vspace{0.6em}
 \noindent\textbf{Palavras-chave:} \textit{Synthetic Difference-in-Differences}; Emprego
@@ -245,8 +246,9 @@ deficit of more than 2,390 employment opportunities over eleven months. The syst
 triangulation across the three estimators shows convergence in sign and magnitude in the
 municipalities with robust effects, providing identification evidence that no single
 estimator offers. Placebo tests in space and time confirm the specificity of the shock to
-the affected localities. The estimates converge with recent Difference-in-Differences
-studies, validating the magnitude of the measured economic impact.
+the affected localities. The estimates are consistent in sign and magnitude with recent
+Difference-in-Differences studies, converging with the economic impact magnitudes
+reported in the literature.
 
 \vspace{0.6em}
 \noindent\textbf{Keywords:} Synthetic Difference-in-Differences; Formal Employment;
@@ -1424,6 +1426,18 @@ ressalva técnica de que a inferência é parcial. A pequena escala do municípi
 capita, característica documentada por \citeonline{abadie2010} em aplicações
 com unidades pequenas.
 
+Para transparência simétrica na avaliação do ajuste, reportam-se as razões
+RMSPE/média-pré para os quatro municípios com efeito detectável: $14{,}8\%$ em
+Eldorado do Sul (RMSPE\,$=2{,}39$; média pré: $16{,}1$~adm./mil\,hab.), $14{,}0\%$
+em Roca Sales ($2{,}10$; $15{,}0$), $34{,}7\%$ em Travesseiro ($2{,}95$;
+$8{,}5$) e $33{,}7\%$ em Muçum ($7{,}07$; $21{,}0$). Travesseiro apresenta
+razão proporcional próxima à de Muçum, porém com RMSPE absoluto de $2{,}95$ —
+abaixo do limiar de $5{,}0$ utilizado como sinalizador de ajuste deficiente —,
+além de placebo no tempo significante ($p=0{,}040$) e faixa LOO inteiramente
+negativa. Esses três diagnósticos em conjunto sustentam a classificação de
+Travesseiro como ``efeito robusto'', a despeito do coeficiente de variação
+relativo elevado.
+
 Para Igrejinha e Arambaré, todos os diagnósticos convergem para a ausência
 de efeito: $p$-valores elevados em ambos os placebos, efeito padronizado
 próximo de zero e, no caso de Arambaré, faixa \textit{leave-one-out} que
@@ -1593,7 +1607,26 @@ demais ($-0{,}19$ e $-0{,}06$). A divergência de sinal nesse caso, longe de
 um problema, é informativa: indica que nenhum dos três estimadores consegue
 afastar a hipótese nula de ausência de efeito, e a discordância de sinal é
 ruído estatístico em torno de zero — exatamente o padrão esperado quando
-não há tratamento detectável. A Figura~\ref{fig:forest} apresenta o
+não há tratamento detectável.
+
+Cabe um esclarecimento importante: a ``convergência'' aqui discutida refere-se à
+concordância de \emph{sinal} e de \emph{ordem de grandeza} das estimativas
+pontuais — não à significância estatística. Para a maioria dos municípios, os ICs
+do TWFE-DiD e do SC cruzam zero, enquanto apenas o SDiD alcança significância
+convencional a $5\%$. Isso reflete, em parte, mecanismos de inferência com
+potências distintas: o TWFE-DiD usa ICs gaussianos sem rebalanceamento de
+trajetórias; o SC, estimado unidade a unidade sobre 193 doadores, produz quantis
+empíricos mais dispersos por não incorporar os pesos de tempo $\hat{\lambda}_t$.
+O SDiD combina o rebalanceamento duplo ($\hat{w}_i$ e $\hat{\lambda}_t$) com a
+distribuição exata de permutação sobre os 193 placebos, conferindo-lhe maior
+potência para detectar sinais consistentes em configurações com poucos tratados
+— propriedade documentada em simulações de Monte Carlo por
+\citeonline{arkhangelsky2021}. A não-significância do TWFE-DiD e do SC não
+contradiz os resultados: ela é em parte estrutural ao procedimento de inferência
+de cada estimador e reforça, por contraste, a adequação do SDiD como estratégia
+principal neste contexto.
+
+A Figura~\ref{fig:forest} apresenta o
 \textit{forest plot} da triangulação, facetado por município.
 
 \begin{figure}[htbp]
@@ -1666,10 +1699,10 @@ própria.}
 \newpage
 A dinâmica mensal revela um padrão coerente com o relato físico do desastre.
 Em Eldorado do Sul, o choque inicial em maio de 2024 (efeito de $-7{,}37$
-admissões por mil) corresponde à interrupção física da atividade econômica
-durante a inundação propriamente dita; segue-se uma fase intermediária com
-efeitos de menor magnitude entre junho e novembro, compatível com a
-retomada parcial da produção sob restrições logísticas; e há um segundo
+admissões por mil) é consistente com a interrupção da atividade econômica
+durante o período de inundação; segue-se uma fase intermediária com
+efeitos de menor magnitude entre junho e novembro, sugestiva de uma retomada
+parcial da produção sob possíveis restrições logísticas; e há um segundo
 pico de retração no início de 2025 — janeiro registra o maior efeito negativo
 da série, $-10{,}15$ por mil. Como o pool pré-tratamento incorpora quatro
 Januários anteriores ao choque (2021--2024), o controle sintético replica o
@@ -1911,9 +1944,11 @@ inferência parcial em razão do ajuste pré-tratamento deficiente (RMSPE elevad
 Igrejinha e Arambaré, nenhum dos estimadores detecta efeito estatisticamente significante.
 \emph{Segundo}, a triangulação metodológica reforça a robustez dos achados: nos quatro
 municípios com efeito robusto ou provável, TWFE-DiD, Controle Sintético e SDiD convergem
-em sinal e em ordem de grandeza, com amplitudes de até $2{,}2$ admissões por mil entre
-os três — consistente com a propriedade de dupla robustez demonstrada por
-\citeonline{arkhangelsky2021}. \emph{Terceiro}, em termos absolutos, o déficit acumulado
+em sinal e em ordem de grandeza, com amplitudes de até $2{,}2$ admissões por mil entre os três
+(valor máximo em Muçum, cujo maior spread reflete o ajuste pré-tratamento
+deficiente; nos três municípios de efeito estritamente robusto, a amplitude
+máxima é de $1{,}00$) — consistente com a propriedade de dupla robustez
+demonstrada por \citeonline{arkhangelsky2021}. \emph{Terceiro}, em termos absolutos, o déficit acumulado
 supera 2.390 admissões formais ao longo de onze meses nos quatro municípios com efeito
 detectável, com destaque para Eldorado do Sul ($-1.619$ empregos formais). \emph{Quarto},
 a heterogeneidade entre municípios é mais bem explicada, descritivamente, pelos canais de
@@ -1952,7 +1987,14 @@ associativos não devem ser interpretados como evidência causal dos canais de t
 o choque: a dinâmica de Eldorado do Sul — com segundo pico de retração em janeiro de
 2025 — sugere que o processo de recuperação ainda não estava completo ao final da janela
 analisada, de modo que o déficit acumulado reportado deve ser entendido como uma
-estimativa parcial do impacto de longo prazo.
+estimativa parcial do impacto de longo prazo. \emph{Quarta}, a significância
+estatística formal repousa quase inteiramente na inferência por permutação do SDiD;
+para a maioria dos municípios, os ICs do TWFE-DiD e do SC cruzam zero — reflexo, em
+parte, das distinções estruturais de potência entre procedimentos de inferência
+detalhadas na Subseção~\ref{sub:triangulacao}. Isso não invalida a triangulação, mas
+implica que a leitura de robustez deve ser feita em termos de convergência de sinal e
+de ordem de grandeza, e não de replicação da significância estatística entre
+estimadores.
 
 A agenda de pesquisa aberta por este trabalho é ampla. Em primeiro lugar, a replicação do
 design com uma janela mais longa (por exemplo, até dezembro de 2025 ou além) permitirá
@@ -1978,6 +2020,128 @@ formal brasileiro em diferentes contextos regionais e institucionais.
 %  REFERÊNCIAS
 % =============================================================
 \bibliography{bib} % "referencias" é o nome do seu arquivo .bib
+
+% =============================================================
+%  APÊNDICE
+% =============================================================
+\appendix
+
+\section{Robustez: saldo líquido de admissões}
+\label{apx:saldo}
+
+Esta seção apresenta a análise de robustez com o \emph{saldo líquido} mensal de admissões
+(admissões $-$ desligamentos) por mil habitantes como variável dependente, em resposta à
+sugestão de verificar empiricamente se as enchentes de maio de 2024 afetaram o mercado de
+trabalho formal exclusivamente pela margem de entrada \cite{teixeira2024}. O
+procedimento é integralmente análogo ao do estudo principal: mesmo pool doador
+($N_0 = 193$ municípios com proporção de atingidos $\leq 0{,}5\%$), mesmos seis
+municípios tratados, mesmo período de análise (janeiro/2021 a março/2025) e
+mesma infraestrutura de inferência --- permutação direta (IC95\% por quantis empíricos
+recentrados) para o SDiD e o SC; erros-padrão clusterizados no município para o
+TWFE-DiD. A variável é construída como $\text{saldo}_{it}/\text{PopMun}_i \times 1000$,
+onde $\text{saldo}_{it} = \text{admissões}_{it} - \text{desligamentos}_{it}$.
+
+A Tabela~\ref{tab:triangulacao_saldo} reporta a triangulação dos três estimadores.
+Para cinco dos seis municípios, o efeito sobre o saldo é negativo e de sinal
+concordante com o efeito sobre as admissões, corroborando que a redução no
+emprego formal ocorreu principalmente pela margem de entrada. A exceção é
+Eldorado do Sul, cujo SDiD para o saldo é positivo ($+1{,}83$; $p = 0{,}057$)
+embora o efeito sobre as admissões seja fortemente negativo ($-3{,}72$; $p < 0{,}05$).
+Essa divergência indica que naquele município os desligamentos recuaram mais intensamente
+do que as admissões no período pós-enchente, resultando em saldo líquido positivo ---
+padrão compatível com comportamento de firmas que congelam simultaneamente novas
+contratações \emph{e} demissões durante a fase aguda de um desastre, em consonância
+com a rigidez da legislação trabalhista brasileira que desincentiva demissões sob
+incerteza \cite{teixeira2024, krein2012}. Esse resultado não contradiz o argumento principal:
+a margem de entrada permanece o canal dominante de ajuste nos municípios com efeito
+robusto (Muçum, Roca Sales, Travesseiro), cujos ATTs sobre o saldo são negativos,
+estatisticamente significantes e de magnitude próxima aos ATTs sobre as admissões.
+
+\begin{table}[htbp]
+\centering
+\caption{Robustez — triangulação de estimadores: ATT em saldo líquido de admissões por
+mil habitantes (pool completo, $N_0 = 193$)}
+\label{tab:triangulacao_saldo}
+\begin{threeparttable}
+\small
+\begin{tabular}{l r r r r}
+\toprule
+Município & TWFE-DiD\tnote{a} & SC\tnote{b} & SDiD\tnote{b} & Amplitude \\
+\midrule
+Eldorado do Sul
+  & $-1{,}06$ $[-1{,}27;\,-0{,}84]$
+  & $-0{,}77$ $[-2{,}38;\,+0{,}80]$
+  & $\boldsymbol{+1{,}83}$ $[-0{,}11;\,+3{,}43]$
+  & $2{,}88$ \\
+Mu\c{c}um
+  & $-4{,}87$ $[-5{,}09;\,-4{,}66]$
+  & $-2{,}52^{*}$ $[-4{,}32;\,-0{,}86]$
+  & $\boldsymbol{-5{,}03^{*}}$ $[-7{,}03;\,-3{,}19]$
+  & $2{,}51$ \\
+Roca Sales
+  & $-2{,}90$ $[-3{,}11;\,-2{,}68]$
+  & $-3{,}01^{*}$ $[-4{,}89;\,-1{,}49]$
+  & $\boldsymbol{-2{,}85^{*}}$ $[-4{,}87;\,-1{,}12]$
+  & $0{,}16$ \\
+Travesseiro
+  & $-4{,}26$ $[-4{,}48;\,-4{,}05]$
+  & $-4{,}19^{*}$ $[-5{,}79;\,-2{,}53]$
+  & $\boldsymbol{-3{,}23^{*}}$ $[-5{,}31;\,-1{,}56]$
+  & $1{,}04$ \\
+Igrejinha
+  & $-1{,}95$ $[-2{,}16;\,-1{,}73]$
+  & $-0{,}72$ $[-2{,}55;\,+0{,}87]$
+  & $\boldsymbol{-1{,}64}$ $[-3{,}74;\,-0{,}04]$
+  & $1{,}23$ \\
+Arambaré
+  & $-0{,}13$ $[-0{,}35;\,+0{,}08]$
+  & $-0{,}28$ $[-2{,}09;\,+1{,}31]$
+  & $\boldsymbol{-0{,}05}$ $[-2{,}12;\,+1{,}63]$
+  & $0{,}23$ \\
+\bottomrule
+\end{tabular}
+\begin{tablenotes}[flushleft]
+\footnotesize
+\item[a] TWFE-DiD com erro-padrão clusterizado (município, $G = 199$) e IC95\%
+  gaussiano; incluído para comparabilidade. \emph{Nota}: os EP do TWFE-DiD
+  ($= 0{,}11$ para todos os municípios) refletem a especificação de interação
+  município$\,\times\,D_{it}$ com efeitos fixos duplos, que elimina a variação
+  dos controles e concentra toda a identificação no binário de tratamento
+  por unidade; devem ser interpretados com cautela.
+\item[b] SC e SDiD com inferência por permutação direta (IC95\% por quantis
+  empíricos recentrados, 193 placebos). Em negrito, a estimativa principal
+  (SDiD). $^{*}$ $p < 0{,}05$ bilateral.
+\item Amplitude $=$ $\max_k \hat{\tau}_k - \min_k \hat{\tau}_k$,
+  $k \in \{\text{DiD,\,SC,\,SDiD}\}$, em saldo por mil hab./mês.
+\item Fonte: elaboração própria a partir de microdados do CAGED.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
+
+A Figura~\ref{fig:forest_saldo} apresenta o \textit{forest plot} da triangulação para
+o saldo, e a Figura~\ref{fig:painel_adm_saldo} exibe, para cada município, as trajetórias
+observada e sintética das duas variáveis lado a lado, permitindo comparação visual direta
+entre os canais de admissões e de saldo líquido.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.95\textwidth]{triangulacao_saldo_forest.png}
+\caption{\textit{Forest plot} da triangulação --- saldo líquido de admissões por mil hab.
+(TWFE-DiD, SC e SDiD; pool completo, $N_0 = 193$). Pontos vermelhos indicam IC95\%
+inteiramente negativo (ou positivo); cinzas indicam IC que cruza zero. Inferência:
+permutação direta para SC e SDiD; gaussiana para TWFE-DiD.}
+\label{fig:forest_saldo}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{painel_admissoes_vs_saldo.png}
+\caption{Trajetórias observada e controle sintético (SDiD) para admissões formais
+(esquerda) e saldo líquido (direita), por município tratado. Linha vertical tracejada:
+maio/2024. A convergência entre as duas séries no período pré-evento ilustra a qualidade
+do ajuste do controle sintético; a divergência após mai/2024 captura o efeito estimado.}
+\label{fig:painel_adm_saldo}
+\end{figure}
 
 
 
