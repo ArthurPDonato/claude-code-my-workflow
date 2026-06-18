@@ -209,15 +209,15 @@
 % ── RESUMO / ABSTRACT ────────────────────────────────────
 \noindent\textbf{Resumo:} Este estudo estima os efeitos causais das enchentes de maio
 de 2024 sobre as admissões em empregos formais nos seis municípios do Rio Grande do
-Sul mais severamente atingidos em termos relativos — Eldorado do Sul, Muçum, Roca
-Sales, Travesseiro, Arambaré e Igrejinha —, utilizando o estimador \textit{Synthetic
+Sul mais severamente atingidos em termos relativos (Eldorado do Sul, Muçum, Roca
+Sales, Travesseiro, Arambaré e Igrejinha), utilizando o estimador \textit{Synthetic
 Difference-in-Differences} (SDiD) como estratégia de identificação principal,
 complementado pelo estimador de Diferenças em Diferenças com Efeitos Fixos
 Bidirecionais (TWFE-DiD) e pelo Controle Sintético (SC) como exercícios de robustez.
 Os resultados evidenciam um choque imediato e severo sobre as contratações: em quatro
 municípios o desastre reduziu de forma estatisticamente significativa as admissões
-formais — com efeito robusto em Eldorado do Sul, Roca Sales e Travesseiro, em torno
-de $-3{,}7$ admissões por mil habitantes ao mês, e provável em Muçum —, gerando um
+formais (com efeito robusto em Eldorado do Sul, Roca Sales e Travesseiro, em torno
+de $-3{,}7$ admissões por mil habitantes ao mês, e provável em Muçum), gerando um
 déficit acumulado superior a 2.390 oportunidades de trabalho ao longo de onze meses.
 A triangulação sistemática entre os três estimadores revela convergência de sinal e de
 magnitude nos municípios com efeito robusto, fornecendo evidência de identificação que
@@ -234,14 +234,14 @@ Formal; Desastres Naturais; Enchentes; Rio Grande do Sul.
 
 \noindent\textbf{Abstract:} This study estimates the causal effects of the May 2024
 floods on formal job admissions in the six most severely affected municipalities of Rio
-Grande do Sul in relative terms — Eldorado do Sul, Muçum, Roca Sales, Travesseiro,
-Arambaré, and Igrejinha — using the Synthetic Difference-in-Differences (SDiD)
+Grande do Sul in relative terms (Eldorado do Sul, Muçum, Roca Sales, Travesseiro,
+Arambaré, and Igrejinha), using the Synthetic Difference-in-Differences (SDiD)
 estimator as the main identification strategy, complemented by the Two-Way Fixed
 Effects Difference-in-Differences (TWFE-DiD) estimator and the Synthetic Control (SC)
 method as robustness exercises. The results reveal an immediate and severe shock to
-hiring: in four municipalities the disaster significantly reduced formal admissions —
-robustly in Eldorado do Sul, Roca Sales, and Travesseiro, by about $-3.7$ admissions per
-thousand inhabitants per month, and probably in Muçum — generating an accumulated
+hiring: in four municipalities the disaster significantly reduced formal admissions
+(robustly in Eldorado do Sul, Roca Sales, and Travesseiro, by about $-3.7$ admissions per
+thousand inhabitants per month, and probably in Muçum), generating an accumulated
 deficit of more than 2,390 employment opportunities over eleven months. The systematic
 triangulation across the three estimators shows convergence in sign and magnitude in the
 municipalities with robust effects, providing identification evidence that no single
@@ -268,14 +268,14 @@ Natural Disasters; Floods; Rio Grande do Sul.
 
 Entre abril e maio de 2024, o Rio Grande do Sul vivenciou uma das mais devastadoras
 tragédias climáticas da história recente do Brasil. Segundo dados da Defesa Civil
-Estadual, 478 municípios foram afetados — o equivalente a mais de 90\% do território
-estadual —, com aproximadamente 2,4 milhões de pessoas atingidas, 388 mil
+Estadual, 478 municípios foram afetados (o equivalente a mais de 90\% do território
+estadual), com aproximadamente 2,4 milhões de pessoas atingidas, 388 mil
 desalojadas, 806 feridos e 178 óbitos confirmados \cite{martins2024}. A escala do
 desastre foi tal que municípios como Eldorado do Sul e Roca Sales tiveram mais da
 metade de suas populações diretamente impactadas \cite{teixeira2024}, e estimativas do
 Instituto de Pesquisa Econômica Aplicada apontam que, nos municípios mais
 prejudicados, entre 84\% e 92\% dos postos de trabalho formais foram afetados
-\cite{ipea2024} — configurando um choque econômico sem precedentes para a economia
+\cite{ipea2024}, configurando um choque econômico sem precedentes para a economia
 regional.
 
 A literatura internacional reconhece que desastres naturais impõem dois tipos de custos:
@@ -287,8 +287,8 @@ elevada integração produtiva \cite{botzen2019}, e que o mercado de trabalho fo
 constitui um canal prioritário de transmissão do choque climático. No caso das enchentes
 de 2024, esse canal operou de modo assimétrico: \citeonline{teixeira2024} mostram que,
 nos municípios gaúchos atingidos, o ajuste se deu predominantemente pela retração das
-contratações — os desligamentos não apresentaram variação estatisticamente significativa
-em relação à trajetória pré-desastre —, provavelmente em razão da rigidez da legislação
+contratações (os desligamentos não apresentaram variação estatisticamente significativa
+em relação à trajetória pré-desastre), provavelmente em razão da rigidez da legislação
 trabalhista e das políticas de manutenção de emprego vigentes no período. É essa margem
 de entrada do mercado de trabalho, e não o saldo líquido ou o estoque de empregos, que
 reagiu à catástrofe; analisá-la isola o componente dinâmico que de fato respondeu ao
@@ -298,26 +298,26 @@ atividades quanto os movimentos subsequentes de retomada produtiva.
 A mensuração causal desses efeitos, contudo, enfrenta desafios metodológicos não
 triviais. As unidades geográficas mais afetadas por inundações não são uma amostra
 aleatória: tendem a concentrar-se em áreas de baixa altitude, próximas a cursos d'água,
-com urbanização acelerada em zonas de risco e infraestrutura de drenagem precária —
+com urbanização acelerada em zonas de risco e infraestrutura de drenagem precária,
 características correlacionadas com renda, inserção produtiva e capacidade institucional
 \cite{botzen2019}. Comparações simples entre municípios afetados e não afetados podem,
 assim, capturar diferenças preexistentes em vez do efeito causal do evento. A estratégia
 canônica para mitigar essa endogeneidade consiste em explorar a variação exógena nos
-eventos físicos — precipitação, cota de inundação, extensão das áreas alagadas — em
+eventos físicos (precipitação, cota de inundação, extensão das áreas alagadas), em
 combinação com métodos quase-experimentais que controlem a heterogeneidade não
 observada \cite{elsner2024}.
 
 Nesse contexto, o presente artigo estima os efeitos causais das enchentes de maio de
 2024 sobre as admissões em empregos formais nos seis municípios gaúchos com mais de
-50\% da população atingida — Eldorado do Sul, Muçum, Roca Sales, Travesseiro, Arambaré
-e Igrejinha \cite{teixeira2024}.
+50\% da população atingida (Eldorado do Sul, Muçum, Roca Sales, Travesseiro, Arambaré
+e Igrejinha) \cite{teixeira2024}.
 Para tanto, adotamos o estimador \textit{Synthetic Difference-in-Differences} (SDiD),
 proposto por \citeonline{arkhangelsky2021}, que combina a robustez dos efeitos fixos
 bidirecionais com a capacidade do controle sintético de equilibrar trajetórias
 pré-tratamento divergentes entre unidades tratadas e de controle. A escolha do SDiD
 como estratégia de identificação principal é motivada por três razões. Primeiro, o
 estimador é particularmente adequado quando as trajetórias pré-evento divergem entre as
-unidades afetadas e o grupo de controle potencial — condição frequente em contextos de
+unidades afetadas e o grupo de controle potencial, condição frequente em contextos de
 desastres naturais, dada a seleção geográfica das áreas de risco
 \cite{arkhangelsky2021, chaisemartin2020}. Segundo, ao estimar pesos de tempo a partir
 dos dados, o SDiD atribui maior relevância aos períodos pré-tratamento mais informativos
@@ -336,7 +336,7 @@ de desastres em um único estimador \cite{botzen2019}. A variável de interesse 
 mensal de admissões em empregos formais por mil habitantes, extraído do Cadastro Geral
 de Empregados e Desempregados (CAGED). Para assegurar a homogeneidade da série, a janela
 de estimação inicia-se em janeiro de 2021, posterior à consolidação do Novo CAGED
-(baseado no eSocial) e à fase aguda da pandemia de COVID-19 — restringindo a análise a um
+(baseado no eSocial) e à fase aguda da pandemia de COVID-19, restringindo a análise a um
 regime metodologicamente uniforme, livre tanto da descontinuidade na fonte de dados
 quanto da dinâmica atípica do biênio pandêmico (Seção~\ref{sec:dados}). O contrafactual de
 cada município é construído a partir de um \textit{donor pool} comum de municípios gaúchos
@@ -350,7 +350,7 @@ primeiro trabalho a aplicar o SDiD à avaliação de impactos de inundações no
 confrontando sistematicamente seus resultados com os de estimadores alternativos.
 Segundo, ao triangular TWFE-DiD, Controle Sintético e SDiD sobre o mesmo evento,
 oferecemos evidências sobre a sensibilidade das estimativas às premissas de identificação
-de cada método — exercício ainda escasso na literatura de desastres climáticos, que tende
+de cada método, exercício ainda escasso na literatura de desastres climáticos, que tende
 a adotar um único estimador sem discussão aprofundada de robustez \cite{botzen2019}.
 
 O restante do artigo está organizado da seguinte forma. A Seção~\ref{sec:revisao}
@@ -373,8 +373,8 @@ Seção~\ref{sec:consideracoes} traz as considerações finais e implicações d
 
 Esta seção revisa a literatura empírica e metodológica relevante para o artigo,
 estruturada em cinco blocos. A Subseção~\ref{sub:metodos} acompanha a evolução dos
-métodos quase-experimentais em dados de painel — TWFE-DiD, Controle Sintético e
-SDiD — e sua aplicação a eventos climáticos extremos. A Subseção~\ref{sub:impacto}
+métodos quase-experimentais em dados de painel (TWFE-DiD, Controle Sintético e
+SDiD) e sua aplicação a eventos climáticos extremos. A Subseção~\ref{sub:impacto}
 trata do impacto econômico de inundações, abrangendo a distinção entre custos diretos e
 indiretos e as evidências por dimensão (mercado de trabalho, preços de imóveis, saúde e
 finanças públicas). A Subseção~\ref{sub:agricultura} examina os efeitos sobre agricultura,
@@ -392,13 +392,13 @@ Naturais}
 A mensuração causal dos efeitos econômicos de desastres naturais enfrenta um problema
 de identificação fundamental: unidades geográficas afetadas diferem sistematicamente das
 não afetadas em características observáveis e não observáveis, e os próprios danos
-reportados tendem a ser endógenos — refletindo não apenas a magnitude física do evento,
+reportados tendem a ser endógenos, refletindo não apenas a magnitude física do evento,
 mas também a exposição econômica prévia, a capacidade institucional e a cobertura de
 seguros. \citeonline{botzen2019} sintetizam essa limitação em sua revisão abrangente,
 destacando que a maioria dos estudos anteriores a 2010 baseia-se em variação transversal
 sujeita a viés de variável omitida, e que o avanço da literatura requer estratégias de
-identificação que explorem variação exógena nos eventos físicos — precipitação,
-velocidade do vento, altitude dos leitos fluviais — em vez de medidas econômicas de dano.
+identificação que explorem variação exógena nos eventos físicos (precipitação,
+velocidade do vento, altitude dos leitos fluviais), em vez de medidas econômicas de dano.
 
 O reconhecimento dessa limitação consolidou-se a partir de \citeonline{kahn2005death},
 que, com dados de corte transversal de países, documentou a relação entre renda,
@@ -406,7 +406,7 @@ qualidade institucional e mortalidade por desastres, e de \citeonline{strobl2011
 explorou a variação na intensidade de furacões ao longo do tempo em municípios costeiros
 americanos por meio de um modelo de efeitos fixos bidirecionais. Desde então, o campo
 migrou progressivamente para desenhos quase-experimentais mais rigorosos, valendo-se
-da \textit{quasi-randomness} intrínseca à ocorrência de eventos físicos extremos — em
+da \textit{quasi-randomness} intrínseca à ocorrência de eventos físicos extremos, em
 particular inundações repentinas, cuja deflagração em dada localidade e período é
 amplamente imprevisível mesmo condicional à exposição histórica ao risco
 \cite{elsner2024}.
@@ -418,8 +418,8 @@ amplamente empregado na avaliação de desastres climáticos, valendo-se da vari
 temporal na exposição ao evento para identificar o efeito causal. \citeonline{deryugina2017}
 constitui uma das aplicações mais influentes desse desenho: usando dados de condados
 americanos por até uma década após o \textit{landfall} de furacões, a autora documenta
-que os custos fiscais indiretos — decorrentes de transferências governamentais como
-seguro-desemprego e gastos de saúde pública — superam, em valor presente, o auxílio
+que os custos fiscais indiretos (decorrentes de transferências governamentais como
+seguro-desemprego e gastos de saúde pública) superam, em valor presente, o auxílio
 emergencial direto, sugerindo que os custos totais dos desastres têm sido sistematicamente
 subestimados.
 
@@ -432,8 +432,8 @@ entre tipos de evento é relevante para o presente artigo: indica que análises 
 exclusivamente em enchentes requerem abordagens empíricas específicas.
 \citeonline{leiter2009} aplicam DiD a um painel de firmas europeias afetadas pela grande
 inundação de agosto de 2002 no centro da Europa e encontram maior crescimento de ativos
-totais e de emprego no curto prazo nas regiões atingidas — padrão consistente com a
-hipótese de destruição criativa schumpeteriana —, ao mesmo tempo em que a
+totais e de emprego no curto prazo nas regiões atingidas (padrão consistente com a
+hipótese de destruição criativa schumpeteriana), ao mesmo tempo em que a
 produtividade é negativamente afetada.
 
 No contexto das enchentes de 2024 no Rio Grande do Sul, \citeonline{teixeira2024}
@@ -441,14 +441,14 @@ aplicaram o estimador DiD a um painel de municípios gaúchos, documentando redu
 significativas nas admissões formais e queda relevante na arrecadação de ICMS nos
 municípios mais atingidos. Como já observado na Seção~\ref{sec:introducao}, os autores
 verificaram que o ajuste se deu predominantemente pela retração das contratações,
-enquanto os desligamentos não variaram significativamente — achado que orienta a
+enquanto os desligamentos não variaram significativamente, achado que orienta a
 escolha das admissões como variável de interesse deste estudo.
 
 \subsubsection{Controle Sintético Aplicado a Eventos Climáticos}
 
 O Método de Controle Sintético (SCM), introduzido por \citeonline{abadie2003} e
 formalizado por \citeonline{abadie2010, abadie2015}, ganhou espaço natural na avaliação
-de desastres de grande magnitude — contextos em que um único território é afetado por
+de desastres de grande magnitude, contextos em que um único território é afetado por
 um evento de escala histórica e não há grupo de controle evidente. \citeonline{cavallo2013}
 constituem a aplicação seminal: construindo contrafactuais sintéticos de PIB para países
 atingidos por grandes desastres naturais, os autores encontram que, após controlar por
@@ -475,7 +475,7 @@ como as grandes inundações.
 
 O estimador SDiD \cite{arkhangelsky2021} tem aplicação ainda nascente na literatura de
 desastres climáticos, mas sua configuração estatística o torna particularmente promissor
-nesse contexto. Quando um desastre afeta múltiplas unidades — municípios, regiões — com
+nesse contexto. Quando um desastre afeta múltiplas unidades (municípios, regiões), com
 \textit{timing} similar mas intensidade variável, o TWFE pode sofrer dos problemas de
 heterogeneidade discutidos por \citeonline{chaisemartin2020} e
 \citeonline{goodmanbacon2021}. Ao incorporar pesos de unidade e de tempo que
@@ -483,7 +483,7 @@ equilibram as trajetórias pré-tratamento, o SDiD mitiga esses problemas sem im
 restrição de \textit{convex hull}%
 \footnote{No Controle Sintético clássico, os pesos $\hat{w}_i$ são restritos a ser
 não-negativos e somar 1, o que implica que a unidade sintética deve ser uma
-combinação convexa dos doadores — i.e., estar dentro do \textit{convex hull} do
+combinação convexa dos doadores, i.e., estar dentro do \textit{convex hull} do
 pool de controle. Essa restrição é vinculante quando a unidade tratada apresenta
 dinâmica pré-evento que extrapola a fronteira do conjunto de doadores disponíveis,
 produzindo ajuste deficiente e estimativas de ATT potencialmente viesadas
@@ -491,7 +491,7 @@ produzindo ajuste deficiente e estimativas de ATT potencialmente viesadas
 os pesos de unidade $\hat{w}_i$ alinham as trajetórias em diferença, e não em nível,
 permitindo que unidades com desvios sistemáticos de nível funcionem como doadores
 válidos \cite{arkhangelsky2021}.}
-do SC clássico — o que é especialmente relevante quando
+do SC clássico, o que é especialmente relevante quando
 algumas unidades afetadas apresentam dinâmicas pré-evento muito distintas das unidades
 de controle potenciais.
 
@@ -501,7 +501,7 @@ momentos distintos ao longo de um mesmo período chuvoso. A extensão consiste e
 estimar o SDiD para cada grupo de adoção separadamente e agregar os resultados por
 uma média ponderada pelo número de tratados e de períodos pós-tratamento. Em
 simulações de Monte Carlo, o SDiD supera sistematicamente o TWFE quando as
-trajetórias pré-tratamento divergem entre tratados e controles — condição que, em
+trajetórias pré-tratamento divergem entre tratados e controles, condição que, em
 desastres, frequentemente se verifica dada a seleção geográfica das áreas de risco
 \cite{arkhangelsky2021}.
 
@@ -515,9 +515,9 @@ As inundações são o tipo de desastre natural com maior cobertura geográfica 
 frequência de ocorrência em nível global. \citeonline{rentschler2022} estimam que 1,8
 bilhão de pessoas em 188 países vivem em áreas de alto risco de inundação, 89\% delas
 em países em desenvolvimento; entre os que vivem em pobreza extrema, 170 milhões
-enfrentam esse risco. A assimetria entre exposição monetária — concentrada em países de
-alta renda — e exposição relativa ao bem-estar — concentrada em países de baixa renda
-— é uma das regularidades mais robustas da literatura \cite{mcdermott2022} e tem
+enfrentam esse risco. A assimetria entre exposição monetária (concentrada em países de
+alta renda) e exposição relativa ao bem-estar (concentrada em países de baixa renda)
+é uma das regularidades mais robustas da literatura \cite{mcdermott2022} e tem
 implicações diretas para o desenho de estudos de impacto.
 
 A distinção entre custos diretos (danos físicos imediatos ao capital, à infraestrutura e
@@ -554,7 +554,7 @@ dada a disponibilidade de dados administrativos de alta frequência.
 \citeonline{deryugina2018} analisam o impacto de longo prazo do furacão Katrina sobre
 vítimas individuais com dados de declarações de imposto de renda e encontram que, após a
 perturbação inicial, as que migraram para outras regiões experimentaram ganhos salariais
-persistentes — evidência de que o desastre funcionou como mecanismo forçado de
+persistentes, evidência de que o desastre funcionou como mecanismo forçado de
 realocação para mercados mais produtivos. Esse resultado positivo de mobilidade não se
 generaliza para inundações, para as quais a literatura indica que a mobilidade pós-evento
 é frequentemente limitada por laços de capital social, incerteza sobre a reconstrução e
@@ -629,11 +629,11 @@ A literatura documenta que inundações reduzem o Valor Adicionado
 Bruto agrícola, destroem estoques de insumos e sementes, deterioram a qualidade do solo
 e interrompem cadeias de suprimento \cite{leiter2009, bergholt2012}, com efeitos que se
 prolongam para além da safra imediata quando há danos à infraestrutura de irrigação e
-armazenamento — mecanismo coerente com a persistência dos custos indiretos enfatizada
+armazenamento, mecanismo coerente com a persistência dos custos indiretos enfatizada
 por \citeonline{botzen2019} e \citeonline{hochrainer2009}.
 No caso do Rio Grande do Sul, as inundações de maio de 2024 atingiram diretamente a
-cadeia agroindustrial do estado — responsável por parcela significativa da produção
-nacional de soja, arroz e proteína animal —, com estimativas de queda de 3,5\% no setor
+cadeia agroindustrial do estado (responsável por parcela significativa da produção
+nacional de soja, arroz e proteína animal), com estimativas de queda de 3,5\% no setor
 agrícola brasileiro em 2024 \cite{ocha2024}.
 
 \citeonline{mcdermott2022} demonstra que a sobreposição entre exposição a inundações e
@@ -656,13 +656,13 @@ nas áreas de risco.
 
 Um desafio estrutural é que as unidades mais afetadas por inundações não são uma amostra
 aleatória: concentram-se em áreas de baixa altitude, próximas a cursos d'água, com
-urbanização acelerada em zonas de risco e drenagem precária — características
+urbanização acelerada em zonas de risco e drenagem precária, características
 correlacionadas com renda, etnicidade e capacidade institucional
 \cite{kahn2005death, rentschler2022}.
 A estratégia mais
-comum para mitigar essa endogeneidade é usar medidas físicas exógenas da exposição —
-precipitação acumulada, cota do nível dos rios, extensão das áreas inundadas por
-sensoriamento remoto — em vez de medidas endógenas de dano.
+comum para mitigar essa endogeneidade é usar medidas físicas exógenas da exposição
+(precipitação acumulada, cota do nível dos rios, extensão das áreas inundadas por
+sensoriamento remoto), em vez de medidas endógenas de dano.
 \citeonline{elsner2024}
 formalizam esse argumento para inundações: a precipitação extrema tem componente
 aleatório condicional à exposição histórica ao risco, satisfazendo a condição de
@@ -673,14 +673,14 @@ como padrão de ouro na literatura recente.
 Importa, todavia, distinguir dois planos de endogeneidade frequentemente conflacionados.
 O primeiro é a endogeneidade de \emph{localização}: regiões inundáveis diferem
 sistematicamente de regiões mais seguras em características econômicas, demográficas e
-institucionais — problema de seleção \emph{entre} unidades que afeta estimadores
+institucionais, problema de seleção \emph{entre} unidades que afeta estimadores
 baseados em variação transversal. O DiD e o SDiD estão imunizados a esse tipo de
 seleção ao explorar variação \emph{temporal dentro} de cada unidade: a premissa
 identificadora não é que as unidades tratadas e de controle sejam comparáveis em
 nível, mas sim que, na ausência do evento, suas trajetórias de emprego teriam evoluído
 de forma paralela (DiD) ou localmente paralela (SDiD \cite{arkhangelsky2021}). O segundo
 plano é a endogeneidade de \emph{timing}: para que a comparação antes/depois seja
-válida, o momento exato do choque deve ser exógeno — não correlacionado com fatores
+válida, o momento exato do choque deve ser exógeno, isto é, não correlacionado com fatores
 que alterariam diferentemente as trajetórias de emprego naquele período. É esse
 componente que a \textit{quasi-randomness} das precipitações extremas de 2024 satisfaz:
 a intensidade e a abrangência específicas das chuvas de maio de 2024 não eram
@@ -691,15 +691,15 @@ No presente estudo, a variável de tratamento é baseada em dados administrativo
 Único do Plano Rio Grande (MUPRS/SPGG-RS), e não em medidas físicas georreferenciadas
 de precipitação ou imagens SAR, cuja cobertura para todos os municípios gaúchos no
 período analisado é insuficiente para a construção do painel completo. A endogeneidade
-de localização é abordada pela estratégia de controle sintético — que equilibra as
-trajetórias pré-tratamento entre unidades tratadas e doadores —, enquanto a
+de localização é abordada pela estratégia de controle sintético (que equilibra as
+trajetórias pré-tratamento entre unidades tratadas e doadores), enquanto a
 endogeneidade de timing é mitigada pela natureza de evento extremo inesperado das
 inundações de 2024.
 
 \subsubsection{Paralelismo de Tendências e \textit{Pre-Trends} em Contexto de
 Desastres}
 
-A suposição de tendências paralelas — central para o DiD e para o SDiD — é
+A suposição de tendências paralelas (central para o DiD e para o SDiD) é
 particularmente difícil de sustentar quando as áreas afetadas apresentam trajetórias
 econômicas sistematicamente distintas das não afetadas antes do evento. Regiões
 historicamente sujeitas a inundações podem ter crescimento mais lento, menor
@@ -709,8 +709,8 @@ pré-tratamento espelham os da unidade afetada, dispensando o paralelismo em ní
 SDiD vai além ao incorporar pesos de tempo que dão mais relevância aos períodos
 pré-tratamento mais próximos e informativos, reduzindo a influência de janelas históricas
 distantes \cite{arkhangelsky2021}. Para o TWFE, a verificação dos coeficientes de
-pré-tendência em estudos de evento — e os testes de sensibilidade de \citeonline{roth2022}
-— é indispensável, mas tem poder limitado quando o número de períodos pré-tratamento é
+pré-tendência em estudos de evento (e os testes de sensibilidade de \citeonline{roth2022})
+é indispensável, mas tem poder limitado quando o número de períodos pré-tratamento é
 pequeno.
 
 \subsubsection{Efeitos de Transbordamento e SUTVA}
@@ -731,27 +731,27 @@ A literatura recente sobre métodos DiD com efeitos heterogêneos tem implicaç�
 para estudos de inundação. Quando múltiplos municípios são afetados em momentos
 distintos, o TWFE sofre dos problemas de pesos negativos documentados por
 \citeonline{chaisemartin2020} e \citeonline{goodmanbacon2021}, especialmente se os
-efeitos dinâmicos diferem entre coortes. Nesse contexto, estimadores alternativos — como
+efeitos dinâmicos diferem entre coortes. Nesse contexto, estimadores alternativos (como
 o SDiD \cite{arkhangelsky2021}, o de \citeonline{callaway2021} ou o de
-\citeonline{borusyak2024} — tornam-se preferíveis ao TWFE canônico. A comparação
+\citeonline{borusyak2024}) tornam-se preferíveis ao TWFE canônico. A comparação
 sistemática entre TWFE, SC e SDiD em contextos de desastres climáticos ainda é escassa,
 mas os estudos disponíveis indicam que os três estimadores frequentemente divergem
 quando as trajetórias pré-evento diferem entre regiões afetadas e não afetadas. Essa
 divergência, longe de ser um problema, é informativa: revela a sensibilidade dos resultados
 às premissas de identificação subjacentes e motiva a análise de robustez com múltiplos
-estimadores — objetivo central deste artigo.
+estimadores, objetivo central deste artigo.
 
 % ── 2.5 ──────────────────────────────────────────────────
 \subsection{Lacunas da Literatura e Contribuição deste Artigo}
 \label{sub:lacunas}
 
 A revisão permite identificar quatro lacunas. Primeira: a literatura aplicada a inundações
-raramente confronta sistematicamente múltiplos estimadores causais no mesmo estudo — a
+raramente confronta sistematicamente múltiplos estimadores causais no mesmo estudo: a
 maioria adota um único método sem discutir a sensibilidade dos resultados às suas
 premissas \cite{botzen2019}. Segunda: o SDiD, apesar de propriedades teóricas superiores
 em painéis com tendências divergentes, permanece subutilizado na literatura de desastres
 climáticos, com aplicações ainda incipientes mesmo em contextos internacionais. Terceira:
-estudos para países em desenvolvimento — especialmente da América do Sul — são
+estudos para países em desenvolvimento (especialmente da América do Sul) são
 escassos frente à produção para EUA e Europa, apesar de esses países concentrarem a
 maior parte da exposição global ao risco de inundação relativa ao PIB
 \cite{rentschler2022, mcdermott2022}. Quarta: a literatura ainda não resolve de forma
@@ -762,30 +762,30 @@ O presente artigo contribui para as duas primeiras lacunas ao estimar e comparar
 sistematicamente TWFE-DiD, Controle Sintético e SDiD sobre o mesmo evento, avaliando
 em que medida as divergências entre estimadores refletem diferenças nas premissas de
 identificação. A escolha do SDiD como estimador principal justifica-se por sua robustez
-quando as trajetórias pré-tratamento divergem entre tratados e controles — condição
+quando as trajetórias pré-tratamento divergem entre tratados e controles, condição
 provável em análises de municípios com perfis econômicos distintos inseridos em um
 mesmo evento climático de amplo alcance. Contribuímos para a terceira lacuna ao produzir
 evidências causais rigorosas para o maior desastre climático já registrado em um estado
-brasileiro, com estimativas desagregadas para municípios de perfis estruturais distintos —
+brasileiro, com estimativas desagregadas para municípios de perfis estruturais distintos:
 de uma economia urbano-industrial integrada à Região Metropolitana de Porto Alegre
 (Eldorado do Sul) a pequenas economias do Vale do Taquari centradas na agropecuária e
 em pequenas indústrias (Roca Sales, Muçum, Travesseiro).
 
-Em relação a \citeonline{teixeira2024} — o trabalho mais próximo deste no contexto
+Em relação a \citeonline{teixeira2024}, o trabalho mais próximo deste no contexto
 das enchentes de 2024, ao qual este artigo deve a motivação de focalizar as admissões
-formais como variável de resposta —, a contribuição metodológica centra-se em três
+formais como variável de resposta, a contribuição metodológica centra-se em três
 dimensões. Primeiro, enquanto \citeonline{teixeira2024} adotam o TWFE-DiD como
 única estratégia de identificação, este artigo elege o SDiD como estimador principal,
 por sua propriedade de dupla robustez e pela capacidade de acomodar trajetórias
-pré-evento divergentes entre tratados e controles — condição confirmada pelo estudo
+pré-evento divergentes entre tratados e controles, condição confirmada pelo estudo
 de evento apresentado na Seção~\ref{sub:triangulacao}. Segundo, a triangulação
 sistemática entre TWFE-DiD, Controle Sintético e SDiD sobre o mesmo painel e pool
 doador permite avaliar a sensibilidade das estimativas às premissas de identificação
 de cada método, exercício ausente em \citeonline{teixeira2024} e recomendado por
 \citeonline{botzen2019} como prática mínima na literatura de desastres climáticos.
-Terceiro, a construção de uma zona de exclusão \textit{donut} — que separa os
+Terceiro, a construção de uma zona de exclusão \textit{donut} (que separa os
 municípios tratados ($>50\%$ da população atingida) dos doadores potenciais
-($\leq 0{,}5\%$ atingidos) — reduz o risco de contaminação do contrafactual por
+($\leq 0{,}5\%$ atingidos)) reduz o risco de contaminação do contrafactual por
 efeitos de transbordamento, critério de curadoria do pool não adotado em
 \citeonline{teixeira2024}.
 
@@ -880,8 +880,8 @@ propõe abordagens complementares.
 
 O Método de Controle Sintético (SCM), introduzido por \citeonline{abadie2003} e
 formalizado por \citeonline{abadie2010, abadie2015}, é projetado para estudos de caso
-comparativo com um único (ou poucos) tratado(s) e um conjunto de unidades de controle —
-o \textit{donor pool}. Em vez de assumir tendências paralelas em nível, o método constrói
+comparativo com um único (ou poucos) tratado(s) e um conjunto de unidades de controle,
+denominado \textit{donor pool}. Em vez de assumir tendências paralelas em nível, o método constrói
 um contrafactual sintético para a unidade tratada como combinação convexa ponderada das
 unidades de controle, de modo que os resultados pré-tratamento do controle sintético
 aproximem os da unidade tratada.
@@ -936,8 +936,8 @@ pré-tratamento, sem qualquer \textit{reweighting} das janelas temporais
 \subsubsection{Motivação e Formulação}
 
 O estimador \textit{Synthetic Difference-in-Differences} (SDiD), desenvolvido por
-\citeonline{arkhangelsky2021}, combina a robustez dos efeitos fixos bidirecionais —
-invariantes a deslocamentos aditivos nos resultados das unidades — com a capacidade do
+\citeonline{arkhangelsky2021}, combina a robustez dos efeitos fixos bidirecionais
+(invariantes a deslocamentos aditivos nos resultados das unidades) com a capacidade do
 controle sintético de equilibrar tendências pré-tratamento entre tratados e controles.
 Formalmente, o SDiD resolve um problema de mínimos quadrados ponderado com pesos de
 unidade $\hat{w}_i$ e de tempo $\hat{\lambda}_t$:
@@ -1083,7 +1083,7 @@ Cadastro Geral de Empregados e Desempregados (CAGED), sistema administrativo do
 Ministério do Trabalho e Emprego (MTE) que registra todas as admissões e demissões
 formalizadas por meio de Carteira de Trabalho e Previdência Social (CTPS). O CAGED
 cobre, por obrigação legal, o universo dos vínculos celetistas, excluindo servidores
-públicos estatutários e contribuintes individuais — em outras palavras, captura
+públicos estatutários e contribuintes individuais; em outras palavras, captura
 integralmente a margem formal do mercado de trabalho privado.
 
 A série utiliza o Novo CAGED, implantado a partir de janeiro de 2020 com a incorporação
@@ -1105,7 +1105,7 @@ A normalização por habitante é calculada pela população residente segundo o
 Demográfico 2022 do Instituto Brasileiro de Geografia e Estatística (IBGE), tomado
 como denominador fixo ao longo de toda a série. O uso de uma medida \textit{per capita}
 é necessário para tornar comparáveis municípios de portes populacionais muito distintos
-— de Travesseiro (2.152 habitantes) a Eldorado do Sul (39.559 habitantes) — e para
+(de Travesseiro, com 2.152 habitantes, a Eldorado do Sul, com 39.559 habitantes) e para
 remover tendências de crescimento demográfico que poderiam confundir a interpretação
 dos pesos sintéticos.
 
@@ -1119,10 +1119,10 @@ Governança e Gestão (SPGG) do Estado do Rio Grande do Sul.
 O limiar de 50\% foi definido como critério de \emph{alta severidade relativa}: municípios
 abaixo desse patamar podem ter sofrido impactos parciais que não necessariamente se
 traduzem em deslocamento do mercado de trabalho formal, comprometendo a
-interpretação causal do estimador. Trata-se de um critério substantivo de dominância —
-municípios acima desse patamar tiveram a maioria de suas populações residentes
+interpretação causal do estimador. Trata-se de um critério substantivo de dominância
+(municípios acima desse patamar tiveram a maioria de suas populações residentes
 diretamente atingidas, caracterizando disrupção de escala municipal do espaço econômico
-local \cite{cavallo2013} —, e não de um ponto de corte de otimização estatística.
+local \cite{cavallo2013}), e não de um ponto de corte de otimização estatística.
 A determinação do conjunto tratado foi pré-especificada com base na disponibilidade
 do MUPRS/SPGG-RS, anterior à estimação, atenuando preocupações de \textit{data
 dredging} na seleção das unidades tratadas \cite{angrist2009}. Os seis municípios que
@@ -1130,7 +1130,7 @@ satisfazem esse critério estão descritos na Tabela~\ref{tab:municipios_tratado
 
 \begin{table}[htbp]
 \centering
-\caption{Municípios tratados — enchentes de maio de 2024, RS}
+\caption{Municípios tratados: enchentes de maio de 2024, RS}
 \label{tab:municipios_tratados}
 \begin{threeparttable}
 \small
@@ -1169,21 +1169,21 @@ O pool doador é formado por municípios gaúchos que não pertencem ao grupo tr
 apresentam proporção da população atingida inferior a $0{,}5\%$, segundo o MUPRS/SPGG-RS.
 Esse critério cria uma zona de exclusão deliberada entre os tratados
 ($>50\%$ atingidos) e os controles ($\leq 0{,}5\%$ atingidos): municípios com impacto
-intermediário — entre $0{,}5\%$ e $50\%$ da população atingida — são excluídos de
+intermediário (entre $0{,}5\%$ e $50\%$ da população atingida) são excluídos de
 ambos os grupos, mitigando a contaminação do contrafactual por efeitos de transbordamento
 da enchente em municípios parcialmente afetados \cite{abadie2021}. Com esse filtro,
 $N_0 = 193$ municípios compõem o pool doador.
 
 A zona de exclusão \textit{donut} mitiga a contaminação direta por dano físico. Um canal
-adicional de violação de SUTVA — efeitos de transbordamento via cadeias produtivas entre
-municípios tratados e controles — é mitigado pela pequena escala econômica dos tratados:
+adicional de violação de SUTVA (efeitos de transbordamento via cadeias produtivas entre
+municípios tratados e controles) é mitigado pela pequena escala econômica dos tratados:
 os seis municípios somam aproximadamente 93 mil habitantes e representam fração diminuta
 do PIB gaúcho; disrupções localizadas nessa escala dificilmente geram efeitos de
 equilíbrio geral detectáveis nos 193 municípios de controle, cuja base econômica é
 heterogênea e geograficamente dispersa. Adicionalmente, a estabilidade das estimativas
-SDiD sob quatro limiares alternativos do pool doador — que incorporam progressivamente
+SDiD sob quatro limiares alternativos do pool doador (que incorporam progressivamente
 municípios mais próximos dos tratados e, portanto, mais expostos a potenciais
-\textit{spillovers} produtivos — fornece evidência indireta de que a contaminação do
+\textit{spillovers} produtivos) fornece evidência indireta de que a contaminação do
 contrafactual por esse canal é negligenciável
 (Tabela~\ref{tab:sensibilidade}; Seção~\ref{sub:robustez}).
 
@@ -1201,16 +1201,16 @@ extraídas das bases anuais do IBGE (PIB dos Municípios, séries 2002–2023); 
 de Desenvolvimento Socioeconômico (Idese) de 2021, calculado pela Fundação de
 Economia e Estatística (FEE-RS), como proxy de desenvolvimento municipal pré-evento;
 (iii) o salário médio mensal de admissão (CAGED) e indicadores financeiros municipais
-— operações de crédito e total de ativos — provenientes do Banco Central do Brasil;
+(operações de crédito e total de ativos) provenientes do Banco Central do Brasil;
 e (iv) o Índice Firjan de Desenvolvimento Municipal (IFDM) de 2023, elaborado pela
 Federação das Indústrias do Estado do Rio de Janeiro (Firjan), que acompanha anualmente
 o desenvolvimento socioeconômico de todos os municípios brasileiros nas dimensões de
 Emprego \& Renda, Saúde e Educação desde 2008.
 
 As variáveis de dano físico utilizadas na análise de heterogeneidade da
-Seção~\ref{sub:heterogeneidade} — proporção de domicílios atingidos, proporção de
+Seção~\ref{sub:heterogeneidade} (proporção de domicílios atingidos, proporção de
 firmas (CNPJs) afetadas, proporção de malha rodoviária comprometida, equipamentos
-públicos danificados e proporção da população atingida — foram extraídas exclusivamente
+públicos danificados e proporção da população atingida) foram extraídas exclusivamente
 do Mapa Único do Plano Rio Grande (MUPRS/SPGG-RS).
 
 % =====================================================================
@@ -1247,8 +1247,8 @@ achados.
 A Tabela~\ref{tab:att_principal} reporta as estimativas pontuais do ATT, em
 admissões formais por mil habitantes, com intervalos de confiança de 95\%
 obtidos pela distribuição de permutação dos 193 doadores. O SDiD foi adotado
-como estratégia principal porque combina os pesos ótimos de unidades — à
-maneira do SC — com pesos ótimos de tempo, preservando a dupla diferenciação
+como estratégia principal porque combina os pesos ótimos de unidades (à
+maneira do SC) com pesos ótimos de tempo, preservando a dupla diferenciação
 do DiD; isso atenua a sensibilidade a violações da hipótese de tendências
 paralelas e à influência de janelas históricas atípicas, como o biênio
 pandêmico de 2020--2021, sem exigir sua exclusão da amostra
@@ -1276,7 +1276,7 @@ Igrejinha       & 50,85 & $-1{,}34$ & $[-4{,}40;\,\phantom{-}1{,}78]$ & 0,207 & 
 \footnotesize
 \item[a] $p$-valor bilateral por permutação direta sobre 193 doadores. ``Efeito robusto'': IC95\% inteiramente negativo, RMSPE\,pré $< 3{,}0$.
 \item[b] Correção de Bonferroni para $m = 6$ testes: $p_{\text{Bonf}} = \min(6p,\,1)$; limiar FWER ajustado $\alpha/6 = 0{,}008$ (nenhum município atingido). Pela correção de Benjamini--Hochberg (FDR $q = 0{,}10$), os quatro municípios com $p \leq 0{,}041$ são rejeitados ($p_{(4)} = 0{,}041 \leq q \cdot 4/6 = 0{,}067$).
-\item $^{\dagger}$ IC95\% inteiramente negativo; RMSPE\,pré $> 5{,}0$ (inferência parcial — ver Subseção~\ref{sub:robustez}).
+\item $^{\dagger}$ IC95\% inteiramente negativo; RMSPE\,pré $> 5{,}0$ (inferência parcial; ver Subseção~\ref{sub:robustez}).
 \item Fonte: elaboração própria a partir de microdados do CAGED.
 \end{tablenotes}
 \end{threeparttable}
@@ -1286,7 +1286,7 @@ O padrão central é nítido. Em quatro dos seis municípios tratados o desastre
 reduziu de forma estatisticamente significante a contratação formal mensal,
 com intervalos de confiança por permutação inteiramente abaixo de zero. As
 magnitudes nos municípios com efeito robusto convergem em torno de
-$-3{,}72$ a $-3{,}73$ admissões por mil habitantes por mês — uma uniformidade
+$-3{,}72$ a $-3{,}73$ admissões por mil habitantes por mês, uniformidade
 notável que sugere a operação de um mecanismo comum, próprio do choque de
 demanda por trabalho associado à interrupção física da atividade produtiva
 \cite{haddad2015economic}. A magnitude observada em Mu\c{c}um ($-5{,}08$) é a maior
@@ -1302,7 +1302,7 @@ abril de 2024). Nos três municípios com ``efeito robusto'', as reduções rela
 diferem em magnitude, explicadas pelo tamanho da base formal de cada economia:
 $-23{,}1\%$ em Eldorado do Sul (média pré: $16{,}1$ admissões por mil\,hab./mês),
 $-24{,}9\%$ em Roca Sales (média pré: $15{,}0$) e $-44{,}0\%$ em Travesseiro
-(média pré: $8{,}5$) — esta última mais intensa por reflexo de uma base de atividade
+(média pré: $8{,}5$), mais intensa por reflexo de uma base de atividade
 formal comparativamente menor, coerente com o perfil de economia rural de pequeno
 porte do Vale do Taquari.
 Em Mu\c{c}um, classificado como ``provável'' com inferência parcial (RMSPE
@@ -1317,7 +1317,7 @@ método de Bonferroni para a família de $m = 6$ testes simultâneos. Sob o
 critério de controle da taxa de erro familiar (\textit{family-wise error rate},
 FWER $\leq 0{,}05$), nenhum município atinge o limiar ajustado $\alpha/6 = 0{,}008$,
 refletindo a natureza conservadora da correção em um contexto em que os seis testes
-compartilham o mesmo pool de 193 doadores — violando a suposição de independência
+compartilham o mesmo pool de 193 doadores, o que viola a suposição de independência
 subjacente ao Bonferroni. Sob o critério menos restritivo de controle da taxa de
 falsas descobertas (\textit{false discovery rate}, FDR) de Benjamini--Hochberg,
 com $q = 0{,}10$, os quatro municípios com $p \leq 0{,}041$ são rejeitados
@@ -1363,11 +1363,11 @@ cada estimativa do ATT.
   [0.32\textwidth]{\includegraphics[width=0.32\textwidth]%
   {municipio_4310108_completo_trajetorias.png}}
 
-\caption{Trajetórias da unidade tratada e do controle sintético SDiD —
+\caption{Trajetórias da unidade tratada e do controle sintético SDiD:
 pool completo ($N_0 = 193$). Linha vertical: mai./2024 (início do
 tratamento). Linha superior: municípios com ATT significante e IC95\%
 inteiramente negativo (efeito robusto), exceto Muçum ($^{\dagger}$RMSPE\,pré
-$> 5{,}0$ — ver Subseção~\ref{sub:robustez}). Linha inferior: Travesseiro
+$> 5{,}0$; ver Subseção~\ref{sub:robustez}). Linha inferior: Travesseiro
 (efeito robusto) e municípios sem efeito estatisticamente detectável.
 A área sombreada inferior representa os pesos temporais $\hat{\lambda}_t$;
 o SDiD concentra peso nos períodos imediatamente anteriores ao desastre, em
@@ -1384,8 +1384,8 @@ A significância estatística foi avaliada por testes de placebo no espírito
 de \citeonline{abadie2010}, em que o efeito estimado para cada município
 tratado é comparado à distribuição de efeitos placebo gerados pela atribuição
 fictícia do tratamento a cada um dos 193 doadores. Em complemento, conduziu-se
-o placebo no tempo — atribuindo datas falsas de tratamento no período
-pré-desastre — e a análise \textit{leave-one-out} sobre o pool doador. A
+o placebo no tempo, atribuindo datas falsas de tratamento no período
+pré-desastre, e a análise \textit{leave-one-out} sobre o pool doador. A
 Tabela~\ref{tab:robustez} reúne os diagnósticos.
 
 \begin{table}[htbp]
@@ -1408,8 +1408,8 @@ Arambaré        & 0,92 & 0,920 & 0,534 & $-0{,}04$ & $[-0{,}21;\,\phantom{-}0{,
 \end{tabular}
 \begin{tablenotes}[flushleft]
 \footnotesize
-\item[a] $p$-valor do placebo no tempo (datas falsas de tratamento ao longo do período pré-desastre).
-\item[b] $p$-valor unilateral do placebo no espaço (permutação direta sobre os 193 doadores, com correção de pequena amostra: $(1 + n_{\text{ext}})/(1 + N_0)$, \citeauthor{north2002}). O $p$-valor unilateral aqui reportado pode diferir de metade do bilateral correspondente da Tabela~\ref{tab:att_principal} quando a distribuição dos placebos é assimétrica em torno de zero — propriedade esperada e não indicativa de inconsistência de procedimento.
+\item[a] $p$-valor do placebo no tempo (datas falsas de tratamento no período pré-desastre).
+\item[b] $p$-valor unilateral do placebo no espaço (permutação direta sobre os 193 doadores, com correção de pequena amostra: $(1 + n_{\text{ext}})/(1 + N_0)$, \citeauthor{north2002}). O $p$-valor unilateral aqui reportado pode diferir de metade do bilateral correspondente da Tabela~\ref{tab:att_principal} quando a distribuição dos placebos é assimétrica em torno de zero, propriedade esperada e não indicativa de inconsistência de procedimento.
 \item[c] Efeito padronizado: $z = \hat{\tau} / \sigma_{\text{emp}}$, em que $\sigma_{\text{emp}}$ é o desvio-padrão da distribuição placebo.
 \item[d] Faixa do ATT sob exclusão de um doador por vez (\textit{leave-one-out}).
 \item Fonte: elaboração própria a partir de microdados do CAGED.
@@ -1418,15 +1418,15 @@ Arambaré        & 0,92 & 0,920 & 0,534 & $-0{,}04$ & $[-0{,}21;\,\phantom{-}0{,
 \end{table}
 
 Três conjuntos de evidências sustentam a leitura causal nos municípios
-classificados como ``efeito robusto'' — Eldorado do Sul, Roca Sales e
-Travesseiro. Primeiro, o efeito real situa-se na cauda extrema da
+classificados como ``efeito robusto'' (Eldorado do Sul, Roca Sales e
+Travesseiro). Primeiro, o efeito real situa-se na cauda extrema da
 distribuição placebo no espaço, com $p$-valores unilaterais de $0{,}021$ e
 bilaterais entre $0{,}036$ e $0{,}041$ (Tabela~\ref{tab:att_principal}). Pelo
 critério de \citeonline{abadie2010}, isso indica que a probabilidade de
 observar, por acaso, um efeito ao menos tão extremo entre municípios não
 tratados é inferior a $5\%$. Segundo, o placebo no tempo ($p = 0{,}040$) mostra
 que o salto observado após o desastre não se reproduz quando se simulam datas
-falsas de tratamento no período pré-evento — teste que distingue um efeito
+falsas de tratamento no período pré-evento, teste que distingue um efeito
 genuíno de variação espúria pré-tratamento \cite{abadie2015}. Terceiro, o
 efeito é robusto à composição do pool doador: a faixa \textit{leave-one-out}
 permanece inteiramente negativa para essas três unidades, descartando que o
@@ -1435,15 +1435,15 @@ resultado dependa de um doador idiossincrático.
 O caso de Mu\c{c}um demanda cautela explícita e justifica sua classificação
 como ``efeito provável (inferência parcial)''. Embora o efeito pontual seja o
 mais intenso da amostra ($-5{,}08$) e significante no placebo espacial
-($p = 0{,}016$), o ajuste pré-tratamento é pobre, com RMSPE de $7{,}07$ —
+($p = 0{,}016$), o ajuste pré-tratamento é pobre, com RMSPE de $7{,}07$,
 sensivelmente acima das demais unidades. Conforme \citeonline{abadie2010}, um
 controle sintético que não reproduz a trajetória pré-intervenção da unidade
 tratada produz estimativas pouco confiáveis, pois parte do \textit{gap}
 pós-tratamento pode refletir erro de ajuste, e não o tratamento. Coerentemente,
 o placebo no tempo de Mu\c{c}um não é significante ($p = 0{,}280$): a
 magnitude do efeito real não se distingue claramente da variabilidade dos
-placebos pré-evento. Reporta-se, portanto, o resultado — pertinente pela
-significância espacial e pela direção econômica esperada —, mas com a
+placebos pré-evento. Reporta-se, portanto, o resultado (pertinente pela
+significância espacial e pela direção econômica esperada), mas com a
 ressalva técnica de que a inferência é parcial. A pequena escala do município
 (4{.}601 habitantes) explica em parte a maior volatilidade do indicador per
 capita, característica documentada por \citeonline{abadie2010} em aplicações
@@ -1454,8 +1454,8 @@ RMSPE/média-pré para os quatro municípios com efeito detectável: $14{,}8\%$ 
 Eldorado do Sul (RMSPE\,$=2{,}39$; média pré: $16{,}1$~adm./mil\,hab.), $14{,}0\%$
 em Roca Sales ($2{,}10$; $15{,}0$), $34{,}7\%$ em Travesseiro ($2{,}95$;
 $8{,}5$) e $33{,}7\%$ em Muçum ($7{,}07$; $21{,}0$). Travesseiro apresenta
-razão proporcional próxima à de Muçum, porém com RMSPE absoluto de $2{,}95$ —
-abaixo do limiar de $5{,}0$ utilizado como sinalizador de ajuste deficiente —,
+razão proporcional próxima à de Muçum, porém com RMSPE absoluto de $2{,}95$
+(abaixo do limiar de $5{,}0$ utilizado como sinalizador de ajuste deficiente),
 além de placebo no tempo significante ($p=0{,}040$) e faixa LOO inteiramente
 negativa. Esses três diagnósticos em conjunto sustentam a classificação de
 Travesseiro como ``efeito robusto'', a despeito do coeficiente de variação
@@ -1488,8 +1488,8 @@ Fonte: elaboração própria.}
 \end{figure}
 
 A robustez das estimativas à composição do pool doador foi avaliada reestimando o SDiD
-para os quatro municípios com efeito robusto ou provável — Eldorado do Sul, Mu\c{c}um,
-Roca Sales e Travesseiro — sob quatro limiares alternativos de exclusão: $0{,}5\%$
+para os quatro municípios com efeito robusto ou provável (Eldorado do Sul, Mu\c{c}um,
+Roca Sales e Travesseiro) sob quatro limiares alternativos de exclusão: $0{,}5\%$
 (baseline), $1\%$, $5\%$ e $10\%$ da população atingida, expandindo o pool de
 $N_0 = 193$ a $N_0 = 291$ doadores.
 
@@ -1521,7 +1521,7 @@ Travesseiro     & $-3{,}73^{*}$ & $-3{,}49^{*}$ & $-3{,}32^{*}$ & $-3{,}15^{*}$ 
 
 Os resultados revelam estabilidade notável: todos os dezesseis ATTs são negativos e
 estatisticamente significantes a $5\%$, com variação máxima entre limiares inferior a
-$0{,}6$ admissão por mil habitante — menos de $15\%$ da estimativa baseline —,
+$0{,}6$ admissão por mil habitante, menos de $15\%$ da estimativa baseline,
 afastando a hipótese de contaminação do contrafactual por municípios parcialmente
 afetados (Seção~\ref{sub:pool}).
 
@@ -1542,7 +1542,7 @@ Fonte: elaboração própria.}
 
 A robustez das estimativas frente à escolha do estimador é avaliada
 estimando-se o ATT de cada município pelos três métodos descritos na
-Seção~\ref{sec:metodologia} — TWFE-DiD, Controle Sintético e SDiD — sobre
+Seção~\ref{sec:metodologia} (TWFE-DiD, Controle Sintético e SDiD) sobre
 exatamente o mesmo painel, mesma janela e mesmo pool de doadores. Trata-se,
 ao nosso conhecimento, da primeira aplicação de uma triangulação dessa
 natureza ao caso brasileiro das enchentes de 2024 e responde à recomendação
@@ -1602,8 +1602,8 @@ estimativas do SDiD como estratégia principal.
 Segundo, em todos os casos de efeito robusto o SDiD situa-se \emph{entre} o
 TWFE-DiD e o SC. Esse comportamento é teoricamente esperado:
 \citeonline{arkhangelsky2021} demonstram que o SDiD se aproxima do TWFE
-quando as tendências pré-tratamento são paralelas — caso em que os pesos
-temporais $\hat{\lambda}_t$ se aproximam de $1/T_0$ — e do SC quando há
+quando as tendências pré-tratamento são paralelas (caso em que os pesos
+temporais $\hat{\lambda}_t$ se aproximam de $1/T_0$) e do SC quando há
 divergência sistemática nas trajetórias pré-evento. A posição intermediária
 observada empiricamente é consistente com um cenário em que as tendências
 pré-tratamento dos municípios atingidos divergem moderadamente do pool, o que
@@ -1629,12 +1629,12 @@ cruzam o zero, e em Arambaré o sinal é discordante entre SC ($+0{,}29$) e os
 demais ($-0{,}19$ e $-0{,}06$). A divergência de sinal nesse caso, longe de
 um problema, é informativa: indica que nenhum dos três estimadores consegue
 afastar a hipótese nula de ausência de efeito, e a discordância de sinal é
-ruído estatístico em torno de zero — exatamente o padrão esperado quando
+ruído estatístico em torno de zero, exatamente o padrão esperado quando
 não há tratamento detectável.
 
 Cabe um esclarecimento importante: a ``convergência'' aqui discutida refere-se à
 concordância de \emph{sinal} e de \emph{ordem de grandeza} das estimativas
-pontuais — não à significância estatística. Para a maioria dos municípios, os ICs
+pontuais, e não à significância estatística. Para a maioria dos municípios, os ICs
 do TWFE-DiD e do SC cruzam zero, enquanto apenas o SDiD alcança significância
 convencional a $5\%$. Isso reflete, em parte, mecanismos de inferência com
 potências distintas: o TWFE-DiD usa ICs gaussianos sem rebalanceamento de
@@ -1642,8 +1642,8 @@ trajetórias; o SC, estimado unidade a unidade sobre 193 doadores, produz quanti
 empíricos mais dispersos por não incorporar os pesos de tempo $\hat{\lambda}_t$.
 O SDiD combina o rebalanceamento duplo ($\hat{w}_i$ e $\hat{\lambda}_t$) com a
 distribuição exata de permutação sobre os 193 placebos, conferindo-lhe maior
-potência para detectar sinais consistentes em configurações com poucos tratados
-— propriedade documentada em simulações de Monte Carlo por
+potência para detectar sinais consistentes em configurações com poucos tratados,
+propriedade documentada em simulações de Monte Carlo por
 \citeonline{arkhangelsky2021}. A não-significância do TWFE-DiD e do SC não
 contradiz os resultados: ela é em parte estrutural ao procedimento de inferência
 de cada estimador e reforça, por contraste, a adequação do SDiD como estratégia
@@ -1655,7 +1655,7 @@ A Figura~\ref{fig:forest} apresenta o
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{triangulacao_forest.png}
-\caption{Triangulação de estimadores — TWFE-DiD, Controle Sintético (SC) e SDiD
+\caption{Triangulação de estimadores: TWFE-DiD, Controle Sintético (SC) e SDiD
 (pool completo, $N_0 = 193$). Pontos representam a estimativa pontual do ATT;
 barras horizontais, o IC95\%. \textbf{Cor:} vermelho = IC95\% exclui zero;
 cinza = IC95\% cruza zero. \textbf{Forma/traço:} círculo com linha contínua
@@ -1677,7 +1677,7 @@ com IC95\% \textit{cluster-robust} no município.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{event_study_twfe_todos.png}
-\caption{Estudo de evento TWFE-DiD — coeficientes dinâmicos $\hat{\delta}_k$ com
+\caption{Estudo de evento TWFE-DiD: coeficientes dinâmicos $\hat{\delta}_k$ com
 IC95\% \textit{cluster-robust}. Linha vertical: $k = 0$ (mai./2024); referência
 $\hat{\delta}_{-1} = 0$ por normalização. Círculos cheios: IC95\% exclui zero.
 $N = 199$ municípios, $T = 51$ períodos. Fonte: elaboração própria.}
@@ -1714,7 +1714,7 @@ com banda de IC$95\%$ obtida por placebo na curva.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{municipio_4306767_completo_efeito_acumulado.png}
-\caption{Efeito acumulado sobre admissões formais — Eldorado do Sul. Banda
+\caption{Efeito acumulado sobre admissões formais: Eldorado do Sul. Banda
 laranja: IC95\% por placebo na curva sobre os doadores. Fonte: elaboração
 própria.}
 \label{fig:acumulado_es}
@@ -1726,7 +1726,7 @@ admissões por mil) é consistente com a interrupção da atividade econômica
 durante o período de inundação; segue-se uma fase intermediária com
 efeitos de menor magnitude entre junho e novembro, sugestiva de uma retomada
 parcial da produção sob possíveis restrições logísticas; e há um segundo
-pico de retração no início de 2025 — janeiro registra o maior efeito negativo
+pico de retração no início de 2025: janeiro registra o maior efeito negativo
 da série, $-10{,}15$ por mil. Como o pool pré-tratamento incorpora quatro
 Januários anteriores ao choque (2021--2024), o controle sintético replica o
 padrão sazonal histórico de janeiro; o efeito de $-10{,}15$ é, portanto,
@@ -1766,15 +1766,15 @@ Arambaré        & 4.112  & $-3$     & $[-161;\,155]$ \\
 \end{table}
 
 Em termos absolutos, o desastre suprimiu aproximadamente $1.619$ admissões
-formais em Eldorado do Sul ao longo dos onze meses analisados — equivalente
-a cerca de $4\%$ da população do município —, $427$ em Roca Sales, $257$ em
+formais em Eldorado do Sul ao longo dos onze meses analisados (equivalente
+a cerca de $4\%$ da população do município), $427$ em Roca Sales, $257$ em
 Mu\c{c}um e $88$ em Travesseiro. Para os quatro municípios com efeito robusto
 ou provável, o déficit somado supera $2.390$ admissões formais. Esses
 números representam estritamente o componente \emph{dinâmico} do mercado de
 trabalho, ou seja, as oportunidades de emprego que \emph{não} foram criadas em
 razão do choque; não incluem o efeito sobre desligamentos, que
 \citeonline{teixeira2024} mostraram ser estatisticamente nulo na agregação
-municipal — provavelmente em decorrência da rigidez da legislação trabalhista
+municipal, provavelmente em decorrência da rigidez da legislação trabalhista
 brasileira e das políticas de manutenção do emprego vigentes no período.
 A interpretação dos absolutos exige, portanto, a leitura conjunta: o ajuste
 do emprego formal ao desastre se deu predominantemente pelo bloqueio da
@@ -1786,18 +1786,18 @@ quantificam.
 \subsection{Heterogeneidade do efeito e canais de dano}
 \label{sub:heterogeneidade}
 
-A dissociação entre exposição residencial e resposta do emprego — Arambaré
+A dissociação entre exposição residencial e resposta do emprego (Arambaré
 e Igrejinha apresentam, respectivamente, $51{,}9\%$ e $50{,}9\%$ dos
-domicílios atingidos, mas não exibem efeito significante — motiva a
+domicílios atingidos, mas não exibem efeito significante) motiva a
 investigação dos canais pelos quais o desastre se transmite ao mercado de
 trabalho formal. A literatura de economia de desastres distingue, entre
-outros, dois mecanismos centrais: o canal de \emph{capital/firma} —
-destruição de estabelecimentos reduz diretamente a demanda por trabalho
-\cite{haddad2015economic} — e o canal de \emph{conectividade/logística} — danos à
-rede de transporte elevam custos de insumo e de escoamento e interrompem
-cadeias produtivas \cite{xiao2014}. Para confrontar esses mecanismos com os
+outros, dois mecanismos centrais: o canal de \emph{capital/firma}
+(destruição de estabelecimentos reduz diretamente a demanda por trabalho
+\cite{haddad2015economic}) e o canal de \emph{conectividade/logística}
+(danos à rede de transporte elevam custos de insumo e de escoamento e interrompem
+cadeias produtivas \cite{xiao2014}). Para confrontar esses mecanismos com os
 dados, comparam-se variáveis de dano físico (oriundas do Mapa Único do Plano Rio
-Grande — MUPRS/SPGG-RS) entre o grupo de municípios ``com efeito''
+Grande, MUPRS/SPGG-RS) entre o grupo de municípios ``com efeito''
 (os quatro com IC95\% negativo) e o grupo ``sem efeito'' (Igrejinha e
 Arambaré).
 
@@ -1850,7 +1850,7 @@ diferencial do dano. O dano \emph{residencial} isolado separa pouco os grupos
 ($z = 1{,}00$, com médias próximas: $0{,}643$ contra $0{,}525$), coerente com
 a observação prévia de que a intensidade do dano às moradias, por si só, não
 prediz a resposta do emprego formal. Em outras palavras, são os canais
-produtivos — destruição de capital e ruptura de conectividade — que parecem
+produtivos (destruição de capital e ruptura de conectividade) que parecem
 governar o ajuste do trabalho, em sintonia com o canal de demanda por
 trabalho de \citeonline{haddad2015economic} e com a centralidade da infraestrutura
 de transporte enfatizada por \citeonline{xiao2014}.
@@ -1861,15 +1861,15 @@ detectável, é o único da amostra com índice produtivo relativo
 \emph{poupado} em relação às moradias atingidas, o que é consistente com a
 ausência de resposta do emprego formal apesar de mais da metade dos
 domicílios afetados. O caso ilustra que a métrica de severidade
-convencionalmente utilizada — proporção de população atingida — pode mascarar
+convencionalmente utilizada (proporção de população atingida) pode mascarar
 a heterogeneidade do impacto sobre o lado produtivo da economia, ponto que
 ecoa a crítica de \citeonline{cavallo2013} de que indicadores agregados de
 exposição tendem a obscurecer o canal econômico do desastre.
 
 Igrejinha, por sua vez, constitui a exceção informativa: apresenta danos
 viário e a firmas comparáveis aos de municípios com efeito robusto, mas não
-exibe resposta significante. Uma hipótese plausível — a ser examinada em
-pesquisa futura — é a de que sua economia, maior e mais diversificada
+exibe resposta significante. Uma hipótese plausível (a ser examinada em
+pesquisa futura) é a de que sua economia, maior e mais diversificada
 (cerca de $33$ mil habitantes, base industrial de calçados e couro com
 ligações ao mercado nacional), tenha maior capacidade de absorção do choque
 via realocação setorial e busca de fornecedores alternativos, atenuando a
@@ -1946,12 +1946,12 @@ municípios com efeito robusto ou provável, TWFE-DiD, Controle Sintético e SDi
 em sinal e em ordem de grandeza, com amplitudes de até $2{,}2$ admissões por mil entre os três
 (valor máximo em Muçum, cujo maior spread reflete o ajuste pré-tratamento
 deficiente; nos três municípios de efeito estritamente robusto, a amplitude
-máxima é de $1{,}00$) — consistente com a propriedade de dupla robustez
+máxima é de $1{,}00$), consistente com a propriedade de dupla robustez
 demonstrada por \citeonline{arkhangelsky2021}. \emph{Terceiro}, em termos absolutos, o déficit acumulado
 supera 2.390 admissões formais ao longo de onze meses nos quatro municípios com efeito
 detectável, com destaque para Eldorado do Sul ($-1.619$ empregos formais). \emph{Quarto},
 a heterogeneidade entre municípios é mais bem explicada, descritivamente, pelos canais de
-dano produtivo — dano à infraestrutura viária e às firmas — do que pelo dano residencial
+dano produtivo (dano à infraestrutura viária e às firmas) do que pelo dano residencial
 isolado, sugerindo que a transmissão do desastre ao emprego formal opera principalmente
 pelos mecanismos de demanda por trabalho \cite{haddad2015economic} e de conectividade
 logística \cite{xiao2014}.
@@ -1966,8 +1966,8 @@ conquanto descritiva e gerada por uma amostra de apenas seis unidades, é consis
 a recomendação da literatura de que pacotes de recuperação pós-desastre deveriam
 privilegiar a restauração da capacidade produtiva das firmas e a reconstrução de vias de
 escoamento, em complemento às políticas de assistência habitacional. O ajuste do
-emprego formal via \emph{margem de entrada} — bloqueio de novas contratações, e não
-aumento de demissões — implica ainda que instrumentos voltados ao estímulo à contratação,
+emprego formal via \emph{margem de entrada} (bloqueio de novas contratações, e não
+aumento de demissões) implica ainda que instrumentos voltados ao estímulo à contratação,
 como crédito emergencial às firmas e subsídios temporários ao emprego, seriam mais
 diretamente eficazes para mitigar o impacto sobre o mercado de trabalho do que políticas
 de proteção ao emprego existente, já naturalmente resguardado pela rigidez da legislação
@@ -1976,19 +1976,19 @@ trabalhista brasileira \cite{krein2012, teixeira2024}.
 Três limitações devem ser consideradas na interpretação dos resultados. \emph{Primeira},
 o estudo está restrito à margem formal do mercado de trabalho medida pelo CAGED:
 os efeitos sobre o emprego informal, os trabalhadores por conta própria e as relações de
-trabalho reguladas pelo regime estatutário não são capturados — o que possivelmente
+trabalho reguladas pelo regime estatutário não são capturados, o que possivelmente
 implica que as estimativas representam um \emph{limite inferior} da magnitude real do
 impacto sobre o mercado de trabalho como um todo. \emph{Segunda}, a análise de
 heterogeneidade intermunicipal é estritamente descritiva: com apenas seis unidades
 tratadas, não é possível conduzir inferência formal entre municípios, e os resultados
 associativos não devem ser interpretados como evidência causal dos canais de transmissão.
 \emph{Terceira}, o período de observação encerra-se em março de 2025, onze meses após
-o choque: a dinâmica de Eldorado do Sul — com segundo pico de retração em janeiro de
-2025 — sugere que o processo de recuperação ainda não estava completo ao final da janela
+o choque: a dinâmica de Eldorado do Sul (com segundo pico de retração em janeiro de
+2025) sugere que o processo de recuperação ainda não estava completo ao final da janela
 analisada, de modo que o déficit acumulado reportado deve ser entendido como uma
 estimativa parcial do impacto de longo prazo. Por fim, uma nota de interpretação: a significância estatística formal repousa
 principalmente na inferência por permutação do SDiD; para a maioria dos municípios,
-os ICs do TWFE-DiD e do SC cruzam zero — reflexo das distinções estruturais de
+os ICs do TWFE-DiD e do SC cruzam zero, reflexo das distinções estruturais de
 potência entre procedimentos de inferência detalhadas na Subseção~\ref{sub:triangulacao}.
 Isso não é uma limitação do design empírico, mas uma propriedade estrutural dos
 estimadores com potências distintas: a robustez da triangulação deve ser lida em termos
@@ -2000,18 +2000,18 @@ design com uma janela mais longa (por exemplo, até dezembro de 2025 ou além) p
 mensurar o tempo até a recuperação completa e verificar se os efeitos são transitórios ou
 persistentes, questão central para a literatura de desastres climáticos
 \cite{kahn2005death, berlemann2018}. Em segundo lugar, a desagregação setorial das
-admissões — disponível no CAGED por seção CNAE — permitirá identificar quais setores
+admissões (disponível no CAGED por seção CNAE) permitirá identificar quais setores
 produtivos foram mais afetados e quais se recuperaram mais rapidamente, refinando a
 análise dos canais de transmissão e a relevância das políticas setoriais de recuperação.
 Em terceiro lugar, a avaliação causal das próprias políticas de recuperação implementadas
-— o Programa Volta por Cima \cite{riograndedosul2024decreto57779}, o Auxílio
-Reconstrução e as medidas de manutenção do emprego \cite{brasil2024mp1230} — constitui
+(o Programa Volta por Cima \cite{riograndedosul2024decreto57779}, o Auxílio
+Reconstrução e as medidas de manutenção do emprego \cite{brasil2024mp1230}) constitui
 uma extensão natural: a arquitetura de dados disponível (CAGED $+$ registros de
 beneficiários $+$ dados de dano do MUPRS/SPGG-RS) é adequada para identificação por
 diferenças em diferenças exploradas por limiar de elegibilidade ou por descontinuidade de
 regra. Por fim, o método de triangulação por SDiD, TWFE-DiD e Controle Sintético
-empregado neste trabalho pode ser aplicado a desastres anteriores no Brasil — como as
-chuvas de 2011 na Região Serrana do Rio de Janeiro \cite{haddad2015economic} — para
+empregado neste trabalho pode ser aplicado a desastres anteriores no Brasil
+(como as chuvas de 2011 na Região Serrana do Rio de Janeiro \cite{haddad2015economic}) para
 construir uma base comparativa dos efeitos de enchentes sobre o mercado de trabalho
 formal brasileiro em diferentes contextos regionais e institucionais.
 
@@ -2037,7 +2037,7 @@ trabalho formal exclusivamente pela margem de entrada \cite{teixeira2024}. O
 procedimento é integralmente análogo ao do estudo principal: mesmo pool doador
 ($N_0 = 193$ municípios com proporção de atingidos $\leq 0{,}5\%$), mesmos seis
 municípios tratados, mesmo período de análise (janeiro/2021 a março/2025) e
-mesma infraestrutura de inferência --- permutação direta (IC95\% por quantis empíricos
+mesma infraestrutura de inferência: permutação direta (IC95\% por quantis empíricos
 recentrados) para o SDiD e o SC; erros-padrão clusterizados no município para o
 TWFE-DiD. A variável é construída como $\text{saldo}_{it}/\text{PopMun}_i \times 1000$,
 onde $\text{saldo}_{it} = \text{admissões}_{it} - \text{desligamentos}_{it}$.
@@ -2049,7 +2049,7 @@ emprego formal ocorreu principalmente pela margem de entrada. A exceção é
 Eldorado do Sul, cujo SDiD para o saldo é positivo ($+1{,}83$; $p = 0{,}057$)
 embora o efeito sobre as admissões seja fortemente negativo ($-3{,}72$; $p < 0{,}05$).
 Essa divergência indica que naquele município os desligamentos recuaram mais intensamente
-do que as admissões no período pós-enchente, resultando em saldo líquido positivo ---
+do que as admissões no período pós-enchente, resultando em saldo líquido positivo,
 padrão compatível com comportamento de firmas que congelam simultaneamente novas
 contratações \emph{e} demissões durante a fase aguda de um desastre, em consonância
 com a rigidez da legislação trabalhista brasileira que desincentiva demissões sob
@@ -2060,7 +2060,7 @@ estatisticamente significantes e de magnitude próxima aos ATTs sobre as admiss�
 
 \begin{table}[htbp]
 \centering
-\caption{Robustez — triangulação de estimadores: ATT em saldo líquido de admissões por
+\caption{Triangulação de estimadores (robustez): ATT em saldo líquido de admissões por
 mil habitantes (pool completo, $N_0 = 193$)}
 \label{tab:triangulacao_saldo}
 \begin{threeparttable}
@@ -2127,7 +2127,7 @@ entre os canais de admissões e de saldo líquido.
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{triangulacao_saldo_forest.png}
-\caption{\textit{Forest plot} da triangulação --- saldo líquido de admissões por mil hab.
+\caption{\textit{Forest plot} da triangulação: saldo líquido de admissões por mil hab.
 (TWFE-DiD, SC e SDiD; pool completo, $N_0 = 193$). Pontos vermelhos indicam IC95\%
 inteiramente negativo (ou positivo); cinzas indicam IC que cruza zero. Inferência:
 permutação direta para SC e SDiD; gaussiana para TWFE-DiD.}
@@ -2146,7 +2146,7 @@ do ajuste do controle sintético; a divergência após mai/2024 captura o efeito
 
 % =============================================================
 \clearpage
-\section{Trajetórias expandidas do SDiD --- admissões formais por município}
+\section{Trajetórias expandidas do SDiD: admissões formais por município}
 \label{apx:trajetorias}
 
 Esta seção apresenta as trajetórias individuais entre a série observada e o controle
@@ -2161,10 +2161,10 @@ evento \cite{arkhangelsky2021}. Os $p$-valores são bilaterais por permutação 
 % ── Par 1: Eldorado do Sul + Muçum ───────────────────────────
 \begin{figure}[htbp]
 \centering
-\subcaptionbox{Eldorado do Sul --- ATT\,$=-3{,}72$; IC95\%\,$[-7{,}04;\,-0{,}52]$; $p=0{,}041$\label{subfig:bex_es}}
+\subcaptionbox{Eldorado do Sul: ATT\,$=-3{,}72$; IC95\%\,$[-7{,}04;\,-0{,}52]$; $p=0{,}041$\label{subfig:bex_es}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4306767_completo_trajetorias.png}}
 \hfill
-\subcaptionbox{Mu\c{c}um$^{\dagger}$ --- ATT\,$=-5{,}08$; IC95\%\,$[-7{,}74;\,-2{,}17]$; $p=0{,}016$\label{subfig:bex_mucum}}
+\subcaptionbox{Mu\c{c}um$^{\dagger}$: ATT\,$=-5{,}08$; IC95\%\,$[-7{,}74;\,-2{,}17]$; $p=0{,}016$\label{subfig:bex_mucum}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4312609_completo_trajetorias.png}}
 \caption{Trajetórias expandidas (1/3): municípios Eldorado do Sul e Muçum. $^{\dagger}$RMSPE\,pré\,$>5{,}0$ (inferência parcial). Pool completo, $N_0=193$. Fonte: elaboração própria.}
 \label{fig:bex_par1}
@@ -2173,10 +2173,10 @@ evento \cite{arkhangelsky2021}. Os $p$-valores são bilaterais por permutação 
 % ── Par 2: Roca Sales + Travesseiro ──────────────────────────
 \begin{figure}[htbp]
 \centering
-\subcaptionbox{Roca Sales --- ATT\,$=-3{,}72$; IC95\%\,$[-6{,}37;\,-0{,}58]$; $p=0{,}036$\label{subfig:bex_rs}}
+\subcaptionbox{Roca Sales: ATT\,$=-3{,}72$; IC95\%\,$[-6{,}37;\,-0{,}58]$; $p=0{,}036$\label{subfig:bex_rs}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4315800_completo_trajetorias.png}}
 \hfill
-\subcaptionbox{Travesseiro --- ATT\,$=-3{,}73$; IC95\%\,$[-7{,}11;\,-0{,}63]$; $p=0{,}036$\label{subfig:bex_trav}}
+\subcaptionbox{Travesseiro: ATT\,$=-3{,}73$; IC95\%\,$[-7{,}11;\,-0{,}63]$; $p=0{,}036$\label{subfig:bex_trav}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4321626_completo_trajetorias.png}}
 \caption{Trajetórias expandidas (2/3): municípios Roca Sales e Travesseiro. Efeito robusto em ambos: IC95\% inteiramente negativo e placebo no tempo $p=0{,}040$. Pool completo, $N_0=193$. Fonte: elaboração própria.}
 \label{fig:bex_par2}
@@ -2185,10 +2185,10 @@ evento \cite{arkhangelsky2021}. Os $p$-valores são bilaterais por permutação 
 % ── Par 3: Arambaré + Igrejinha ───────────────────────────────
 \begin{figure}[htbp]
 \centering
-\subcaptionbox{Arambaré --- ATT\,$=-0{,}06$; IC95\%\,$[-3{,}10;\,+3{,}03]$; $p=0{,}943$\label{subfig:bex_aram}}
+\subcaptionbox{Arambaré: ATT\,$=-0{,}06$; IC95\%\,$[-3{,}10;\,+3{,}03]$; $p=0{,}943$\label{subfig:bex_aram}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4300851_completo_trajetorias.png}}
 \hfill
-\subcaptionbox{Igrejinha --- ATT\,$=-1{,}34$; IC95\%\,$[-4{,}40;\,+1{,}78]$; $p=0{,}207$\label{subfig:bex_igrej}}
+\subcaptionbox{Igrejinha: ATT\,$=-1{,}34$; IC95\%\,$[-4{,}40;\,+1{,}78]$; $p=0{,}207$\label{subfig:bex_igrej}}
   [0.47\textwidth]{\includegraphics[width=0.47\textwidth]{municipio_4310108_completo_trajetorias.png}}
 \caption{Trajetórias expandidas (3/3): municípios Arambaré e Igrejinha. Nenhum dos estimadores detecta efeito significante em ambos os casos. Pool completo, $N_0=193$. Fonte: elaboração própria.}
 \label{fig:bex_par3}
