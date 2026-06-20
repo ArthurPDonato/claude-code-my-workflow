@@ -1,0 +1,510 @@
+% ============================================================
+%  Carta de Resposta aos Avaliadores — Revista Análise Econômica
+%  Documento NÃO identificado (sem autores)
+% ============================================================
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage[
+  a4paper,
+  top=3cm, bottom=3cm,
+  left=3cm, right=3cm
+]{geometry}
+\usepackage{setspace}
+\setstretch{1.3}
+\setlength{\parindent}{1.25cm}
+\setlength{\parskip}{4pt}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+% Cores para os avaliadores
+\definecolor{corA}{RGB}{0,70,140}
+\definecolor{corB}{RGB}{140,40,0}
+
+\newcommand{\avA}[1]{\textcolor{corA}{\textit{#1}}}
+\newcommand{\avB}[1]{\textcolor{corB}{\textit{#1}}}
+\newcommand{\resposta}[1]{\noindent\textbf{Resposta:} #1}
+
+\begin{document}
+
+\begin{center}
+  {\large\bfseries Carta de Resposta aos Avaliadores}\\[0.4em]
+  {\normalsize Revista Análise Econômica}\\[0.2em]
+  {\small Manuscrito: \textit{Emprego Formal e Desastres Climáticos:
+  Evidências Causais das Enchentes de 2024 no Rio Grande do Sul}}
+\end{center}
+
+\bigskip
+
+\noindent Prezados Editores e Avaliadores,
+
+\medskip
+
+Agradecemos sinceramente os pareceres recebidos. Os comentários dos dois avaliadores
+foram excepcionalmente cuidadosos e revelam leitura atenta tanto dos aspectos
+metodológicos quanto dos limites de inferência do manuscrito original. A crítica
+construtiva — em especial a do Avaliador~B, que identificou com precisão a fragilidade
+central do desenho empírico — foi decisiva para que reorientássemos a pesquisa de
+forma substancial. O resultado é um artigo que, embora mantenha a mesma questão
+empírica (os efeitos das enchentes de maio de 2024 sobre o emprego formal no Rio Grande
+do Sul), apresenta metodologia, amostra e análise inteiramente reformuladas.
+
+A mudança mais importante decorre diretamente da principal objeção do Avaliador~B
+(pontos 1.1--1.3): a ausência de grupo de controle externo. Em resposta, abandonamos
+integralmente o modelo C-ARIMA (série temporal univariada) e adotamos o estimador
+\textit{Synthetic Difference-in-Differences} (SDiD), de Arkhangelsky et al.\ (2021),
+complementado por TWFE-DiD e Controle Sintético como exercícios de triangulação. Isso
+permite construir um contrafactual explícito a partir de um pool de 193 municípios
+gaúchos com baixíssimo nível de impacto ($\leq 0{,}5\%$ da população atingida),
+respondendo ao pedido do Avaliador~B de um exercício com grupo de controle externo.
+Simultaneamente, a amostra de municípios tratados foi ampliada de dois para seis —
+todos com mais de 50\% da população atingida segundo o Mapa Único do Plano Rio Grande
+(MUPRS/SPGG-RS) —, com critério de seleção objetivo e pré-especificado, o que
+responde ao ponto~4.1 do Avaliador~B.
+
+As demais modificações são descritas item a item a seguir. Como a reformulação foi
+abrangente, muitos comentários específicos ao modelo C-ARIMA (testes de raiz unitária,
+escolha de \textit{lags}, recalibração de parâmetros, kNN para municípios placebo etc.)
+tornaram-se inaplicáveis ao novo desenho e são assim indicados. Os comentários que
+permaneceram diretamente aplicáveis foram todos endereçados.
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Respostas ao Avaliador A}
+
+\subsection*{Comentário A.1 — Introdução}
+
+\avA{``A introdução precisa ser totalmente reescrita citando fontes em informações
+fortes, conectando melhor as afirmações descritas, inserindo melhor o artigo na
+literatura que se pretende, citando melhor a metodologia e inserindo qual é a fonte
+de dados utilizada (lacuna presente inclusive no resumo/abstract do artigo).''}
+
+\bigskip
+
+\resposta{A introdução foi integralmente reescrita. O novo texto abre com estatísticas
+precisas do desastre (Defesa Civil Estadual; IPEA, 2024), apresenta a literatura de
+custos diretos e indiretos de inundações (Botzen, Deschenes e Sanders, 2019; Berlemann
+e Wenzel, 2018), motiva a escolha das admissões formais com base em Teixeira et al.\
+(2024) e justifica a adoção do SDiD em detrimento de métodos alternativos. A fonte de
+dados (CAGED/Novo CAGED) é mencionada na introdução e no resumo/abstract. A seção
+``Dados'' (Seção~4) complementa com detalhes sobre a construção da série e os critérios
+de seleção da amostra.}
+
+\bigskip
+
+\subsection*{Comentário A.2 — Revisão de literatura insuficiente}
+
+\avA{``A seção de revisão de literatura precisa ser complementada com artigos que tratem
+de desastres climáticos, do estado do Rio Grande do Sul, e também da metodologia
+empregada.''}
+
+\bigskip
+
+\resposta{A revisão de literatura (Seção~2) foi reestruturada em quatro blocos: (i) a
+evolução dos métodos quase-experimentais em dados de painel para avaliação de desastres
+(TWFE-DiD, Controle Sintético e SDiD), com referências a Cavallo et al.\ (2013),
+Deryugina (2017, 2018), Leiter, Oberhofer e Raschky (2009) e Clarke et al.\ (2023),
+entre outros; (ii) impacto econômico de inundações, incluindo mercado de trabalho,
+custos diretos e indiretos, e evidências para firmas europeias; (iii) evidências sobre
+agricultura, pobreza e desigualdade; e (iv) desafios de identificação e fronteiras
+metodológicas, com discussão de SUTVA, tendências paralelas e heterogeneidade de
+efeitos. O trabalho de Teixeira et al.\ (2024) sobre as enchentes de 2024 no RS é
+discutido em detalhe em todas as seções relevantes.}
+
+\bigskip
+
+\subsection*{Comentário A.3 — Seção metodológica confusa}
+
+\avA{``Na seção metodológica, precisa introduzir melhor os modelos utilizados e
+reescrever os parágrafos confusos e inconclusivos.''}
+
+\bigskip
+
+\resposta{A seção metodológica foi integralmente substituída (Seção~3). Os três
+estimadores (TWFE-DiD, Controle Sintético e SDiD) são apresentados com suas
+formulações matemáticas, premissas de identificação e procedimentos de inferência.
+Uma tabela comparativa (Tabela~1) sintetiza as diferenças entre os estimadores,
+facilitando a leitura. O SDiD é apresentado como estratégia principal, com
+justificativa explícita baseada na divergência esperada de pré-tendências entre
+municípios afetados e o pool de doadores.}
+
+\bigskip
+
+\subsection*{Comentário A.4 — Testes de diferença de amostras, quebra estrutural,
+KPSS, ADF na tendência, lags de Roca Sales}
+
+\avA{``Precisa apresentar testes t de diferença de amostras, além de testes de
+quebra-estrutural para as séries. [...] justificar a escolha do teste ADF e apresentar
+resultados de KPSS. [...] estimar os modelos também na tendência. [...] modelos com
+lag entre 4 e 12 no município de Roca Sales.''}
+
+\bigskip
+
+\resposta{Estes comentários são específicos ao modelo C-ARIMA, que não integra o artigo
+revisado. A mudança para o SDiD dispensa os testes de raiz unitária (ADF, KPSS) e de
+quebra estrutural como pré-requisito de estimação, pois o SDiD não requer
+estacionaridade da série — trabalha em diferenças ponderadas e elimina tendências
+fixas via efeitos fixos de tempo. A preocupação de fundo — a dinâmica atípica de
+2020--2021 na série de Eldorado do Sul — é tratada pela janela de estimação que inicia
+em janeiro de 2021 (pós-pandemia), decisão que garante a homogeneidade metodológica da
+série (passagem do Caged Antigo para o Novo CAGED também ocorreu em 2020) e é
+justificada na Seção~4.1. A robustez desta escolha é avaliada pelo banco de pesos
+temporais $\hat{\lambda}_t$ estimados pelo SDiD, que concentra peso nos períodos
+pré-tratamento mais informativos e reduz a influência de janelas atípicas sem excluí-las
+arbitrariamente.}
+
+\bigskip
+
+\subsection*{Comentário A.5 — Linguagem causal na interpretação}
+
+\avA{``A linguagem da interpretação dos resultados está causal demais, sobretudo a parte
+em que relaciona os resultados do artigo a resultados diretos de políticas públicas
+realizadas nos municípios.''}
+
+\bigskip
+
+\resposta{Este comentário foi integralmente acolhido. No artigo revisado, a análise de
+heterogeneidade e canais de dano (Seção~5.5) é explicitamente qualificada como
+\textit{descritiva} e \textit{geradora de hipóteses}, com advertência metodológica
+destacada em caixa de recuo. A menção a políticas públicas específicas como
+mecanismos de recuperação foi suprimida da seção de resultados e migrou para a agenda
+de pesquisa nas Considerações Finais, onde é posicionada como extensão causal que
+requer desenho empírico próprio — exatamente a recomendação do Avaliador~A. A
+linguagem das Considerações Finais foi alinhada com a seção de resultados.}
+
+\bigskip
+
+\subsection*{Comentário A.6 — Referências infladas}
+
+\avA{``As referências estão infladas, com artigos que não são citados ao longo do
+texto.''}
+
+\bigskip
+
+\resposta{A bibliografia foi inteiramente reconstruída a partir do novo texto. Todas as
+referências constantes na lista final são citadas ao longo do manuscrito. O banco
+bibliográfico foi depurado.}
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Respostas ao Avaliador B}
+
+O Avaliador~B produziu um parecer notavelmente detalhado e analítico, cuja leitura foi
+muito valiosa para a reformulação do trabalho. Agradecemos especialmente a precisão com
+que identificou as limitações estruturais do desenho original e a transparência de
+informar que sua recomendação real era de ressubmissão — informação que nos encorajou a
+investir na reformulação substancial apresentada.
+
+\subsection*{Comentários B.1.1--B.1.3 — Justificativa para o método e ausência de
+grupo de controle externo}
+
+\avB{``A justificativa para a adoção do C-ARIMA baseia-se na limitação do DiD em
+capturar efeitos médios [...] não é uma justificativa suficiente para substituir métodos
+com grupo de controle externo. [...] Recomenda-se incluir, ao menos como teste de
+robustez, um exercício em DiD ou Controle Sintético.''}
+
+\bigskip
+
+\resposta{Este foi o comentário de maior impacto no processo de revisão e levou à
+reformulação completa da estratégia empírica. A fragilidade apontada — a ausência de
+grupo de controle externo — foi reconhecida pelos autores como a limitação central do
+trabalho original. Em resposta, o artigo revisado adota o SDiD (Arkhangelsky et al.,
+2021) como estimador principal, construindo um contrafactual a partir de um pool de
+193 municípios gaúchos com menos de $0{,}5\%$ da população atingida. Como \textit{teste
+de robustez}, os mesmos efeitos são reestimados por TWFE-DiD e Controle Sintético
+sobre exatamente o mesmo painel e pool de doadores (triangulação, Seção~5.3). O
+C-ARIMA não é mais utilizado como estimador principal; sua contribuição ao presente
+artigo é reconhecida na Seção~1 como trabalho anterior que motivou esta reformulação —
+atendendo à sugestão do Avaliador~B de fortalecer o posicionamento frente à literatura.}
+
+\bigskip
+
+\subsection*{Comentário B.2 — Desbalanceamento na seção de estratégia empírica}
+
+\avB{``A exposição do modelo ARIMA clássico ocupa espaço desproporcional em relação à
+extensão causal do modelo [...] Sugere-se reequilibrar o espaço dedicado a cada
+componente.''}
+
+\bigskip
+
+\resposta{Com a adoção do SDiD, a seção metodológica passou a ser estruturada de forma
+equilibrada: cada estimador (TWFE-DiD, Controle Sintético e SDiD) recebe uma
+subseção dedicada com formulação formal, premissas de identificação e procedimento de
+inferência. A ênfase concentra-se no SDiD e em sua dupla robustez — a contribuição
+metodológica central —, com tratamento comparativo que justifica a adoção em detrimento
+dos estimadores alternativos.}
+
+\bigskip
+
+\subsection*{Comentários B.3.1--B.3.4 — Pressupostos para inferência causal}
+
+\avB{``A discussão é predominantemente declaratória: afirma-se que cada pressuposto é
+atendido sem que o argumento seja desenvolvido de forma analítica. [...] tensão entre
+irreversibilidade do choque e recuperação rápida [...] ausência de interferência temporal
+precisa de discussão explícita.''}
+
+\bigskip
+
+\resposta{As premissas de identificação do SDiD (tendências paralelas ponderadas,
+não antecipação, SUTVA) são discutidas analiticamente na Seção~2.4 e verificadas
+empiricamente. A tensão entre ``irreversibilidade'' e ``recuperação'' presente no
+C-ARIMA não se reproduz no SDiD, cujo estimador captura o ATT médio pós-evento sem
+presupor a persistência do choque. A premissa de não-interferência temporal (ausência
+de outros eventos simultâneos) é abordada via zona de exclusão \textit{donut}
+(tratados com $>50\%$ atingidos; doadores com $\leq 0{,}5\%$), que mitiga a
+contaminação do contrafactual. A discussão sobre SUTVA e transbordamentos (cadeia
+produtiva, deslocamento de demanda) é feita explicitamente nas Seções~2.4.3 e 4.3. A
+quantidade de períodos pré-tratamento disponíveis ($T_0 = 40$ meses) é informada na
+Seção~4.1, superando as preocupações sobre séries curtas levantadas pelo Avaliador~B.}
+
+\bigskip
+
+\subsection*{Comentário B.4 — Critério de seleção dos municípios}
+
+\avB{``O critério objetivo de seleção não é apresentado diretamente: não há tabela,
+ranking ou threshold que permita ao leitor verificar por que esses dois municípios foram
+escolhidos entre os mais de 400 afetados.''}
+
+\bigskip
+
+\resposta{O critério de seleção foi tornando explícito e verificável: são tratados todos
+os municípios gaúchos com mais de 50\% da população atingida segundo o MUPRS/SPGG-RS
+— resultando em seis municípios (Eldorado do Sul, Muçum, Roca Sales, Travesseiro,
+Arambaré e Igrejinha), apresentados na Tabela~2 com código IBGE, população e
+proporção atingida. O limiar de 50\% é justificado como critério de \textit{alta
+severidade relativa} (disrupção de escala municipal), pré-especificado antes da
+estimação, e sua escolha é discutida na Seção~4.2. Amostra de dois municípios tornou-se
+amostra de seis, aumentando o poder da análise e sua generalização para o contexto
+do desastre.}
+
+\bigskip
+
+\subsection*{Comentário B.5 — Variável dependente e teste com saldo líquido}
+
+\avB{``Rodar o mesmo modelo utilizando o saldo líquido de empregos deveria produzir
+resultados consistentes — o que, se confirmado, fortaleceria consideravelmente os
+achados.''}
+
+\bigskip
+
+\resposta{Este teste foi implementado integralmente no Apêndice~A. A triangulação
+SDiD/SC/TWFE-DiD é repetida com o saldo líquido mensal (admissões $-$ desligamentos)
+como variável dependente sobre o mesmo painel e pool de doadores. Os resultados
+confirmam que o ajuste ao desastre se deu predominantemente via retração das
+contratações: nos municípios com efeito robusto (Muçum, Roca Sales, Travesseiro), os
+ATTs sobre o saldo são negativos e significantes, com magnitudes próximas aos ATTs
+sobre as admissões. A exceção documentada — Eldorado do Sul, cujo SDiD para o saldo
+é positivo ($+1{,}83$; $p = 0{,}057$) — é explicada pelo congelamento simultâneo de
+contratações \textit{e} demissões no período agudo, padrão consistente com a rigidez
+da legislação trabalhista brasileira e discutido à luz de Teixeira et al.\ (2024) e
+Krein (2012).}
+
+\bigskip
+
+\subsection*{Comentário B.6 — Tratamento do período pandêmico}
+
+\avB{``O argumento para manter o período pandêmico na série de treinamento é razoável,
+mas a defesa é incompleta. [...] Sugere-se que o autor inclua os resultados obtidos
+com e sem o período pandêmico.''}
+
+\bigskip
+
+\resposta{A janela de estimação foi reposicionada para iniciar em janeiro de 2021 por
+dois motivos: (i) garantir homogeneidade metodológica da série após a transição do
+Caged Antigo para o Novo CAGED em janeiro de 2020; e (ii) excluir a fase aguda da
+pandemia (2020), cujo padrão atípico comprometeria a validade dos pesos sintéticos
+estimados sobre o período pré-tratamento. Essa escolha substitui a análise de
+sensibilidade solicitada pelo Avaliador~B: em vez de testar com e sem pandemia, o
+problema foi resolvido diretamente pela escolha do ponto de início da série. Os pesos
+de tempo $\hat{\lambda}_t$ do SDiD garantem robustez adicional ao atribuir menor peso
+a períodos historicamente distantes ou atípicos.}
+
+\bigskip
+
+\subsection*{Comentário B.7 — Qualidade do ajuste e contextualização do RMSE}
+
+\avB{``Para Eldorado do Sul, o RMSE de aproximadamente 121 admissões representa um
+erro da ordem de 60\% da média da série. Essa magnitude tem implicação direta para a
+qualidade do contrafactual. O autor deve contextualizar as métricas em relação à escala
+da série.''}
+
+\bigskip
+
+\resposta{Este comentário foi o que mais claramente motivou a mudança de estimador. A
+elevada incerteza do contrafactual C-ARIMA para Eldorado do Sul — que o Avaliador~B
+quantificou com precisão — é exatamente a fraqueza que o SDiD mitiga por construção:
+ao minimizar o erro quadrático ponderado de ajuste pré-tratamento, o SDiD produz um
+contrafactual que replica a trajetória observada antes do evento. No artigo revisado,
+o diagnóstico de qualidade do ajuste é o RMSPE pré-tratamento, que para Eldorado do Sul
+é de 2,39 admissões por mil habitantes — interpretável em relação à escala da série e
+comparável entre municípios. A discussão explícita de qualidade do ajuste e suas
+implicações para a inferência consta da Seção~5.2, incluindo o caso de Muçum (RMSPE
+$= 7{,}07$), onde a inferência é qualificada como parcial.}
+
+\bigskip
+
+\subsection*{Comentário B.7.2 — Ambiguidade no termo ``recalibrar''}
+
+\avB{``O uso do termo `recalibrar' ao descrever o procedimento no período de teste gera
+ambiguidade.''}
+
+\bigskip
+
+\resposta{Inaplicável ao artigo revisado: a estimação por SDiD não envolve etapas de
+treinamento e teste sequenciais nem recalibração de parâmetros. O procedimento de
+estimação e inferência é descrito com precisão na Seção~3.3 e no Apêndice~A.}
+
+\bigskip
+
+\subsection*{Comentário B.8 — Interpretação da dinâmica pós-choque e atribuição a
+políticas}
+
+\avB{``A atribuição da recuperação a políticas públicas específicas extrapola o que o
+modelo efetivamente estima. Recomenda-se que essa seção seja reposicionada como
+discussão de `possíveis mecanismos'.''}
+
+\bigskip
+
+\resposta{Acolhido integralmente, conforme descrito na resposta ao Comentário A.5. A
+seção de resultados não atribui a dinâmica pós-choque a políticas específicas; as
+Considerações Finais posicionam a avaliação das políticas de recuperação como agenda
+de pesquisa futura, reconhecendo que a identificação causal de tais políticas requer
+desenho empírico específico (por exemplo, diferenças em diferenças exploradas por limiar
+de elegibilidade). Essa reformulação, como o Avaliador~B antecipou, não enfraquece o
+trabalho — pelo contrário, demonstra maturidade metodológica e clareza sobre o escopo
+da evidência produzida.}
+
+\bigskip
+
+\subsection*{Comentário B.9 — Teste placebo: opacidade metodológica (kNN)}
+
+\avB{``A principal questão é a opacidade metodológica na aplicação do algoritmo kNN
+para seleção dos municípios placebo. [...] O leitor não consegue avaliar se os
+municípios selecionados são de fato comparáveis.''}
+
+\bigskip
+
+\resposta{O teste placebo do artigo revisado é o teste de permutação direta no espaço
+(placebo in-space), procedimento com validade exata para qualquer tamanho amostral
+(Abadie, Diamond e Hainmueller, 2010). O procedimento consiste em estimar o SDiD para
+cada um dos 193 municípios do pool doador como se fosse o tratado e comparar o efeito
+real com essa distribuição de efeitos placebo. Não há seleção subjetiva por kNN; o
+conjunto de municípios placebo é idêntico ao pool doador da estimação principal. Os
+$p$-valores são calculados como a proporção de placebos com efeito ao menos tão extremo
+quanto o efeito real, procedimento padrão na literatura de controle sintético e SDiD.
+A transparência do procedimento é completa: o pool de 193 municípios é listado na
+Seção~4.3, e o $p$-valor de cada município tratado é reportado na Tabela~1.}
+
+\bigskip
+
+\subsection*{Comentário B.10.1 — Comparação com Teixeira et al.\ (2024)}
+
+\avB{``A comparação com os resultados de Teixeira et al.\ (2024) é apresentada como
+validação mútua dos achados, sem considerar que os dois estudos utilizam métodos com
+pressupostos distintos.''}
+
+\bigskip
+
+\resposta{A comparação com Teixeira et al.\ (2024) foi reposicionada. O artigo revisado
+discute explicitamente as diferenças de método (DiD vs.\ SDiD), de amostra (todos os
+municípios gaúchos vs.\ seis municípios com $>50\%$ da população atingida) e de
+variável dependente (ambos usam admissões formais, mas com normalização distinta).
+A convergência de sinal e ordem de grandeza entre as estimativas dos dois estudos é
+apresentada como evidência consistente — e não como validação mútua — reconhecendo que
+métodos distintos produzem estimativas com premissas distintas.}
+
+\bigskip
+
+\subsection*{Comentário B.10.2 — Limitação metodológica central não declarada}
+
+\avB{``A limitação metodológica central — o fato de que o modelo univariado não controla
+por outros fatores simultâneos ao choque — não é mencionada nas Considerações Finais.''}
+
+\bigskip
+
+\resposta{No artigo revisado, as limitações da estratégia empírica são declaradas de
+forma transparente nas Considerações Finais (Seção~6): (i) restrição ao mercado de
+trabalho formal (CAGED), sem captura do emprego informal; (ii) análise de
+heterogeneidade intermunicipal estritamente descritiva com $n = 6$ unidades; (iii)
+janela de observação encerrada em março de 2025, possivelmente antes da recuperação
+completa. A preocupação do Avaliador~B sobre controle de fatores simultâneos ao choque
+é abordada estruturalmente pela zona de exclusão \textit{donut} e pelo argumento de
+escala (os seis municípios somam $\approx 93$ mil habitantes e representam fração
+diminuta do PIB gaúcho), além da discussão explícita sobre SUTVA nas Seções~2.4.3 e
+4.3.}
+
+\bigskip
+\hrule
+\bigskip
+
+\section*{Síntese das Alterações Realizadas}
+
+\begin{table}[h!]
+\centering
+\small
+\begin{tabular}{p{5.5cm} p{4.5cm} p{4cm}}
+\toprule
+\textbf{Crítica original} & \textbf{Alteração realizada} & \textbf{Avaliador(es)} \\
+\midrule
+Ausência de grupo de controle externo &
+Adoção do SDiD com pool de 193 municípios doadores &
+B (1.1--1.3) \\[4pt]
+Critério de seleção dos municípios não explícito &
+Seis municípios com $>50\%$ atingidos; Tabela com critério e MUPRS &
+B (4.1) \\[4pt]
+Sem teste de robustez com saldo líquido &
+Triangulação replicada com saldo líquido (Apêndice~A) &
+B (5.1) \\[4pt]
+Revisão de literatura insuficiente &
+Revisão reestruturada em quatro blocos (métodos, impacto, agricultura, identificação) &
+A \\[4pt]
+Introdução fraca; sem dados/método/fonte &
+Introdução reescrita com estatísticas precisas, método, fonte de dados (CAGED) &
+A \\[4pt]
+Metodologia confusa e desequilibrada &
+Seção 3 com formulação formal dos três estimadores; Tabela comparativa &
+A, B (2) \\[4pt]
+Linguagem causal; atribuição a políticas &
+Análise qualificada como descritiva; políticas como agenda futura &
+A, B (8) \\[4pt]
+Placebo com kNN opaco &
+Permutação direta sobre os 193 doadores; p-valor exato e transparente &
+B (9) \\[4pt]
+RMSE não contextualizado &
+RMSPE pré-tratamento contextualizado; Muçum qualificado como inferência parcial &
+B (7) \\[4pt]
+Referências infladas &
+Bibliografia reconstruída; apenas citações efetivas no texto &
+A \\[4pt]
+Período pandêmico insuficientemente tratado &
+Série inicia em jan./2021; justificativa na Seção~4.1 &
+B (6) \\[4pt]
+Limitação metodológica central não declarada &
+Limitações declaradas explicitamente; SUTVA discutido nas Seções~2.4.3 e 4.3 &
+B (10.2) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\bigskip
+
+Reiteramos nossa gratidão aos dois avaliadores pela qualidade e profundidade das
+revisões. A combinação dos pareceres foi instrumental para a profunda reformulação que
+o trabalho necessitava — e que, acreditamos, o tornou substancialmente mais rigoroso
+e relevante.
+
+\bigskip\bigskip
+
+\noindent Atenciosamente,\\[0.3em]
+\noindent Os Autores
+
+\end{document}
