@@ -45,33 +45,15 @@
 
 \medskip
 
-Agradecemos sinceramente os pareceres recebidos. Os comentários dos dois avaliadores
-foram excepcionalmente cuidadosos e revelam leitura atenta tanto dos aspectos
-metodológicos quanto dos limites de inferência do manuscrito original. A crítica
-construtiva — em especial a do Avaliador~B, que identificou com precisão a fragilidade
-central do desenho empírico — foi decisiva para que reorientássemos a pesquisa de
-forma substancial. O resultado é um artigo que, embora mantenha a mesma questão
-empírica (os efeitos das enchentes de maio de 2024 sobre o emprego formal no Rio Grande
-do Sul), apresenta metodologia, amostra e análise inteiramente reformuladas.
-
-A mudança mais importante decorre diretamente da principal objeção do Avaliador~B
-(pontos 1.1--1.3): a ausência de grupo de controle externo. Em resposta, abandonamos
-integralmente o modelo C-ARIMA (série temporal univariada) e adotamos o estimador
-\textit{Synthetic Difference-in-Differences} (SDiD), de Arkhangelsky et al.\ (2021),
-complementado por TWFE-DiD e Controle Sintético como exercícios de triangulação. Isso
-permite construir um contrafactual explícito a partir de um pool de 193 municípios
-gaúchos com baixíssimo nível de impacto ($\leq 0{,}5\%$ da população atingida),
-respondendo ao pedido do Avaliador~B de um exercício com grupo de controle externo.
-Simultaneamente, a amostra de municípios tratados foi ampliada de dois para seis —
-todos com mais de 50\% da população atingida segundo o Mapa Único do Plano Rio Grande
-(MUPRS/SPGG-RS) —, com critério de seleção objetivo e pré-especificado, o que
-responde ao ponto~4.1 do Avaliador~B.
-
-As demais modificações são descritas item a item a seguir. Como a reformulação foi
-abrangente, muitos comentários específicos ao modelo C-ARIMA (testes de raiz unitária,
-escolha de \textit{lags}, recalibração de parâmetros, kNN para municípios placebo etc.)
-tornaram-se inaplicáveis ao novo desenho e são assim indicados. Os comentários que
-permaneceram diretamente aplicáveis foram todos endereçados.
+Agradecemos os pareceres recebidos. Os comentários foram cuidadosos e revelam leitura
+atenta dos aspectos metodológicos e dos limites de inferência do manuscrito original.
+Em resposta, reformulamos integralmente a estratégia empírica: abandonamos o modelo
+C-ARIMA e adotamos o \textit{Synthetic Difference-in-Differences} (SDiD), complementado
+por TWFE-DiD e Controle Sintético como triangulação, construindo um contrafactual
+explícito a partir de 193 municípios gaúchos com $\leq 0{,}5\%$ da população atingida.
+A amostra de municípios tratados foi ampliada de dois para seis. As demais alterações
+são descritas a seguir; comentários específicos ao C-ARIMA tornaram-se inaplicáveis ao
+novo desenho e são assim indicados.
 
 \bigskip
 \hrule
@@ -198,12 +180,6 @@ bibliográfico foi depurado.}
 
 \section*{Respostas ao Avaliador B}
 
-O Avaliador~B produziu um parecer notavelmente detalhado e analítico, cuja leitura foi
-muito valiosa para a reformulação do trabalho. Agradecemos especialmente a precisão com
-que identificou as limitações estruturais do desenho original e a transparência de
-informar que sua recomendação real era de ressubmissão — informação que nos encorajou a
-investir na reformulação substancial apresentada.
-
 \subsection*{Comentários B.1.1--B.1.3 — Justificativa para o método e ausência de
 grupo de controle externo}
 
@@ -214,17 +190,10 @@ robustez, um exercício em DiD ou Controle Sintético.''}
 
 \bigskip
 
-\resposta{Este foi o comentário de maior impacto no processo de revisão e levou à
-reformulação completa da estratégia empírica. A fragilidade apontada — a ausência de
-grupo de controle externo — foi reconhecida pelos autores como a limitação central do
-trabalho original. Em resposta, o artigo revisado adota o SDiD (Arkhangelsky et al.,
-2021) como estimador principal, construindo um contrafactual a partir de um pool de
-193 municípios gaúchos com menos de $0{,}5\%$ da população atingida. Como \textit{teste
-de robustez}, os mesmos efeitos são reestimados por TWFE-DiD e Controle Sintético
-sobre exatamente o mesmo painel e pool de doadores (triangulação, Seção~5.3). O
-C-ARIMA não é mais utilizado como estimador principal; sua contribuição ao presente
-artigo é reconhecida na Seção~1 como trabalho anterior que motivou esta reformulação —
-atendendo à sugestão do Avaliador~B de fortalecer o posicionamento frente à literatura.}
+\resposta{Acolhido como recomendação central desta revisão — ver abertura desta carta
+para a descrição geral da mudança. Em complemento, a versão C-ARIMA é mencionada na
+Seção~2.5 como trabalho anterior que motivou a reformulação, atendendo à sugestão de
+fortalecer o posicionamento frente à literatura.}
 
 \bigskip
 
@@ -330,38 +299,21 @@ a períodos historicamente distantes ou atípicos.}
 
 \bigskip
 
-\subsection*{Comentário B.7 — Qualidade do ajuste e contextualização do RMSE}
+\subsection*{Comentários B.7 — Qualidade do ajuste; ambiguidade no termo ``recalibrar''}
 
 \avB{``Para Eldorado do Sul, o RMSE de aproximadamente 121 admissões representa um
-erro da ordem de 60\% da média da série. Essa magnitude tem implicação direta para a
-qualidade do contrafactual. O autor deve contextualizar as métricas em relação à escala
-da série.''}
+erro da ordem de 60\% da média da série. [...] O autor deve contextualizar as métricas
+em relação à escala da série. [...] O uso do termo `recalibrar' gera ambiguidade.''}
 
 \bigskip
 
-\resposta{Este comentário foi o que mais claramente motivou a mudança de estimador. A
-elevada incerteza do contrafactual C-ARIMA para Eldorado do Sul — que o Avaliador~B
-quantificou com precisão — é exatamente a fraqueza que o SDiD mitiga por construção:
-ao minimizar o erro quadrático ponderado de ajuste pré-tratamento, o SDiD produz um
-contrafactual que replica a trajetória observada antes do evento. No artigo revisado,
-o diagnóstico de qualidade do ajuste é o RMSPE pré-tratamento, que para Eldorado do Sul
-é de 2,39 admissões por mil habitantes — interpretável em relação à escala da série e
-comparável entre municípios. A discussão explícita de qualidade do ajuste e suas
-implicações para a inferência consta da Seção~5.2, incluindo o caso de Muçum (RMSPE
-$= 7{,}07$), onde a inferência é qualificada como parcial.}
-
-\bigskip
-
-\subsection*{Comentário B.7.2 — Ambiguidade no termo ``recalibrar''}
-
-\avB{``O uso do termo `recalibrar' ao descrever o procedimento no período de teste gera
-ambiguidade.''}
-
-\bigskip
-
-\resposta{Inaplicável ao artigo revisado: a estimação por SDiD não envolve etapas de
-treinamento e teste sequenciais nem recalibração de parâmetros. O procedimento de
-estimação e inferência é descrito com precisão na Seção~3.3 e no Apêndice~A.}
+\resposta{O diagnóstico de ajuste foi o principal motivador da mudança de estimador. O
+SDiD minimiza por construção o erro quadrático ponderado pré-tratamento, produzindo um
+contrafactual que replica a trajetória observada antes do evento. O diagnóstico adotado
+no artigo revisado é o RMSPE pré-tratamento (Seção~5.2): para Eldorado do Sul, 2,39
+admissões por mil habitantes; para Muçum (RMSPE $= 7{,}07$), a inferência é qualificada
+como parcial. O termo ``recalibrar'' foi suprimido: o SDiD não tem etapas de
+treinamento/teste sequenciais.}
 
 \bigskip
 
@@ -374,14 +326,9 @@ discussão de `possíveis mecanismos'.''}
 
 \bigskip
 
-\resposta{Acolhido integralmente, conforme descrito na resposta ao Comentário A.5. A
-seção de resultados não atribui a dinâmica pós-choque a políticas específicas; as
-Considerações Finais posicionam a avaliação das políticas de recuperação como agenda
-de pesquisa futura, reconhecendo que a identificação causal de tais políticas requer
-desenho empírico específico (por exemplo, diferenças em diferenças exploradas por limiar
-de elegibilidade). Essa reformulação, como o Avaliador~B antecipou, não enfraquece o
-trabalho — pelo contrário, demonstra maturidade metodológica e clareza sobre o escopo
-da evidência produzida.}
+\resposta{Acolhido — ver resposta ao Comentário A.5. Nas Considerações Finais, a
+avaliação de políticas de recuperação específicas é posicionada como agenda de pesquisa
+futura, reconhecendo que sua identificação causal requer desenho empírico próprio.}
 
 \bigskip
 
@@ -406,41 +353,23 @@ Seção~4.3, e o $p$-valor de cada município tratado é reportado na Tabela~1.}
 
 \bigskip
 
-\subsection*{Comentário B.10.1 — Comparação com Teixeira et al.\ (2024)}
+\subsection*{Comentários B.10 — Comparação com Teixeira et al.\ (2024); limitações
+não declaradas}
 
-\avB{``A comparação com os resultados de Teixeira et al.\ (2024) é apresentada como
-validação mútua dos achados, sem considerar que os dois estudos utilizam métodos com
-pressupostos distintos.''}
-
-\bigskip
-
-\resposta{A comparação com Teixeira et al.\ (2024) foi reposicionada. O artigo revisado
-discute explicitamente as diferenças de método (DiD vs.\ SDiD), de amostra (todos os
-municípios gaúchos vs.\ seis municípios com $>50\%$ da população atingida) e de
-variável dependente (ambos usam admissões formais, mas com normalização distinta).
-A convergência de sinal e ordem de grandeza entre as estimativas dos dois estudos é
-apresentada como evidência consistente — e não como validação mútua — reconhecendo que
-métodos distintos produzem estimativas com premissas distintas.}
+\avB{``A comparação com Teixeira et al.\ (2024) é apresentada como validação mútua,
+sem considerar que os estudos utilizam métodos com pressupostos distintos. [...] A
+limitação metodológica central não é mencionada nas Considerações Finais.''}
 
 \bigskip
 
-\subsection*{Comentário B.10.2 — Limitação metodológica central não declarada}
-
-\avB{``A limitação metodológica central — o fato de que o modelo univariado não controla
-por outros fatores simultâneos ao choque — não é mencionada nas Considerações Finais.''}
-
-\bigskip
-
-\resposta{No artigo revisado, as limitações da estratégia empírica são declaradas de
-forma transparente nas Considerações Finais (Seção~6): (i) restrição ao mercado de
-trabalho formal (CAGED), sem captura do emprego informal; (ii) análise de
-heterogeneidade intermunicipal estritamente descritiva com $n = 6$ unidades; (iii)
-janela de observação encerrada em março de 2025, possivelmente antes da recuperação
-completa. A preocupação do Avaliador~B sobre controle de fatores simultâneos ao choque
-é abordada estruturalmente pela zona de exclusão \textit{donut} e pelo argumento de
-escala (os seis municípios somam $\approx 93$ mil habitantes e representam fração
-diminuta do PIB gaúcho), além da discussão explícita sobre SUTVA nas Seções~2.4.3 e
-4.3.}
+\resposta{A comparação com Teixeira et al.\ (2024) foi reposicionada: o artigo
+revisado discute as diferenças de método (DiD vs.\ SDiD), amostra e normalização,
+apresentando a convergência de sinal como evidência consistente — não como validação
+mútua. As limitações são declaradas explicitamente nas Considerações Finais (Seção~6):
+(i) restrição ao emprego formal; (ii) heterogeneidade descritiva com $n = 6$; (iii)
+janela encerrada possivelmente antes da recuperação completa. A preocupação sobre
+fatores simultâneos ao choque é endereçada pela zona de exclusão \textit{donut} e pela
+discussão de SUTVA nas Seções~2.4.3 e~4.3.}
 
 \bigskip
 \hrule
