@@ -1147,9 +1147,10 @@ cada estimativa do ATT.
 \caption{Trajetórias da unidade tratada e do controle sintético SDiD:
 pool completo ($N_0 = 193$). Eixo horizontal: período (jan./2021–mar./2025);
 eixo vertical: admissões formais por mil habitantes. Linha vertical:
-mai./2024 (início do tratamento). A área sombreada inferior representa os
-pesos temporais $\hat{\lambda}_t$, concentrados pelo SDiD nos meses
-imediatamente anteriores ao desastre \citeonline{arkhangelsky2021}.
+mai./2024 (início do tratamento). \textbf{Linha azul:} controle sintético
+SDiD; \textbf{linha laranja:} unidade tratada (observada). A área sombreada
+inferior representa os pesos temporais $\hat{\lambda}_t$, concentrados pelo
+SDiD nos meses imediatamente anteriores ao desastre \citeonline{arkhangelsky2021}.
 Municípios com efeito robusto (IC95\% inteiramente negativo): Eldorado do
 Sul, Roca Sales e Travesseiro. $^{\dagger}$RMSPE\,pré\,$> 5{,}0$ (inferência
 parcial; ver Subseção~\ref{sub:robustez}). Fonte: elaboração própria.}
@@ -1421,9 +1422,11 @@ com IC95\% \textit{cluster-robust} no município.
 \centering
 \includegraphics[width=0.95\textwidth]{event_study_twfe_todos.png}
 \caption{Estudo de evento TWFE-DiD: coeficientes dinâmicos $\hat{\delta}_k$ com
-IC95\% \textit{cluster-robust}. Linha vertical: $k = 0$ (mai./2024); referência
-$\hat{\delta}_{-1} = 0$ por normalização. Círculos cheios: IC95\% exclui zero.
-$N = 199$ municípios, $T = 51$ períodos. Fonte: elaboração própria.}
+IC95\% \textit{cluster-robust}. Linha vertical azul: $k = 0$ (mai./2024); referência
+$\hat{\delta}_{-1} = 0$ por normalização. \textbf{Linha vermelha:} coeficientes
+pós-tratamento ($k \geq 0$); \textbf{linha cinza:} coeficientes pré-tratamento
+($k < 0$). Círculos cheios: IC95\% exclui zero. $N = 199$ municípios, $T = 51$
+períodos. Fonte: elaboração própria.}
 \label{fig:event_study}
 \end{figure}
 
@@ -1872,28 +1875,46 @@ Arambaré
 \end{table}
 
 A Figura~\ref{fig:forest_saldo} apresenta o \textit{forest plot} da triangulação para
-o saldo, e a Figura~\ref{fig:painel_adm_saldo} exibe, para cada município, as trajetórias
-observada e sintética das duas variáveis lado a lado, permitindo comparação visual direta
-entre os canais de admissões e de saldo líquido.
+o saldo. As Figuras~\ref{fig:painel_adm_saldo_sig} e~\ref{fig:painel_adm_saldo_nsig}
+exibem, para cada município, as trajetórias observada e sintética das duas variáveis
+lado a lado --- separadas por grupo de resultado (significante vs.\ sem efeito detectável).
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{triangulacao_saldo_forest.png}
 \caption{\textit{Forest plot} da triangulação: saldo líquido de admissões por mil hab.
-(TWFE-DiD, SC e SDiD; pool completo, $N_0 = 193$). Pontos vermelhos indicam IC95\%
-inteiramente negativo (ou positivo); cinzas indicam IC que cruza zero. Inferência:
-permutação direta para SC e SDiD; gaussiana para TWFE-DiD.}
+(TWFE-DiD, SC e SDiD; pool completo, $N_0 = 193$). \textbf{Cor:} vermelho = IC95\%
+exclui zero; cinza = IC95\% cruza zero. \textbf{Forma (legenda no gráfico):}
+círculo ($\bullet$) = inferência por permutação direta (SC e SDiD); triângulo
+($\blacktriangle$) = IC gaussiano por EP \textit{cluster} (TWFE-DiD).
+Fonte: elaboração própria.}
 \label{fig:forest_saldo}
 \end{figure}
 
 \begin{figure}[htbp]
 \centering
-\includegraphics[width=\textwidth]{painel_admissoes_vs_saldo.png}
+\includegraphics[width=\textwidth]{municipio_4306767_adm_vs_saldo.png}\\[0.5em]
+\includegraphics[width=\textwidth]{municipio_4312609_adm_vs_saldo.png}\\[0.5em]
+\includegraphics[width=\textwidth]{municipio_4315800_adm_vs_saldo.png}\\[0.5em]
+\includegraphics[width=\textwidth]{municipio_4321626_adm_vs_saldo.png}
 \caption{Trajetórias observada e controle sintético (SDiD) para admissões formais
-(esquerda) e saldo líquido (direita), por município tratado. Linha vertical tracejada:
-maio/2024. A convergência entre as duas séries no período pré-evento ilustra a qualidade
-do ajuste do controle sintético; a divergência após mai/2024 captura o efeito estimado.}
-\label{fig:painel_adm_saldo}
+(esquerda) e saldo líquido (direita): municípios com efeito significante (Eldorado
+do Sul, Muçum, Roca Sales e Travesseiro). Linha vertical tracejada: maio/2024.
+A convergência pré-evento ilustra a qualidade do ajuste; a divergência pós-mai/2024
+captura o efeito estimado. Fonte: elaboração própria.}
+\label{fig:painel_adm_saldo_sig}
+\end{figure}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{municipio_4300851_adm_vs_saldo.png}\\[0.5em]
+\includegraphics[width=\textwidth]{municipio_4310108_adm_vs_saldo.png}
+\caption{Trajetórias observada e controle sintético (SDiD) para admissões formais
+(esquerda) e saldo líquido (direita): municípios sem efeito detectável (Arambaré e
+Igrejinha). Linha vertical tracejada: maio/2024. A ausência de divergência sistemática
+após mai/2024 é consistente com a ausência de efeito significante. Fonte: elaboração
+própria.}
+\label{fig:painel_adm_saldo_nsig}
 \end{figure}
 
 % =============================================================

@@ -599,7 +599,7 @@ analisar_modo <- function(modo) {
                          labels = c(`TRUE` = "IC exclui zero", `FALSE` = "IC cruza zero"), name = NULL) +
       labs(title = NULL, subtitle = NULL,
            x = "Efeito (admissões por mil hab. por mês)", y = NULL) +
-      theme_minimal() + theme(legend.position = "bottom", strip.text = element_text(face = "bold"))
+      theme_minimal() + theme(legend.position = "none", strip.text = element_text(face = "bold"))
     ggsave(file.path(dir_saida, "triangulacao_forest.png"), p_tri, width = 12, height = 8, dpi = 300)
   }
   
@@ -880,7 +880,7 @@ p_foco_dano <- ggplot(foco_dano, aes(reorder(municipio_nome, valor), valor, fill
                     labels = c(com = "Com efeito (IC<0)", sem = "Sem efeito"), name = NULL) +
   labs(title = NULL, subtitle = NULL,
        x = NULL, y = "Proporção atingida / índice") +
-  theme_minimal() + theme(legend.position = "bottom")
+  theme_minimal() + theme(legend.position = "none")
 ggsave(file.path(dir_het_dano, "dano_canais_centrais.png"), p_foco_dano, width = 11, height = 6, dpi = 300)
 
 # (c) Perfil z por município (impressão digital do dano)
