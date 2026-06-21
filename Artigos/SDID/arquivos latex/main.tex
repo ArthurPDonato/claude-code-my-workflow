@@ -122,6 +122,7 @@
   {../Resultados/SDID robustez saldo/}
 }
 \usepackage{booktabs}
+\usepackage{longtable}
 \usepackage{threeparttable}
 \usepackage{multirow}
 \usepackage{float}
@@ -1160,7 +1161,8 @@ Esse critério cria uma zona de exclusão deliberada entre os tratados
 intermediário (entre $0{,}5\%$ e $50\%$ da população atingida) são excluídos de
 ambos os grupos, mitigando a contaminação do contrafactual por efeitos de transbordamento
 da enchente em municípios parcialmente afetados \cite{abadie2021}. Com esse filtro,
-$N_0 = 193$ municípios compõem o pool doador.
+$N_0 = 193$ municípios compõem o pool doador
+(listados no Apêndice~\ref{apx:pool_doador}).
 
 A zona de exclusão \textit{donut} mitiga a contaminação direta por dano físico. Um canal
 adicional de violação de SUTVA (efeitos de transbordamento via cadeias produtivas entre
@@ -1705,6 +1707,8 @@ A reportagem do ATT médio oculta a dinâmica temporal do choque, central para
 a discussão de política pública. A Figura~\ref{fig:acumulado_es} apresenta o
 efeito acumulado em Eldorado do Sul ao longo dos onze meses pós-desastre,
 com banda de IC$95\%$ obtida por placebo na curva.
+Os efeitos acumulados para todos os municípios tratados encontram-se no
+Apêndice~\ref{apx:acumulado}.
 
 \begin{figure}[htbp]
 \centering
@@ -2172,5 +2176,66 @@ do ajuste do controle sintético; a divergência após mai/2024 captura o efeito
 \label{fig:painel_adm_saldo}
 \end{figure}
 
+% =============================================================
+\clearpage
+\section{Efeito acumulado sobre admissões formais: todos os municípios tratados}
+\label{apx:acumulado}
+
+Esta seção apresenta o efeito acumulado sobre admissões formais por mil
+habitantes ao longo dos onze meses pós-desastre (mai./2024–mar./2025) para
+os seis municípios tratados. As bandas de IC$95\%$ são obtidas por placebo
+na curva sobre os 193 doadores.
+
+\begin{figure}[htbp]
+\centering
+% ── Linha 1 ─────────────────────────────────────────────────────────────
+\subcaptionbox{Eldorado do Sul\label{fig:acum_es}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4306767_completo_efeito_acumulado.png}}
+\hfill
+\subcaptionbox{Muçum\label{fig:acum_mucum}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4312609_completo_efeito_acumulado.png}}
+
+\vspace{0.6em}
+
+% ── Linha 2 ─────────────────────────────────────────────────────────────
+\subcaptionbox{Roca Sales\label{fig:acum_rs}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4315800_completo_efeito_acumulado.png}}
+\hfill
+\subcaptionbox{Travesseiro\label{fig:acum_trav}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4321626_completo_efeito_acumulado.png}}
+
+\vspace{0.6em}
+
+% ── Linha 3 ─────────────────────────────────────────────────────────────
+\subcaptionbox{Arambaré\label{fig:acum_aram}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4300851_completo_efeito_acumulado.png}}
+\hfill
+\subcaptionbox{Igrejinha\label{fig:acum_igrej}}
+  [0.47\textwidth]{\includegraphics[width=0.47\textwidth]%
+  {municipio_4310108_completo_efeito_acumulado.png}}
+
+\caption{Efeito acumulado sobre admissões formais por mil habitantes
+(mai./2024–mar./2025), por município tratado. Eixo horizontal: período
+(mai./2024–mar./2025); eixo vertical: efeito acumulado em admissões
+formais por mil habitantes. Banda laranja: IC$95\%$ por placebo na curva
+sobre os $N_0 = 193$ doadores. Fonte: elaboração própria.}
+\label{fig:acumulado_todos}
+\end{figure}
+
+% =============================================================
+\clearpage
+\section{Municípios do pool doador}
+\label{apx:pool_doador}
+
+Os 193 municípios gaúchos que compõem o pool doador --- selecionados pelo
+critério de proporção de população atingida inferior a $0{,}5\%$ segundo o
+MUPRS/SPGG-RS --- estão listados na Tabela~\ref{tab:pool_doador}.
+
+\input{pool_doador_table.tex}
 
 \end{document}
