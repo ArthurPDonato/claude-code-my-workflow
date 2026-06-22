@@ -164,6 +164,29 @@ ao longo da cadeia.
 
 \subsection{Item 2 -- Séries em Log ao Longo do Tempo}
 
+\begin{lstlisting}[caption={Painel de séries em log ao longo do tempo (fig01)}]
+png("outputs/fig01_series_log.png", width = 900, height = 720)
+par(mfrow = c(3, 1), mar = c(3, 4, 2.5, 1))
+
+plot(dados$data_inicio, dados$l_brent, type = "l", col = "steelblue", lwd = 1.5,
+     xlab = "Data", ylab = "log(R$/barril)",
+     main = "l_brent - Brent em R$/barril (log natural)")
+abline(h = mean(dados$l_brent), lty = 2, col = "gray40")
+legend("topright", c("Serie", "Media"), lty = c(1,2),
+       col = c("steelblue","gray40"), bty = "n", cex = 0.85)
+
+plot(dados$data_inicio, dados$l_dA, type = "l", col = "darkorange", lwd = 1.5,
+     xlab = "Data", ylab = "log(R$/litro)",
+     main = "l_dA - Diesel A S10, Produtor (log natural)")
+abline(h = mean(dados$l_dA), lty = 2, col = "gray40")
+
+plot(dados$data_inicio, dados$l_dB, type = "l", col = "darkgreen", lwd = 1.5,
+     xlab = "Data", ylab = "log(R$/litro)",
+     main = "l_dB - Diesel B S10, Distribuidor (log natural)")
+abline(h = mean(dados$l_dB), lty = 2, col = "gray40")
+dev.off()
+\end{lstlisting}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{outputs/fig01_series_log.png}
@@ -183,6 +206,24 @@ recuperação, indício de que compartilham um componente de longo
 prazo --- motivação para o teste de cointegração.
 
 \subsection{Item 3 -- Correlogramas ACF}
+
+\begin{lstlisting}[caption={ACF em nível e em primeira diferença (fig02 e fig03)}]
+# ACF em nivel: decaimento lento indica raiz unitaria I(1)
+png("outputs/fig02_acf_nivel.png", width = 900, height = 720)
+par(mfrow = c(3, 1), mar = c(3, 4, 2.5, 1))
+acf(dados$l_brent, lag.max = 20, main = "ACF - l_brent (nivel)")
+acf(dados$l_dA,    lag.max = 20, main = "ACF - l_dA (nivel)")
+acf(dados$l_dB,    lag.max = 20, main = "ACF - l_dB (nivel)")
+dev.off()
+
+# ACF em 1a diferenca: colapso imediato confirma I(1) -> diferenca I(0)
+png("outputs/fig03_acf_diff.png", width = 900, height = 720)
+par(mfrow = c(3, 1), mar = c(3, 4, 2.5, 1))
+acf(diff(dados$l_brent), lag.max = 20, main = "ACF - Dl_brent (1a diferenca)")
+acf(diff(dados$l_dA),    lag.max = 20, main = "ACF - Dl_dA (1a diferenca)")
+acf(diff(dados$l_dB),    lag.max = 20, main = "ACF - Dl_dB (1a diferenca)")
+dev.off()
+\end{lstlisting}
 
 \begin{figure}[H]
   \centering
@@ -496,6 +537,20 @@ $\ell\_dB$           & $\phantom{-}0{,}0299$ & $0{,}0083$ & $3{,}608$ & $0{,}000
 
 \subsection{Item 12 -- Dinâmica de Curto Prazo ($\Gamma_1$)}
 
+\begin{lstlisting}[caption={Coeficientes completos do VECM por equação ($\Gamma_1$ + ECT)}]
+# coef() retorna a matriz de coeficientes (regressores x equacoes)
+coef_mat   <- coef(vec_fit$rlm)
+resumo_vec <- summary(vec_fit$rlm)   # inclui EP, t e p-valor
+
+# Imprime os coeficientes de cada equacao individualmente
+for (eq in names(resumo_vec))
+  print(round(resumo_vec[[eq]]$coefficients, 4))
+
+# Salva a matriz completa em CSV
+write.csv(round(as.data.frame(coef_mat), 4),
+          "outputs/tab06_coeficientes_vec.csv", quote = FALSE)
+\end{lstlisting}
+
 \begin{table}[H]
 \centering
 \caption{Coeficientes do VECM --- Equação Completa por Variável}
@@ -639,6 +694,16 @@ O teste foi portanto aplicado ao VAR em níveis auxiliar
 são numericamente equivalentes às do VECM --- a estabilidade avaliada
 corresponde à dinâmica de curto prazo do sistema.
 
+\begin{lstlisting}[caption={Estabilidade OLS-CUSUM via VAR em níveis auxiliar (fig04)}]
+# stability() exige classe "varest"; vec2var nao e compativel (v. 4.4.2)
+var_niveis <- VAR(as.data.frame(Y), p = 2, type = "const")
+stab <- stability(var_niveis, type = "OLS-CUSUM")
+
+png("outputs/fig04_cusum.png", width = 900, height = 720)
+plot(stab)   # tres paineis: um por equacao do VAR
+dev.off()
+\end{lstlisting}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{outputs/fig04_cusum.png}
@@ -779,6 +844,48 @@ irf_fit <- irf(var_fit, n.ahead = 20, boot = TRUE, ci = 0.95, runs = 99)
   \label{fig:irf_full}
 \end{figure}
 
+\begin{lstlisting}[caption={IRF específicas: pares de impulso-resposta selecionados (fig06)}]
+# Calcula cada IRF par-a-par com bootstrap 95% (99 replicacoes)
+irf_dB_brent <- irf(var_fit, impulse = "l_brent", response = "l_dB",
+                     n.ahead = 20, boot = TRUE, ci = 0.95, runs = 99)
+irf_dA_brent <- irf(var_fit, impulse = "l_brent", response = "l_dA",
+                     n.ahead = 20, boot = TRUE, ci = 0.95, runs = 99)
+irf_dB_dA    <- irf(var_fit, impulse = "l_dA",    response = "l_dB",
+                     n.ahead = 20, boot = TRUE, ci = 0.95, runs = 99)
+
+h <- 0:20
+png("outputs/fig06_irf_especificas.png", width = 900, height = 900)
+par(mfrow = c(3, 1), mar = c(3, 4, 2.5, 1))
+
+# Painel 1: l_dB em resposta a choque em l_brent
+plot(h, irf_dB_brent$irf$l_brent, type = "l", col = "steelblue", lwd = 2,
+     ylim = range(c(irf_dB_brent$Lower$l_brent, irf_dB_brent$Upper$l_brent)),
+     xlab = "Horizonte (semanas)", ylab = "Resposta",
+     main = "Resposta de l_dB a choque unitario em l_brent")
+lines(h, irf_dB_brent$Upper$l_brent, lty = 2, col = "gray50")
+lines(h, irf_dB_brent$Lower$l_brent, lty = 2, col = "gray50")
+abline(h = 0)
+
+# Painel 2: l_dA em resposta a choque em l_brent
+plot(h, irf_dA_brent$irf$l_brent, type = "l", col = "darkorange", lwd = 2,
+     ylim = range(c(irf_dA_brent$Lower$l_brent, irf_dA_brent$Upper$l_brent)),
+     xlab = "Horizonte (semanas)", ylab = "Resposta",
+     main = "Resposta de l_dA a choque unitario em l_brent")
+lines(h, irf_dA_brent$Upper$l_brent, lty = 2, col = "gray50")
+lines(h, irf_dA_brent$Lower$l_brent, lty = 2, col = "gray50")
+abline(h = 0)
+
+# Painel 3: l_dB em resposta a choque em l_dA
+plot(h, irf_dB_dA$irf$l_dA, type = "l", col = "darkgreen", lwd = 2,
+     ylim = range(c(irf_dB_dA$Lower$l_dA, irf_dB_dA$Upper$l_dA)),
+     xlab = "Horizonte (semanas)", ylab = "Resposta",
+     main = "Resposta de l_dB a choque unitario em l_dA")
+lines(h, irf_dB_dA$Upper$l_dA, lty = 2, col = "gray50")
+lines(h, irf_dB_dA$Lower$l_dA, lty = 2, col = "gray50")
+abline(h = 0)
+dev.off()
+\end{lstlisting}
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{outputs/fig06_irf_especificas.png}
@@ -832,6 +939,36 @@ eleva permanentemente o preço do diesel, não apenas temporariamente.
 % ============================================================
 
 \subsection{Item 22 -- Tabelas FEVD}
+
+\begin{lstlisting}[caption={Decomposição da Variância (FEVD): gráfico e tabelas (fig07)}]
+# fevd() calcula a decomposicao da variancia para cada variavel do sistema
+fevd_fit <- fevd(var_fit, n.ahead = 20)
+
+# Grafico empilhado (barchart por horizonte) para as tres equacoes
+png("outputs/fig07_fevd.png", width = 900, height = 720)
+plot(fevd_fit)
+dev.off()
+
+# Tabelas numericas para horizontes selecionados
+horizontes <- c(1, 4, 8, 12, 20)
+
+tabela_fevd <- function(var_nome) {
+  m     <- fevd_fit[[var_nome]]         # matriz T x k (fracao da variancia)
+  m_sel <- round(m[horizontes, ] * 100, 2)   # percentuais
+  df    <- as.data.frame(m_sel)
+  df$Horizonte <- horizontes
+  df$Total     <- rowSums(df[, 1:3])
+  df[, c("Horizonte", colnames(m), "Total")]
+}
+
+tab_fevd_brent <- tabela_fevd("l_brent")
+tab_fevd_dA    <- tabela_fevd("l_dA")
+tab_fevd_dB    <- tabela_fevd("l_dB")
+
+write.csv(tab_fevd_brent, "outputs/tab11a_fevd_brent.csv", row.names = FALSE)
+write.csv(tab_fevd_dA,    "outputs/tab11b_fevd_dA.csv",    row.names = FALSE)
+write.csv(tab_fevd_dB,    "outputs/tab11c_fevd_dB.csv",    row.names = FALSE)
+\end{lstlisting}
 
 \begin{figure}[H]
   \centering
