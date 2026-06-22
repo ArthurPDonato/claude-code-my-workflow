@@ -1,0 +1,7 @@
+Causa,Efeito,F_stat,p_valor,df1,df2
+l_brent,l_dA,5.775,0.0038,2,151
+l_brent,l_dB,7.515,8e-04,2,151
+l_dA,l_brent,0.577,0.563,2,151
+l_dA,l_dB,4.038,0.0196,2,151
+l_dB,l_brent,0.827,0.4393,2,151
+l_dB,l_dA,14.019,0,2,151

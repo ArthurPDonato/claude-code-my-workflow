@@ -362,7 +362,7 @@ Para $r \le 1$ e $r \le 2$, ambos os testes não rejeitam a hipótese nula
 
 \subsection{Item 9 -- Definição da Especificação Final}
 
-\textbf{Decisão metodológica: adotamos $r = 1$ e estimamos o VECM.}
+\textbf{Decisão metodológica: adoto $r = 1$ e estimo o VECM.}
 
 \medskip\noindent
 Três argumentos fundamentam essa escolha:
@@ -381,6 +381,14 @@ Três argumentos fundamentam essa escolha:
         coeficientes de curto prazo inconsistentes (Engle \& Granger, 1987).
         O custo de incluir um ECT supérfluo (se $r = 0$ verdadeiro) é
         assintoticamente nulo com $T = 161$.
+  \item \textbf{Baixa potência do traço com $T$ moderado}: a literatura
+        sobre cointegração documenta que o teste do traço tem potência
+        reduzida quando $T \approx 150$--$200$ e os autovalores associados
+        aos vetores de cointegração são próximos de zero.
+        Subestimar $r$ (erro do tipo~II) é assintoticamente mais custoso
+        do que superestimá-lo (erro do tipo~I), pois descarta
+        informação de longo prazo genuína e enfraquece a identificação
+        do mecanismo de correção de erros.
 \end{enumerate}
 
 \noindent
@@ -455,7 +463,11 @@ $\ell\_\text{brent}$ & $-0{,}0184$ & $0{,}0253$ & $-0{,}726$ & $0{,}469$ & 37,4 
 $\ell\_dA$           & $\phantom{-}0{,}0536$ & $0{,}0139$ & $3{,}850$ & $0{,}0002^{***}$ & --- \\
 $\ell\_dB$           & $\phantom{-}0{,}0299$ & $0{,}0083$ & $3{,}608$ & $0{,}0004^{***}$ & --- \\
 \bottomrule
-\multicolumn{6}{l}{\small $^{***}p < 0{,}001$. Meia-vida: $-\ln(2)/\ln(1+\alpha)$, só para $\alpha < 0$.}
+\multicolumn{6}{p{0.85\linewidth}}{\small $^{***}p < 0{,}001$.
+  Meia-vida: $-\ln(2)/\ln(1+\hat{\alpha})$, válida apenas para $\hat{\alpha} < 0$
+  (convergência direta ao equilíbrio).
+  Para $\hat{\alpha} > 0$, o ajustamento é indireto via os $\beta$ negativos no ECT
+  ($\beta_{dA} = -3{,}007$); a fórmula de meia-vida não se aplica.}
 \end{tabular}
 \end{table}
 
@@ -618,10 +630,19 @@ da distribuição dos erros; (ii) inferência baseada em bootstrap
 
 \subsection{Item 16 -- Estabilidade Estrutural (OLS-CUSUM)}
 
+\noindent
+\textit{Nota técnica:} a função \texttt{stability()} do pacote \texttt{vars}
+(v.\,4.4.2) requer um objeto da classe \texttt{varest} e não implementa
+o método para \texttt{vec2var}.
+O teste foi portanto aplicado ao VAR em níveis auxiliar
+\texttt{VAR(Y, p\,=\,2, type\,=\,"const")}, cujas equações de curto prazo
+são numericamente equivalentes às do VECM --- a estabilidade avaliada
+corresponde à dinâmica de curto prazo do sistema.
+
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{outputs/fig04_cusum.png}
-  \caption{Gráficos OLS-CUSUM para as três equações do sistema.
+  \caption{Gráficos OLS-CUSUM para as três equações do sistema (VAR em níveis auxiliar).
            As linhas vermelhas são as bandas de confiança a 5\%.}
   \label{fig:cusum}
 \end{figure}
@@ -642,29 +663,51 @@ geraram mudanças estruturais nos coeficientes de curto prazo do VAR.
 
 \subsection{Item 17 -- Tabela de Causalidade}
 
-\begin{lstlisting}[caption={Testes de causalidade de Granger via VAR em níveis}]
-# Usamos o VAR em niveis (varest) que internamente capta o mecanismo ECT
-# (equivalente de Toda-Yamamoto para series cointegradas)
-var_niveis <- VAR(as.data.frame(Y), p = 2, type = "const")
+\begin{lstlisting}[caption={Granger par-a-par: F-test por equação (base R, Toda-Yamamoto)}]
+# Para cada par (causa, efeito): F-test da restricao que todos os lags de
+# "causa" na equacao de "efeito" sao conjuntamente iguais a zero.
+granger_par <- function(causa, efeito, var_obj) {
+  eq_lm    <- var_obj$varresult[[efeito]]
+  y_full   <- fitted(eq_lm) + residuals(eq_lm)
+  X        <- model.matrix(eq_lm)
+  lag_cols <- grep(paste0("^", causa, "\\.l"), colnames(X))
+  q        <- length(lag_cols)
+  rss_full <- sum(residuals(eq_lm)^2)
+  X_r      <- X[, -lag_cols, drop = FALSE]
+  rss_r    <- sum(lm.fit(X_r, y_full)$residuals^2)
+  df_res   <- length(y_full) - ncol(X)
+  F_val    <- ((rss_r - rss_full) / q) / (rss_full / df_res)
+  pf(F_val, q, df_res, lower.tail = FALSE)   # p-valor
+}
 
-g_brent <- causality(var_niveis, cause = "l_brent")  # l_brent -> l_dA, l_dB
-g_dA    <- causality(var_niveis, cause = "l_dA")     # l_dA -> l_brent, l_dB
-g_dB    <- causality(var_niveis, cause = "l_dB")     # l_dB -> l_brent, l_dA
+# Computa as 6 combinacoes nao-diagonais
+for (ca in vars_nms)
+  for (ef in vars_nms)
+    if (ca != ef) granger_par(ca, ef, var_niveis)
 \end{lstlisting}
 
 \begin{table}[H]
 \centering
-\caption{Causalidade de Granger --- Estatística $F$ e $p$-valor ($H_0$: causa não Granger-causa as demais)}
+\caption{Causalidade de Granger par-a-par --- $F(2,\,151)$ e $p$-valor
+         ($H_0$: causa não Granger-causa o efeito indicado na coluna)}
 \label{tab:granger}
-\begin{tabular}{lrrl}
+\resizebox{0.96\linewidth}{!}{%
+\begin{tabular}{l|rr|rr|rr}
 \toprule
-Causa & $F(4, 456)$ & $p$-valor & Decisão (5\%) \\
+ & \multicolumn{2}{c|}{$\boldsymbol{\to \ell\_\text{brent}}$}
+ & \multicolumn{2}{c|}{$\boldsymbol{\to \ell\_dA}$}
+ & \multicolumn{2}{c}{$\boldsymbol{\to \ell\_dB}$} \\
+\textbf{Causa} $\downarrow$ & $F$ & $p$ & $F$ & $p$ & $F$ & $p$ \\
 \midrule
-$\ell\_\text{brent}$ causa $\ell\_dA$ e $\ell\_dB$ & 4,242 & 0,002 & Rejeita $H_0$ \\
-$\ell\_dA$ causa $\ell\_\text{brent}$ e $\ell\_dB$  & 2,396 & 0,050 & Marginal \\
-$\ell\_dB$ causa $\ell\_\text{brent}$ e $\ell\_dA$  & 7,420 & $<0{,}001$ & Rejeita $H_0$ \\
+$\ell\_\text{brent}$ & ---    & ---   & 5,775 & $0{,}004^{**}$    & 7,515  & $0{,}001^{***}$ \\
+$\ell\_dA$           & 0,577  & 0,563 & ---   & ---               & 4,038  & $0{,}020^{*}$   \\
+$\ell\_dB$           & 0,827  & 0,439 & 14,019 & $<0{,}001^{***}$ & ---    & ---             \\
 \bottomrule
-\end{tabular}
+\multicolumn{7}{l}{\small $^{***}p<0{,}001$; $^{**}p<0{,}01$; $^{*}p<0{,}05$.
+  GL: $F(2,\,151)$ — 2 lags do VAR($p=2$), 151 graus de liberdade residuais por equação.}\\
+\multicolumn{7}{l}{\small Toda-Yamamoto: VAR em níveis auxiliar com \texttt{type="const"};
+  inferência Wald válida para séries $I(1)$ com cointegração.}
+\end{tabular}}
 \end{table}
 
 \subsection{Item 18 -- Classificação Endogeneidade/Exogeneidade}
@@ -674,33 +717,46 @@ Combinando os resultados de $\hat{\alpha}$ (longo prazo) com os testes Granger
 
 \begin{table}[H]
 \centering
-\caption{Classificação das Variáveis por Grau de Endogeneidade}
+\caption{Classificação das Variáveis por Grau de Endogeneidade (resultados par-a-par)}
 \label{tab:classif}
+\resizebox{\linewidth}{!}{%
 \begin{tabular}{lllll}
 \toprule
-Variável & $\hat{\alpha}$ (sig.) & Granger (sig.) & Classificação \\
+Variável & $\hat{\alpha}$ (sig.) & Granger-causa (par-a-par) & Classificação \\
 \midrule
-$\ell\_\text{brent}$ & Não ($p=0{,}469$) & Sim ($p=0{,}002$) & Fracamente exógena de LP; ativa CP \\
-$\ell\_dA$           & Sim ($p<0{,}001$) & Marginal ($p=0{,}050$) & Endógena de LP; CP marginal \\
-$\ell\_dB$           & Sim ($p<0{,}001$) & Sim ($p<0{,}001$) & Endógena de CP e LP \\
+$\ell\_\text{brent}$ & Não ($p=0{,}469$)
+  & $\to \ell\_dA$ ($p=0{,}004$) e $\to \ell\_dB$ ($p=0{,}001$)
+  & Fracamente exógena LP; lidera CP \\
+$\ell\_dA$ & Sim ($p<0{,}001$)
+  & $\to \ell\_dB$ ($p=0{,}020$); $\not\to \ell\_\text{brent}$ ($p=0{,}563$)
+  & Endógena LP; causa CP $\to$ distribuidor \\
+$\ell\_dB$ & Sim ($p<0{,}001$)
+  & $\to \ell\_dA$ ($p<0{,}001$); $\not\to \ell\_\text{brent}$ ($p=0{,}439$)
+  & Endógena CP e LP; retroage sobre produtor \\
 \bottomrule
-\end{tabular}
+\end{tabular}}
 \end{table}
 
 \noindent
 A hierarquia empírica \textbf{Brent $\to$ Diesel A $\to$ Diesel B} é
 \textbf{parcialmente confirmada}:
 \begin{itemize}
-  \item O Brent Granger-causa o sistema (CP) mas não se ajusta ao ECT (LP),
-        confirmando sua exogeneidade fraca --- ele lidera o sistema sem
-        ser afetado pelos preços internos do diesel.
-  \item O Diesel A ajusta-se ao equilíbrio de LP (significativo via $\alpha$).
-  \item O Diesel B é endógeno em CP e LP, sendo o elo mais reactivo
-        dentro do sistema.
-  \item Surpreendentemente, o Diesel B também Granger-causa os demais,
-        sugerindo que movimentos do distribuidor contêm informação preditiva
-        sobre a refinaria/Brent em curto prazo --- possivelmente via
-        pressão de demanda ou antecipação de reajustes.
+  \item O Brent Granger-causa tanto o Diesel A ($p = 0{,}004$) quanto o
+        Diesel B ($p = 0{,}001$) no curto prazo, mas não se ajusta ao ECT
+        de longo prazo ($\hat{\alpha}$ não significativo), confirmando sua
+        exogeneidade fraca --- ele lidera o sistema sem ser afetado pelos
+        preços domésticos.
+  \item O Diesel A ajusta-se ao equilíbrio de LP (significativo via $\alpha$)
+        e Granger-causa o distribuidor ($p = 0{,}020$), mas \textbf{não}
+        retroage sobre o Brent ($p = 0{,}563$), como esperado.
+  \item O Diesel B é endógeno em CP e LP e, surpreendentemente,
+        \textbf{Granger-causa fortemente o Diesel A} ($F = 14{,}019$,
+        $p < 0{,}001$) --- efeito upstream (distribuidor $\to$ produtor).
+        Esse resultado sugere que o mercado de distribuição antecipa
+        reajustes e transmite pressão de custo para a refinaria/produtor
+        antes mesmo do repasse formal. Importante: o Diesel B
+        \textbf{não} Granger-causa o Brent ($p = 0{,}439$),
+        mostrando que a retroalimentação é restrita ao mercado doméstico.
 \end{itemize}
 
 % ============================================================

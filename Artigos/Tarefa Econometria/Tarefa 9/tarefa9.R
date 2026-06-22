@@ -223,7 +223,7 @@ write.csv(tab_jo, file.path(out_dir, "tab04_johansen.csv"),
 #                             | CV10%=28.71 → REJEITA a 10%
 # Eigen: H0 r=0 → stat=18.27 | CV5%=21.07 → NÃO rejeita | CV10%=18.90 → NÃO rejeita
 #
-# ESCOLHA METODOLÓGICA: adotamos r=1 com base em:
+# ESCOLHA METODOLÓGICA: adoto r=1 com base em:
 #   (a) O teste do traço rejeita H0:r=0 ao nível de 10% (stat 30.94 > CV 28.71)
 #   (b) Raciocínio econômico: três preços da mesma cadeia produtiva têm forte
 #       prior de cointegração (lei do preço único setorial)
@@ -357,10 +357,10 @@ var_names_fit <- colnames(var_fit$y)
 cat("\nVEC convertido para VAR em níveis.\n")
 cat("Variáveis (via var_fit$y):", paste(var_names_fit, collapse=", "), "\n")
 
-# Para funções que exigem "varest" (causality, stability), estimamos um
+# Para funções que exigem "varest" (causality, stability), estimo um
 # VAR em NÍVEIS auxiliar com os mesmos dados. No contexto VEC, isso implementa
 # o teste de Toda-Yamamoto (VAR em níveis com inferência Wald) que é válido
-# para séries cointegradas. Para serial, arch, normality e irf usamos var_fit (vec2var).
+# para séries cointegradas. Para serial, arch, normality e irf uso var_fit (vec2var).
 var_niveis <- VAR(as.data.frame(Y), p=p_uso, type="const")
 
 # Item 13 ────────────────────────────────────────────────────────────────────
@@ -385,7 +385,7 @@ sink()
 # Heterocedasticidade condicional (ARCH multivariado, lags=5)
 # H0: sem efeitos ARCH. Preços de commodities frequentemente exibem clusters de
 # volatilidade. ARCH nos resíduos NÃO invalida o VECM mas afeta a eficiência
-# dos IC bootstrap das IRF — por isso usamos bootstrap em vez de IC analíticos.
+# dos IC bootstrap das IRF — por isso uso bootstrap em vez de IC analíticos.
 cat("\n--- ARCH Multivariado (lags=5) ---\n")
 arch_test <- arch.test(var_fit, lags.multi=5)
 print(arch_test)
@@ -430,10 +430,10 @@ write.csv(tab_norm, file.path(out_dir, "tab08_normalidade.csv"),
 # Item 16 ────────────────────────────────────────────────────────────────────
 # Estabilidade estrutural (OLS-CUSUM)
 # stability() da classe varest não aceita vec2var diretamente.
-# Aplicamos sobre o VAR nas diferenças (p=1), que corresponde às equações de
+# Aplico sobre o VAR nas diferenças (p=1), que corresponde às equações de
 # curto prazo do VECM. Isso avalia estabilidade da dinâmica de curto prazo.
 cat("\n--- Estabilidade OLS-CUSUM (VAR em níveis auxiliar) ---\n")
-# stability() requer classe "varest"; usamos var_niveis
+# stability() requer classe "varest"; uso var_niveis
 stab <- stability(var_niveis, type="OLS-CUSUM")
 
 png(file.path(out_dir, "fig04_cusum.png"), width=900, height=720)
@@ -445,42 +445,68 @@ cat("fig04 (CUSUM) salva.\n")
 # PARTE 7 – CAUSALIDADE DE GRANGER
 # =============================================================================
 # Item 17 ────────────────────────────────────────────────────────────────────
-# No VAR em níveis derivado do VECM, causality() testa Granger-causalidade
-# incorporando tanto a dinâmica de curto prazo quanto a relação de cointegração.
-# H0: a variável "causa" NÃO Granger-causa as demais variáveis do sistema.
+# Tabela 3×3 de Granger-causalidade par-a-par.
+# Para cada par (causa → efeito), testo H0: os p=2 lags da variável "causa"
+# na equação do "efeito" são conjuntamente iguais a zero (F-test por OLS).
+# Abordagem de Toda-Yamamoto: VAR em níveis com inferência Wald, válida para
+# séries I(1) com cointegração (evita o viés do VAR em diferenças).
 
-cat("\n--- Causalidade de Granger (via VAR em níveis auxiliar) ---\n")
-# Usamos var_niveis (varest) para os testes Granger; as interpretações valem
-# para o sistema em equilíbrio (longo prazo incluso via ECT implícito).
+cat("\n--- Causalidade de Granger par-a-par (tabela 3x3) ---\n")
 cat("Variáveis:", paste(names(var_niveis$varresult), collapse=", "), "\n")
 
+# F-test par-a-par em base R (sem dependências externas)
+granger_par <- function(causa, efeito, var_obj) {
+  eq_lm    <- var_obj$varresult[[efeito]]
+  # reconstrói y e X a partir do objeto lm
+  y_full   <- fitted(eq_lm) + residuals(eq_lm)
+  X        <- model.matrix(eq_lm)
+  lag_cols <- grep(paste0("^", causa, "\\.l"), colnames(X))
+  if (length(lag_cols) == 0) return(c(F_stat=NA, p_valor=NA, df1=NA, df2=NA))
+  q        <- length(lag_cols)
+  k_full   <- ncol(X)
+  rss_full <- sum(residuals(eq_lm)^2)
+  X_r      <- X[, -lag_cols, drop=FALSE]
+  rss_r    <- sum(lm.fit(X_r, y_full)$residuals^2)
+  df_res   <- length(y_full) - k_full
+  F_val    <- ((rss_r - rss_full) / q) / (rss_full / df_res)
+  p_val    <- pf(F_val, q, df_res, lower.tail=FALSE)
+  c(F_stat=round(F_val,3), p_valor=round(p_val,4), df1=q, df2=df_res)
+}
+
+vars_nms <- names(var_niveis$varresult)
+tab_granger_par <- data.frame(Causa=character(), Efeito=character(),
+                               F_stat=numeric(), p_valor=numeric(),
+                               df1=integer(), df2=integer(),
+                               stringsAsFactors=FALSE)
+for (ca in vars_nms) {
+  for (ef in vars_nms) {
+    if (ca == ef) next
+    res <- granger_par(ca, ef, var_niveis)
+    cat(sprintf("  %s -> %s: F(%g,%g) = %.3f, p = %.4f\n",
+                ca, ef, res["df1"], res["df2"], res["F_stat"], res["p_valor"]))
+    tab_granger_par <- rbind(tab_granger_par, data.frame(
+      Causa=ca, Efeito=ef, F_stat=res["F_stat"], p_valor=res["p_valor"],
+      df1=res["df1"], df2=res["df2"], stringsAsFactors=FALSE
+    ))
+  }
+}
+write.csv(tab_granger_par, file.path(out_dir, "tab09_granger_par.csv"),
+          row.names=FALSE, quote=FALSE)
+print(tab_granger_par)
+
+# Testes conjuntos (causa -> todas as outras) — mantidos para Item 18
+cat("\n--- Causalidade conjunta ---\n")
 g_brent <- causality(var_niveis, cause="l_brent")
 g_dA    <- causality(var_niveis, cause="l_dA")
 g_dB    <- causality(var_niveis, cause="l_dB")
+cat("l_brent (conjunto):\n"); print(g_brent$Granger)
+cat("l_dA (conjunto):\n");    print(g_dA$Granger)
+cat("l_dB (conjunto):\n");    print(g_dB$Granger)
 
-cat("l_brent como causa:\n"); print(g_brent$Granger)
-cat("l_dA como causa:\n");    print(g_dA$Granger)
-cat("l_dB como causa:\n");    print(g_dB$Granger)
-
-# Extrai F e p-valor
 extr_g <- function(g) c(
   F_stat  = round(g$Granger$statistic[[1]], 3),
   p_valor = round(g$Granger$p.value, 4)
 )
-
-tab_granger <- data.frame(
-  Causa   = c("l_brent","l_dA","l_dB"),
-  F_stat  = c(extr_g(g_brent)["F_stat"],
-               extr_g(g_dA)["F_stat"],
-               extr_g(g_dB)["F_stat"]),
-  p_valor = c(extr_g(g_brent)["p_valor"],
-               extr_g(g_dA)["p_valor"],
-               extr_g(g_dB)["p_valor"]),
-  stringsAsFactors = FALSE
-)
-print(tab_granger)
-write.csv(tab_granger, file.path(out_dir, "tab09_granger.csv"),
-          row.names=FALSE, quote=FALSE)
 
 # Item 18 ────────────────────────────────────────────────────────────────────
 # Classificação: combina alpha (longo prazo) e Granger (curto prazo)
@@ -515,8 +541,11 @@ classif("l_dB",    alpha_dB,    p_dB,    extr_g(g_dB)["p_valor"])
 cat("\n--- Estimando IRF (20 semanas, bootstrap 99 rep., IC 95%) ---\n")
 irf_fit <- irf(var_fit, n.ahead=20, boot=TRUE, ci=0.95, runs=99)
 
-png(file.path(out_dir, "fig05_irf_full.png"), width=1100, height=900)
+png(file.path(out_dir, "fig05_irf_full.png"), width=1100, height=960)
+par(oma=c(0, 0, 3, 0))   # margem externa superior para título global
 plot(irf_fit)
+mtext("IRF VECM Cadeia do Diesel | Cholesky: l_brent -> l_dA -> l_dB | IC bootstrap 95% (99 rep.)",
+      outer=TRUE, cex=0.9, font=2, line=1)
 dev.off()
 cat("fig05 (IRF completa) salva.\n")
 
