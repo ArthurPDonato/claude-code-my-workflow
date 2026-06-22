@@ -1,0 +1,100 @@
+$`resids of l_brent`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_brent equation
+Chi-squared = 6.0576, df = 2, p-value = 0.04837
+
+
+$`resids of l_dA`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_dA equation
+Chi-squared = 435.87, df = 2, p-value < 2.2e-16
+
+
+$`resids of l_dB`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_dB equation
+Chi-squared = 6138.6, df = 2, p-value < 2.2e-16
+
+
+$JB
+
+	JB-Test (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 1010.2, df = 6, p-value < 2.2e-16
+
+
+$Skewness
+
+	Skewness only (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 58.763, df = 3, p-value = 1.08e-12
+
+
+$Kurtosis
+
+	Kurtosis only (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 951.46, df = 3, p-value < 2.2e-16
+
+
+$jb.uni
+$jb.uni$`resids of l_brent`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_brent equation
+Chi-squared = 6.0576, df = 2, p-value = 0.04837
+
+
+$jb.uni$`resids of l_dA`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_dA equation
+Chi-squared = 435.87, df = 2, p-value < 2.2e-16
+
+
+$jb.uni$`resids of l_dB`
+
+	JB-Test (univariate)
+
+data:  Residual of resids of l_dB equation
+Chi-squared = 6138.6, df = 2, p-value < 2.2e-16
+
+
+
+$jb.mul
+$jb.mul$JB
+
+	JB-Test (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 1010.2, df = 6, p-value < 2.2e-16
+
+
+$jb.mul$Skewness
+
+	Skewness only (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 58.763, df = 3, p-value = 1.08e-12
+
+
+$jb.mul$Kurtosis
+
+	Kurtosis only (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 951.46, df = 3, p-value < 2.2e-16
+
+
+

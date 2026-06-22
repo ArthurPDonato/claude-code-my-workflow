@@ -1,0 +1,73 @@
+Response l_brent.d :
+
+Call:
+lm(formula = l_brent.d ~ ect1 + constant + l_brent.dl1 + l_dA.dl1 + 
+    l_dB.dl1 - 1, data = data.mat)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.112079 -0.018505 -0.001928  0.022938  0.089848 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)
+ect1        -0.01838    0.02532  -0.726    0.469
+constant     0.10074    0.14005   0.719    0.473
+l_brent.dl1  0.01511    0.08065   0.187    0.852
+l_dA.dl1    -0.17313    0.18654  -0.928    0.355
+l_dB.dl1     0.31732    0.28792   1.102    0.272
+
+Residual standard error: 0.03527 on 154 degrees of freedom
+Multiple R-squared:  0.01237,	Adjusted R-squared:  -0.01969 
+F-statistic: 0.3859 on 5 and 154 DF,  p-value: 0.8579
+
+
+Response l_dA.d :
+
+Call:
+lm(formula = l_dA.d ~ ect1 + constant + l_brent.dl1 + l_dA.dl1 + 
+    l_dB.dl1 - 1, data = data.mat)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.076189 -0.010797 -0.000639  0.009388  0.110718 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+ect1         0.05365    0.01394   3.850 0.000173 ***
+constant    -0.29737    0.07708  -3.858 0.000168 ***
+l_brent.dl1  0.13301    0.04439   2.996 0.003185 ** 
+l_dA.dl1    -0.24171    0.10267  -2.354 0.019824 *  
+l_dB.dl1     0.68908    0.15847   4.348 2.48e-05 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.01941 on 154 degrees of freedom
+Multiple R-squared:  0.2807,	Adjusted R-squared:  0.2573 
+F-statistic: 12.02 on 5 and 154 DF,  p-value: 7.808e-10
+
+
+Response l_dB.d :
+
+Call:
+lm(formula = l_dB.d ~ ect1 + constant + l_brent.dl1 + l_dA.dl1 + 
+    l_dB.dl1 - 1, data = data.mat)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.035710 -0.003999 -0.000517  0.003336  0.094648 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+ect1         0.02992    0.00829   3.608 0.000416 ***
+constant    -0.16551    0.04585  -3.610 0.000414 ***
+l_brent.dl1  0.09794    0.02641   3.709 0.000290 ***
+l_dA.dl1    -0.04020    0.06108  -0.658 0.511397    
+l_dB.dl1     0.43166    0.09427   4.579 9.58e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.01155 on 154 degrees of freedom
+Multiple R-squared:  0.3665,	Adjusted R-squared:  0.3459 
+F-statistic: 17.82 on 5 and 154 DF,  p-value: 6.476e-14
+
+

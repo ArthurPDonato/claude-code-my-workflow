@@ -1,0 +1,14 @@
+
+	ARCH (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 190.08, df = 180, p-value = 0.2889
+
+$arch.mul
+
+	ARCH (multivariate)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 190.08, df = 180, p-value = 0.2889
+
+

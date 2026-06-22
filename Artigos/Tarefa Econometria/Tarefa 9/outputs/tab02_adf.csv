@@ -1,0 +1,7 @@
+Variavel,tau,CV_5pct,Decisao
+l_brent (nível),-0.421,-1.95,Raiz unitária
+l_dA (nível),-0.254,-1.95,Raiz unitária
+l_dB (nível),0.026,-1.95,Raiz unitária
+Dl_brent (1ª dif.),-8.923,-1.95,Estacionária
+Dl_dA (1ª dif.),-5.545,-1.95,Estacionária
+Dl_dB (1ª dif.),-5.973,-1.95,Estacionária

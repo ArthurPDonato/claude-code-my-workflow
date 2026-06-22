@@ -1,0 +1,31 @@
+=== PT.asymptotic ===
+
+	Portmanteau Test (asymptotic)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 80.611, df = 93, p-value = 0.8167
+
+$serial
+
+	Portmanteau Test (asymptotic)
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 80.611, df = 93, p-value = 0.8167
+
+
+
+=== BG ===
+
+	Breusch-Godfrey LM test
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 47.915, df = 45, p-value = 0.3554
+
+$serial
+
+	Breusch-Godfrey LM test
+
+data:  Residuals of VAR object var_fit
+Chi-squared = 47.915, df = 45, p-value = 0.3554
+
+
