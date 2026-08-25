@@ -85,3 +85,7 @@ scripts/R/_outputs/
 # Output artifacts — uncomment lines below based on your preference
 # *.rds
 # output/**/*.rds
+
+# SDID_RAIS — raw RAIS microdata for all RS municipalities (large, not versioned)
+Artigos/SDID_RAIS/Base de Dados/Raw/*
+!Artigos/SDID_RAIS/Base de Dados/Raw/.gitkeep

@@ -1,0 +1,38 @@
+municipio,secao,descricao_secao,total_admissoes
+Arambare,I,Alojamento E Alimentação,41
+Arambare,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",33
+Arambare,H,"Transporte, Armazenagem E Correio",23
+Arambare,C,Indústrias De Transformação,12
+Arambare,Q,Saúde Humana E Serviços Sociais,3
+Arambare,S,Outras Atividades De Serviços,3
+Arambare,N,Atividades Administrativas E Serviços Complementares,2
+Arambare,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",1
+Eldorado do Sul,L,Atividades Imobiliárias,33
+Eldorado do Sul,R,"Artes, Cultura, Esporte E Recreação",31
+Eldorado do Sul,B,Indústrias Extrativas,29
+Igrejinha,B,Indústrias Extrativas,32
+Igrejinha,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",30
+Igrejinha,L,Atividades Imobiliárias,26
+Igrejinha,D,Eletricidade E Gás,24
+Mucum,I,Alojamento E Alimentação,34
+Mucum,M,"Atividades Profissionais, Científicas E Técnicas",33
+Mucum,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",25
+Mucum,H,"Transporte, Armazenagem E Correio",9
+Mucum,L,Atividades Imobiliárias,9
+Mucum,J,Informação E Comunicação,6
+Mucum,P,Educação,5
+Mucum,S,Outras Atividades De Serviços,3
+Roca Sales,I,Alojamento E Alimentação,47
+Roca Sales,J,Informação E Comunicação,44
+Roca Sales,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",31
+Roca Sales,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",5
+Roca Sales,L,Atividades Imobiliárias,5
+Roca Sales,R,"Artes, Cultura, Esporte E Recreação",1
+Travesseiro,G,Comércio; Reparação De Veículos Automotores E Motocicletas,33
+Travesseiro,H,"Transporte, Armazenagem E Correio",18
+Travesseiro,I,Alojamento E Alimentação,13
+Travesseiro,M,"Atividades Profissionais, Científicas E Técnicas",11
+Travesseiro,Q,Saúde Humana E Serviços Sociais,7
+Travesseiro,S,Outras Atividades De Serviços,4
+Travesseiro,N,Atividades Administrativas E Serviços Complementares,3
+Travesseiro,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",2

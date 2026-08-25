@@ -1,0 +1,127 @@
+municipio,secao,descricao_secao,vinculos_ativos_2023,vinculos_ativos_2025,share_vinculos_2023,share_vinculos_2025,variacao_share_pp
+Arambare,O,"Administração Pública, Defesa E Seguridade Social",250,336,0.34199726402188785,0.41075794621026895,6.87606821883811
+Arambare,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",324,308,0.4432284541723666,0.3765281173594132,-6.67003368129534
+Arambare,M,"Atividades Profissionais, Científicas E Técnicas",3,15,0.004103967168262654,0.018337408312958436,1.4233441144695782
+Arambare,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",4,0,0.005471956224350205,0,-0.5471956224350205
+Arambare,H,"Transporte, Armazenagem E Correio",5,2,0.006839945280437756,0.0024449877750611247,-0.43949575053766315
+Arambare,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",0,3,0,0.003667481662591687,0.36674816625916873
+Arambare,G,Comércio; Reparação De Veículos Automotores E Motocicletas,116,127,0.15868673050615595,0.1552567237163814,-0.3430006789774537
+Arambare,N,Atividades Administrativas E Serviços Complementares,5,3,0.006839945280437756,0.003667481662591687,-0.3172463617846069
+Arambare,I,Alojamento E Alimentação,12,12,0.016415868673050615,0.014669926650366748,-0.17459420226838673
+Arambare,Q,Saúde Humana E Serviços Sociais,2,1,0.0027359781121751026,0.0012224938875305623,-0.151348422464454
+Arambare,C,Indústrias De Transformação,1,0,0.0013679890560875513,0,-0.13679890560875513
+Arambare,S,Outras Atividades De Serviços,2,3,0.0027359781121751026,0.003667481662591687,0.09315035504165844
+Arambare,F,Construção,6,7,0.008207934336525308,0.008557457212713936,0.03495228761886283
+Arambare,R,"Artes, Cultura, Esporte E Recreação",1,1,0.0013679890560875513,0.0012224938875305623,-0.014549516855698894
+Arambare,B,Indústrias Extrativas,0,0,0,0,0
+Arambare,D,Eletricidade E Gás,0,0,0,0,0
+Arambare,J,Informação E Comunicação,0,0,0,0,0
+Arambare,L,Atividades Imobiliárias,0,0,0,0,0
+Arambare,P,Educação,0,0,0,0,0
+Arambare,T,Serviços Domésticos,0,0,0,0,0
+Arambare,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
+Eldorado do Sul,N,Atividades Administrativas E Serviços Complementares,3424,2594,0.1967589932191702,0.15684140516355283,-3.9917588055617377
+Eldorado do Sul,F,Construção,2640,2877,0.15170670037926676,0.17395247596589877,2.2245775586632015
+Eldorado do Sul,J,Informação E Comunicação,2842,2513,0.16331456154465004,0.15194389019892376,-1.137067134572628
+Eldorado do Sul,G,Comércio; Reparação De Veículos Automotores E Motocicletas,3997,3976,0.22968624296057924,0.24040147530080416,1.0715232340224923
+Eldorado do Sul,C,Indústrias De Transformação,1601,1668,0.09200091943454776,0.10085253038273173,0.8851610948183972
+Eldorado do Sul,H,"Transporte, Armazenagem E Correio",668,502,0.038386392368693255,0.03035250015115787,-0.8033892217535387
+Eldorado do Sul,O,"Administração Pública, Defesa E Seguridade Social",1234,1305,0.07091138949546029,0.07890440776346816,0.799301826800787
+Eldorado do Sul,I,Alojamento E Alimentação,207,314,0.011895184461556144,0.018985428381401537,0.7090243919845394
+Eldorado do Sul,P,Educação,210,250,0.012067578439259855,0.015115786927867464,0.30482084886076094
+Eldorado do Sul,M,"Atividades Profissionais, Científicas E Técnicas",136,93,0.007815193655901621,0.005623072737166697,-0.2192120918734924
+Eldorado do Sul,S,Outras Atividades De Serviços,21,52,0.0012067578439259854,0.0031440836809964326,0.19373258370704471
+Eldorado do Sul,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",127,90,0.007298011722790484,0.005441683294032287,-0.18563284287581966
+Eldorado do Sul,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",131,144,0.007527870359728767,0.008706693270451659,0.11788229107228924
+Eldorado do Sul,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",60,67,0.0034478795540742444,0.0040510308966684805,0.06031513425942361
+Eldorado do Sul,R,"Artes, Cultura, Esporte E Recreação",24,19,0.0013791518216296978,0.0011487998065179274,-0.023035201511177043
+Eldorado do Sul,Q,Saúde Humana E Serviços Sociais,34,36,0.0019537984139754053,0.0021766733176129148,0.022287490363750953
+Eldorado do Sul,L,Atividades Imobiliárias,16,12,9.194345477531318e-4,7.255577725376383e-4,-0.01938767752154935
+Eldorado do Sul,B,Indústrias Extrativas,30,27,0.0017239397770371222,0.0016325049882096863,-0.009143478882743594
+Eldorado do Sul,D,Eletricidade E Gás,0,0,0,0,0
+Eldorado do Sul,T,Serviços Domésticos,0,0,0,0,0
+Eldorado do Sul,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
+Igrejinha,C,Indústrias De Transformação,7198,7537,0.5419772607484377,0.5712878041385583,2.9310543390120625
+Igrejinha,H,"Transporte, Armazenagem E Correio",915,563,0.06889541450192004,0.04267414538012582,-2.622126912179421
+Igrejinha,G,Comércio; Reparação De Veículos Automotores E Motocicletas,1621,1459,0.12205406219411188,0.11058894868490866,-1.146511350920322
+Igrejinha,Q,Saúde Humana E Serviços Sociais,517,578,0.03892779158195919,0.04381111195330857,0.48833203713493784
+Igrejinha,I,Alojamento E Alimentação,276,320,0.020781567653038176,0.0242552868945653,0.34737192415271245
+Igrejinha,F,Construção,521,487,0.039228973721858296,0.03691351474266657,-0.2315458979191727
+Igrejinha,P,Educação,175,201,0.013176718620585798,0.015235352080648829,0.20586334600630302
+Igrejinha,N,Atividades Administrativas E Serviços Complementares,373,353,0.028085234545591448,0.026756613355567345,-0.13286211900241027
+Igrejinha,O,"Administração Pública, Defesa E Seguridade Social",1169,1178,0.08802048038551313,0.08928977488061851,0.12692944951053775
+Igrejinha,D,Eletricidade E Gás,5,12,3.7647767487388e-4,9.095732585461988e-4,0.05330955836723188
+Igrejinha,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",31,26,0.002334161584218056,0.0019707420601834304,-0.03634195240346254
+Igrejinha,J,Informação E Comunicação,51,46,0.003840072283713576,0.003486697491093762,-0.0353374792619814
+Igrejinha,S,Outras Atividades De Serviços,94,89,0.007077780287628944,0.006746001667550974,-0.033177862007796946
+Igrejinha,L,Atividades Imobiliárias,18,22,0.0013553196295459679,0.0016675509740013644,0.031223134445539653
+Igrejinha,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",11,15,8.28250884722536e-4,0.0011369665731827483,0.030871568846021234
+Igrejinha,B,Indústrias Extrativas,19,21,0.001430615164520744,0.0015917532024558479,0.016113803793510396
+Igrejinha,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",102,100,0.007680144567427152,0.007579777154551656,-0.010036741287549559
+Igrejinha,R,"Artes, Cultura, Esporte E Recreação",31,32,0.002334161584218056,0.0024255286894565298,0.009136710523847394
+Igrejinha,M,"Atividades Profissionais, Científicas E Técnicas",154,154,0.011595512386115503,0.011672856818009551,0.007734443189404833
+Igrejinha,T,Serviços Domésticos,0,0,0,0,0
+Igrejinha,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
+Mucum,N,Atividades Administrativas E Serviços Complementares,1093,1243,0.4664959453691848,0.5346236559139785,6.812771054479372
+Mucum,C,Indústrias De Transformação,665,574,0.2838241570635937,0.24688172043010753,-3.6942436633486175
+Mucum,G,Comércio; Reparação De Veículos Automotores E Motocicletas,181,139,0.07725138711054204,0.05978494623655914,-1.74664408739829
+Mucum,O,"Administração Pública, Defesa E Seguridade Social",206,179,0.08792146820315834,0.07698924731182796,-1.0932220891330378
+Mucum,I,Alojamento E Alimentação,24,18,0.010243277848911651,0.007741935483870968,-0.25013423650406835
+Mucum,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",36,39,0.015364916773367477,0.016774193548387096,0.1409276775019619
+Mucum,L,Atividades Imobiliárias,3,0,0.0012804097311139564,0,-0.12804097311139565
+Mucum,H,"Transporte, Armazenagem E Correio",6,3,0.002560819462227913,0.0012903225806451613,-0.12704968815827516
+Mucum,M,"Atividades Profissionais, Científicas E Técnicas",19,16,0.00810926163038839,0.006881720430107527,-0.12275412002808635
+Mucum,F,Construção,18,20,0.0076824583866837385,0.008602150537634409,0.091969215095067
+Mucum,Q,Saúde Humana E Serviços Sociais,65,66,0.02774221084080239,0.02838709677419355,0.06448859333911608
+Mucum,S,Outras Atividades De Serviços,1,2,4.268032437046522e-4,8.602150537634409e-4,0.043341181005878866
+Mucum,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",24,24,0.010243277848911651,0.01032258064516129,0.007930279624963898
+Mucum,J,Informação E Comunicação,2,2,8.536064874093043e-4,8.602150537634409e-4,6.60856635413651e-4
+Mucum,B,Indústrias Extrativas,0,0,0,0,0
+Mucum,D,Eletricidade E Gás,0,0,0,0,0
+Mucum,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",0,0,0,0,0
+Mucum,P,Educação,0,0,0,0,0
+Mucum,R,"Artes, Cultura, Esporte E Recreação",0,0,0,0,0
+Mucum,T,Serviços Domésticos,0,0,0,0,0
+Mucum,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
+Roca Sales,C,Indústrias De Transformação,2115,1728,0.6572405220633935,0.602510460251046,-5.473006181234741
+Roca Sales,H,"Transporte, Armazenagem E Correio",95,130,0.02952144188937228,0.045327754532775454,1.5806312643403173
+Roca Sales,N,Atividades Administrativas E Serviços Complementares,11,41,0.003418272218769422,0.014295676429567642,1.0877404210798218
+Roca Sales,F,Construção,37,56,0.011497824735860782,0.019525801952580194,0.8027977216719412
+Roca Sales,Q,Saúde Humana E Serviços Sociais,69,80,0.02144188937228092,0.02789400278940028,0.6452113417119358
+Roca Sales,J,Informação E Comunicação,13,25,0.004039776258545681,0.008716875871687587,0.4677099613141907
+Roca Sales,P,Educação,96,96,0.02983219390926041,0.03347280334728033,0.36406094380199217
+Roca Sales,O,"Administração Pública, Defesa E Seguridade Social",275,255,0.08545680546923555,0.08891213389121339,0.3455328421977835
+Roca Sales,S,Outras Atividades De Serviços,121,117,0.03760099440646364,0.04079497907949791,0.31939846730342714
+Roca Sales,M,"Atividades Profissionais, Científicas E Técnicas",56,44,0.01740211311373524,0.015341701534170154,-0.20604115795650868
+Roca Sales,G,Comércio; Reparação De Veículos Automotores E Motocicletas,205,188,0.0637041640770665,0.06555090655509066,0.18467424780241604
+Roca Sales,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",64,53,0.019888129272840272,0.018479776847977684,-0.14083524248625878
+Roca Sales,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",33,32,0.010254816656308266,0.011157601115760111,0.09027844594518449
+Roca Sales,I,Alojamento E Alimentação,24,19,0.0074580484773151025,0.006624825662482566,-0.08332228148325363
+Roca Sales,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",1,2,3.1075201988812925e-4,6.97350069735007e-4,0.03865980498468777
+Roca Sales,L,Atividades Imobiliárias,3,2,9.322560596643878e-4,6.97350069735007e-4,-0.023490598992938087
+Roca Sales,B,Indústrias Extrativas,0,0,0,0,0
+Roca Sales,D,Eletricidade E Gás,0,0,0,0,0
+Roca Sales,R,"Artes, Cultura, Esporte E Recreação",0,0,0,0,0
+Roca Sales,T,Serviços Domésticos,0,0,0,0,0
+Roca Sales,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
+Travesseiro,O,"Administração Pública, Defesa E Seguridade Social",143,154,0.24528301886792453,0.2857142857142857,4.043126684636117
+Travesseiro,I,Alojamento E Alimentação,12,3,0.02058319039451115,0.0055658627087198514,-1.50173276857913
+Travesseiro,A,"Agricultura, Pecuária, Produção Florestal, Pesca E Aquicultura",24,15,0.0411663807890223,0.027829313543599257,-1.3337067245423044
+Travesseiro,H,"Transporte, Armazenagem E Correio",18,11,0.030874785591766724,0.02040816326530612,-1.0466622326460604
+Travesseiro,C,Indústrias De Transformação,361,337,0.6192109777015438,0.6252319109461967,0.6020933244652915
+Travesseiro,F,Construção,3,0,0.005145797598627788,0,-0.5145797598627788
+Travesseiro,M,"Atividades Profissionais, Científicas E Técnicas",1,0,0.0017152658662092624,0,-0.17152658662092624
+Travesseiro,N,Atividades Administrativas E Serviços Complementares,1,0,0.0017152658662092624,0,-0.17152658662092624
+Travesseiro,G,Comércio; Reparação De Veículos Automotores E Motocicletas,10,10,0.017152658662092625,0.01855287569573284,0.14002170336402142
+Travesseiro,K,"Atividades Financeiras, De Seguros E Serviços Relacionados",5,4,0.008576329331046312,0.0074211502782931356,-0.11551790527531769
+Travesseiro,S,Outras Atividades De Serviços,3,3,0.005145797598627788,0.0055658627087198514,0.04200651100920638
+Travesseiro,Q,Saúde Humana E Serviços Sociais,2,2,0.003430531732418525,0.0037105751391465678,0.028004340672804294
+Travesseiro,B,Indústrias Extrativas,0,0,0,0,0
+Travesseiro,D,Eletricidade E Gás,0,0,0,0,0
+Travesseiro,E,"Água, Esgoto, Atividades De Gestão De Resíduos E Descontaminação",0,0,0,0,0
+Travesseiro,J,Informação E Comunicação,0,0,0,0,0
+Travesseiro,L,Atividades Imobiliárias,0,0,0,0,0
+Travesseiro,P,Educação,0,0,0,0,0
+Travesseiro,R,"Artes, Cultura, Esporte E Recreação",0,0,0,0,0
+Travesseiro,T,Serviços Domésticos,0,0,0,0,0
+Travesseiro,U,Organismos Internacionais E Outras Instituições Extraterritoriais,0,0,0,0,0
