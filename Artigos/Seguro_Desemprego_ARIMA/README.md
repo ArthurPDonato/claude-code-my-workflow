@@ -111,8 +111,12 @@ de demissões (abr–jun/2020) é compensado pela supressão posterior de deslig
 - [x] **Controle nacional CAGED** no CausalImpact (feito — `01b`/`06`).
 - [x] **Taxa de habilitação** (requerentes/demissões) — feito (`07`); revelou que o
   sinal agregado é fragilizado pela recessão coincidente.
-- [ ] **Denominador correto:** dispensa sem justa causa (CAGED por motivo) em vez do
-  total de desligamentos — remove o confundidor de composição.
+- [~] **Denominador correto:** dispensa sem justa causa. **Confirmado** que o CAGED
+  antigo registra o código `31 - Dispensa sem justa causa` (layout, Registro C) para
+  todo 2000–2019 → o dado EXISTE. Importador drop-in pronto (`01c`, filtro código 31)
+  e o `07` já o usa quando `outputs/desligamentos_sjc.csv` existir. **Falta 1 passo
+  manual (só o usuário):** acesso a microdados — `pip install basedosdados` +
+  `gcloud auth application-default login` + `GCP_BILLING_PROJECT` (ou baixar do PDET).
 - [ ] **Desenho de microdados (DiD/RD)** na descontinuidade de elegibilidade 6→12
   meses — caminho para identificar a Lei separando-a da recessão.
 - [ ] Repetir para **Segurados** (Tab. 2) e **valores pagos deflacionados** (Tab. 4).

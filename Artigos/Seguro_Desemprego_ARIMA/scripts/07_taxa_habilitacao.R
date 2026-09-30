@@ -17,7 +17,7 @@
 
 suppressMessages({
   library(forecast); library(CausalImpact); library(zoo)
-  library(dplyr); library(ggplot2); library(scales); library(tidyr)
+  library(dplyr); library(ggplot2); library(scales); library(tidyr); library(readr)
 })
 set.seed(20260930)
 
@@ -30,9 +30,27 @@ lei <- as.Date("2015-07-01")
 
 df <- inner_join(sb %>% select(data, requerentes, segurados), ctl, by = "data") %>%
   filter(data >= as.Date("2000-01-01"), data <= as.Date("2019-12-01")) %>%
-  arrange(data) %>%
-  mutate(taxa_req = requerentes / desligamentos,
-         taxa_seg = segurados   / desligamentos)
+  arrange(data)
+
+# Denominador: PREFERIR dispensa sem justa causa (código 31, gerado pelo 01c);
+# senão, fallback para o TOTAL de desligamentos (com aviso — sujeito a viés de
+# composição cíclica das separações).
+sjc_path <- here("outputs", "desligamentos_sjc.csv")
+if (file.exists(sjc_path)) {
+  sjc <- readr::read_csv(sjc_path, show_col_types = FALSE) %>%
+    mutate(data = as.Date(data))
+  df <- inner_join(df, sjc, by = "data")
+  df$denom <- df$desligamentos_sjc
+  denom_lbl <- "dispensa s/ justa causa (CAGED 31)"
+  message("[07] Denominador: DISPENSA SEM JUSTA CAUSA (correto).")
+} else {
+  df$denom <- df$desligamentos
+  denom_lbl <- "TOTAL de desligamentos (fallback — ver 01c)"
+  message("[07] Denominador: TOTAL de desligamentos (fallback). ",
+          "Rode 01c p/ o denominador correto.")
+}
+df <- df %>% mutate(taxa_req = requerentes / denom,
+                    taxa_seg = segurados   / denom)
 
 # ---- Helpers ----------------------------------------------------------------
 dts <- df$data
@@ -101,7 +119,8 @@ p <- ggplot(long, aes(data, taxa, color = serie)) +
   labs(title = "Taxa de habilitação ao Seguro-Desemprego — Brasil",
        subtitle = "Solicitações/beneficiários por desligamento CAGED",
        x = NULL, y = "Razão", color = NULL,
-       caption = "Fonte: BGSD/MTE e CAGED/MTE (IPEADATA).") +
+       caption = paste0("Denominador: ", denom_lbl,
+                        ". Fonte: BGSD/MTE e CAGED/MTE.")) +
   theme_minimal(base_size = 11) + theme(legend.position = "bottom")
 ggsave(file.path(fig, "10_taxa_habilitacao.png"), p, width = 9, height = 4.5, dpi = 150)
 
