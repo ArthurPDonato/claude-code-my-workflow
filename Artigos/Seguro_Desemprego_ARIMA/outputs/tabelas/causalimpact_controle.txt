@@ -1,0 +1,33 @@
+=== CausalImpact — Lei 13.134/2015 COM controle CAGED ===
+
+Correlação pré-intervenção requerentes~desligamentos: 0.930
+Correlação pré-intervenção requerentes~admissões:     0.893
+
+Posterior inference {CausalImpact}
+
+                         Average              Cumulative        
+Actual                   5.9e+05              3.2e+07           
+Prediction (s.d.)        5.7e+05 (14542)      3.1e+07 (785245)  
+95% CI                   [5.4e+05, 6.0e+05]   [2.9e+07, 3.2e+07]
+                                                                
+Absolute effect (s.d.)   14267 (14542)        770427 (785245)   
+95% CI                   [-14611, 42909]      [-788980, 2317110]
+                                                                
+Relative effect (s.d.)   2.6% (2.6%)          2.6% (2.6%)       
+95% CI                   [-2.4%, 7.9%]        [-2.4%, 7.9%]     
+
+Posterior tail-area probability p:   0.15448
+Posterior probability of an effect:  85%
+
+For more details, type: summary(impact, "report")
+
+NULL
+
+
+--- Comparação (efeito médio, req/mês) ---
+                        modelo efeito_medio efeito_medio_ic_inf
+     CausalImpact sem controle      -115142             -173436
+ CausalImpact + controle CAGED        14267              -14611
+ efeito_medio_ic_sup efeito_pct   p_value largura_ic
+              -59941   -16.3702 0.0013774     113495
+               42909     2.6011 0.1544799      57520

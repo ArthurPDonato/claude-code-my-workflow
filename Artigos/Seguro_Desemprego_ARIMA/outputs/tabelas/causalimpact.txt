@@ -1,0 +1,44 @@
+=== CausalImpact — requerentes (Brasil) ===
+
+>>> Lei 13.134/2015
+Posterior inference {CausalImpact}
+
+                         Average              Cumulative          
+Actual                   5.8e+05              3.3e+07             
+Prediction (s.d.)        7.0e+05 (28173)      3.9e+07 (1577705)   
+95% CI                   [6.4e+05, 7.6e+05]   [3.6e+07, 4.2e+07]  
+                                                                  
+Absolute effect (s.d.)   -115142 (28173)      -6447950 (1577705)  
+95% CI                   [-173436, -59941]    [-9712395, -3356684]
+                                                                  
+Relative effect (s.d.)   -16% (3.4%)          -16% (3.4%)         
+95% CI                   [-23%, -9.3%]        [-23%, -9.3%]       
+
+Posterior tail-area probability p:   0.00138
+Posterior probability of an effect:  99.86226%
+
+For more details, type: summary(impact, "report")
+
+NULL
+
+
+>>> COVID/2020
+Posterior inference {CausalImpact}
+
+                         Average            Cumulative        
+Actual                   558214             6698567           
+Prediction (s.d.)        542808 (23945)     6513690 (287343)  
+95% CI                   [492719, 590809]   [5912625, 7089711]
+                                                              
+Absolute effect (s.d.)   15406 (23945)      184877 (287343)   
+95% CI                   [-32595, 65495]    [-391144, 785942] 
+                                                              
+Relative effect (s.d.)   3.1% (4.6%)        3.1% (4.6%)       
+95% CI                   [-5.5%, 13%]       [-5.5%, 13%]      
+
+Posterior tail-area probability p:   0.24347
+Posterior probability of an effect:  76%
+
+For more details, type: summary(impact, "report")
+
+NULL

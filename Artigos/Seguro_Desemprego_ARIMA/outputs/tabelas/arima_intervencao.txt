@@ -1,0 +1,35 @@
+=== (A) ITS por CONTRAFACTUAL — efeito = observado − contrafactual ===
+
+     intervencao                  modelo n_pre n_ev efeito_medio
+ Lei 13.134/2015 ARIMA(0,1,4)(1,0,0)[12]   186   56      -113056
+      COVID/2020 ARIMA(3,1,1)(1,0,0)[12]   242   12        31241
+ efeito_medio_ic_inf efeito_medio_ic_sup efeito_pct efeito_acum
+             -276750               50638   -16.2324    -6331130
+              -78972              141453     5.9283      374887
+
+
+=== (B) Box-Tiao com dummies (robustez) ===
+Modelo: Regression with ARIMA(1,1,3)(1,0,0)[12] errors 
+Ressalva: sob d=1 o DEGRAU (step2015/covid_step) é mal identificado;
+ o PULSO (covid_spike) é confiável.
+
+       termo     coef    se  ic_inf   ic_sup
+    step2015   1649.3 28483  -54177  57475.1
+ covid_spike 301557.6 24536  253467 349647.7
+  covid_step -59800.8 29673 -117960  -1641.8
+
+Ljung-Box (B):
+
+	Ljung-Box test
+
+data:  Residuals from Regression with ARIMA(1,1,3)(1,0,0)[12] errors
+Q* = 24.161, df = 19, p-value = 0.19
+
+Model df: 5.   Total lags used: 24
+
+
+	Ljung-Box test
+
+data:  Residuals from Regression with ARIMA(1,1,3)(1,0,0)[12] errors
+Q* = 24.161, df = 19, p-value = 0.19
+

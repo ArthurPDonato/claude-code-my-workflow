@@ -1,0 +1,21 @@
+=== Testes de estacionariedade — requerentes (Brasil) ===
+
+>> ADF (H0: raiz unitária / não estacionária)
+
+	Augmented Dickey-Fuller Test
+
+data:  ts_req
+Dickey-Fuller = -2.7278, Lag order = 6, p-value = 0.2695
+alternative hypothesis: stationary
+
+
+>> KPSS (H0: estacionária)
+
+	KPSS Test for Level Stationarity
+
+data:  ts_req
+KPSS Level = 2.2398, Truncation lag parameter = 5, p-value = 0.01
+
+
+>> nº de diferenças sugerido (ndiffs): 1 
+>> nº de diferenças sazonais (nsdiffs): 0 

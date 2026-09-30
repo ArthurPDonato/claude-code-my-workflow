@@ -1,0 +1,3 @@
+# Caches binários regeneráveis pelo pipeline (00_run_all.R) — não versionar.
+# Os objetos BSTS do CausalImpact chegam a dezenas de MB.
+outputs/*.rds
