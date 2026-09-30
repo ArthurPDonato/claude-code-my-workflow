@@ -1,0 +1,37 @@
+=== TESTE DA TAXA DE HABILITAÇÃO — efeito da Lei 13.134/2015 ===
+
+Média pré (2000-2015/06):  req/dem = 0.4759 | seg/dem = 0.4659 
+Média pós (2015/07-2019):  req/dem = 0.4653 | seg/dem = 0.442 
+
+                   desfecho       metodo efeito_medio   ic_inf  ic_sup
+ Taxa requerentes/demissões    ARIMA-ITS      0.03871 -0.06175 0.13917
+ Taxa requerentes/demissões CausalImpact      0.04443  0.01573 0.07325
+   Taxa segurados/demissões    ARIMA-ITS      0.04189 -0.06214 0.14593
+   Taxa segurados/demissões CausalImpact      0.04117  0.01070 0.07175
+ efeito_pct  p_value
+      9.073       NA
+     10.702 0.003667
+     10.470       NA
+     10.449 0.006112
+
+
+--- CausalImpact requerentes/demissões ---
+Posterior inference {CausalImpact}
+
+                         Average          Cumulative    
+Actual                   0.47             25.13         
+Prediction (s.d.)        0.42 (0.015)     22.73 (0.801) 
+95% CI                   [0.39, 0.45]     [21.17, 24.28]
+                                                        
+Absolute effect (s.d.)   0.044 (0.015)    2.399 (0.801) 
+95% CI                   [0.016, 0.073]   [0.849, 3.956]
+                                                        
+Relative effect (s.d.)   11% (3.9%)       11% (3.9%)    
+95% CI                   [3.5%, 19%]      [3.5%, 19%]   
+
+Posterior tail-area probability p:   0.00367
+Posterior probability of an effect:  99.63325%
+
+For more details, type: summary(impact, "report")
+
+NULL
