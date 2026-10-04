@@ -27,7 +27,7 @@
 \emergencystretch=3em  % absorve estouros residuais de margem em prosa justificada
 
 \title{\textbf{A reforma do seguro-desemprego de 2015 é identificável em séries agregadas?}\\[4pt]
-\large Uma avaliação por séries temporais interrompidas e os limites da identificação macroeconômica}
+\large Uma avaliação por ARIMA causal (C-ARIMA) e os limites da identificação macroeconômica}
 
 \author{Arthur Donato\\
 \small PPGE --- FURG (Mestrado em Economia Aplicada)}
@@ -38,10 +38,10 @@
 \maketitle
 
 \begin{abstract}
-\noindent A Lei n\textsuperscript{o}~13.134/2015 endureceu o acesso ao seguro-desemprego (SD) no Brasil, elevando de 6 para 12 meses o tempo mínimo de vínculo exigido na primeira solicitação. Avaliamos o efeito dessa reforma sobre o número mensal de requerentes do SD (2000--2025, 304 meses) por triangulação de dois métodos de série temporal interrompida (ITS): ARIMA de intervenção com contrafactual e o modelo estrutural bayesiano \textit{CausalImpact} (BSTS). Em nível, os dois métodos convergem em uma queda de aproximadamente \textbf{16\%} ($\approx$114 mil requerentes/mês) após julho de 2015. Esse resultado, porém, \textbf{não sobrevive} à inclusão das demissões do CAGED como covariável de controle: o efeito desaparece ($+2{,}6\%$, $p\approx0{,}15$) e o intervalo de credibilidade encolhe pela metade. Especificações alternativas sobre a taxa de habilitação (requerentes/demissões) divergem em sinal. A conclusão central é metodológica: o efeito da reforma \textbf{não é robustamente identificável com dados agregados nacionais}, porque a Lei coincidiu com a recessão de 2015--16, que moveu simultaneamente o volume de demissões, a composição das separações e o \textit{take-up}. O estudo delimita, assim, a fronteira de identificação do problema e motiva um desenho de descontinuidade de elegibilidade (RD/DiD) em microdados.
+\noindent A Lei n\textsuperscript{o}~13.134/2015 endureceu o acesso ao seguro-desemprego (SD) no Brasil, elevando de 6 para 12 meses o tempo mínimo de vínculo exigido na primeira solicitação. Avaliamos o efeito dessa reforma sobre o número mensal de requerentes do SD (2000--2025, 304 meses) por triangulação de dois métodos de série temporal interrompida (do inglês \textit{interrupted time series}, ITS): o modelo autorregressivo integrado de médias móveis causal (do inglês \textit{causal} ARIMA, C-ARIMA) de \citet{menchetti2023carima}, com inferência por reamostragem (\textit{bootstrap}), e o modelo estrutural bayesiano de séries temporais (do inglês \textit{Bayesian structural time series}, BSTS), implementado no \textit{CausalImpact}. Em nível, as \textit{estimativas pontuais} dos dois métodos convergem para uma queda de aproximadamente \textbf{16\%} ($\approx$110 mil requerentes/mês) após julho de 2015. Essa convergência, porém, é enganosa em duas frentes. Primeiro, a inferência honesta do C-ARIMA --- que propaga a incerteza de previsão ao longo de um horizonte de 56 meses --- já \textbf{não distingue} esse efeito de zero (intervalo de confiança de 95\% $[-232{.}965;\,+30{.}157]$, $p\approx0{,}13$), enquanto o intervalo do \textit{CausalImpact} é muito mais estreito. Segundo, e decisivo: ao incluir as demissões do Cadastro Geral de Empregados e Desempregados (CAGED) como covariável de controle, o efeito \textbf{desaparece} em ambos os métodos ($+2{,}4\%$ no C-ARIMA, $+2{,}6\%$ no \textit{CausalImpact}; ambos não significativos). A conclusão central é metodológica: o efeito da reforma \textbf{não é robustamente identificável com dados agregados nacionais}, porque a Lei coincidiu com a recessão de 2015--16, que moveu simultaneamente o volume de demissões, a composição das separações e a adesão ao benefício. O estudo delimita, assim, a fronteira de identificação do problema e motiva um desenho de descontinuidade de elegibilidade em microdados.
 
 \medskip
-\noindent\textbf{Palavras-chave:} seguro-desemprego; Lei 13.134/2015; séries temporais interrompidas; CausalImpact; identificação causal.\\
+\noindent\textbf{Palavras-chave:} seguro-desemprego; Lei 13.134/2015; ARIMA causal; \textit{CausalImpact}; identificação causal.\\
 \textbf{Classificação JEL:} J65, C22, H55.
 \end{abstract}
 
@@ -51,39 +51,39 @@
 
 O seguro-desemprego (SD) é o principal instrumento de proteção de renda ao trabalhador formal demitido no Brasil. Como todo programa de seguro social, ele carrega um \textit{trade-off} central: provê liquidez e suavização de consumo a quem perde o emprego, mas pode distorcer a intensidade da busca por recolocação \citep{baily1978optimal,chetty2008moral}. Em economias com amplo setor informal, esse cálculo de bem-estar é modificado pela possibilidade de transição para a informalidade \citep{gerardgonzaga2021informal}.
 
-Em dezembro de 2014 o Governo Federal editou a MP~665, convertida na \textbf{Lei n\textsuperscript{o}~13.134, de 16 de junho de 2015} \citep{lei13134_2015}, que endureceu o acesso ao benefício. A mudança mais saliente foi o tempo mínimo de vínculo exigido para a \textbf{primeira solicitação}, que subiu de cerca de 6 para \textbf{12 meses} nos últimos 18 (a segunda solicitação passou a exigir 9 meses; a terceira em diante permaneceu em 6). O governo projetava economia da ordem de R\$~6,4 bilhões e cerca de 1,6 milhão de trabalhadores (19\%) fora do benefício já em 2015.
+Em dezembro de 2014 o Governo Federal editou a Medida Provisória (MP) n\textsuperscript{o}~665, convertida na \textbf{Lei n\textsuperscript{o}~13.134, de 16 de junho de 2015} \citep{lei13134_2015}, que endureceu o acesso ao benefício. A mudança mais saliente foi o tempo mínimo de vínculo exigido para a \textbf{primeira solicitação}, que subiu de cerca de 6 para \textbf{12 meses} nos últimos 18 (a segunda solicitação passou a exigir 9 meses; a terceira em diante permaneceu em 6). O governo projetava economia da ordem de R\$~6,4 bilhões e cerca de 1,6 milhão de trabalhadores (19\%) fora do benefício já em 2015.
 
 Apesar da relevância fiscal e social da reforma, \textbf{avaliações causais dedicadas são escassas}. A referência mais próxima é descritiva \citep{amorim2024perfil}, baseada em tabulações anuais da Base de Gestão do Seguro-Desemprego (BGSD). Este trabalho parte dessa lacuna e pergunta: \textit{qual foi o efeito da Lei 13.134/2015 sobre o fluxo de requerentes do SD?} Mais importante, documenta \textit{se} essa pergunta pode ser respondida com os dados agregados disponíveis.
 
-A contribuição é dupla. Primeiro, oferecemos a primeira avaliação quantitativa da reforma de 2015 com a série mensal completa (2000--2025) por triangulação de dois métodos de série temporal interrompida. Segundo --- e este é o achado central --- mostramos que o efeito aparente de $-16\%$ em nível é \textbf{confundido pela recessão de 2015--16}: ao controlar pela dinâmica de demissões, o efeito desaparece, e especificações concorrentes divergem em sinal. O resultado é, portanto, uma \emph{nota de não-identificação}: delimitamos o que os dados agregados conseguem e o que não conseguem sustentar, e derivamos daí o desenho de microdados necessário para uma identificação limpa.
+A contribuição é dupla. Primeiro, oferecemos a primeira avaliação quantitativa da reforma de 2015 com a série mensal completa (2000--2025), aplicando o estimador de ARIMA causal (C-ARIMA) e triangulando-o com o \textit{CausalImpact}. Segundo --- e este é o achado central --- mostramos que o efeito aparente de $-16\%$ em nível é \textbf{confundido pela recessão de 2015--16}: ele não resiste nem à inferência honesta de um único método (o intervalo de confiança do C-ARIMA já cobre o zero), nem à inclusão da dinâmica de demissões como controle (quando o efeito desaparece em ambos os métodos). O resultado é, portanto, uma \emph{nota de não-identificação}: delimitamos o que os dados agregados conseguem e o que não conseguem sustentar, e derivamos daí o desenho de microdados necessário para uma identificação limpa.
 
 % =====================================================================
 \section{Revisão de literatura}
 % =====================================================================
 
 \subsection{Teoria: seguro versus incentivo}
-O arcabouço moderno do SD ótimo origina-se em \citet{baily1978optimal}, que formaliza o \textit{trade-off} entre suavização de consumo e distorção da busca. \citet{chetty2008moral} reformula o problema decompondo o efeito do benefício sobre a duração do desemprego em uma parcela de \textbf{liquidez} (desejável, corrige mercados de crédito incompletos) e uma parcela de \textbf{moral hazard} (distorção de incentivo); estima que cerca de 60\% do efeito é liquidez, o que justifica benefícios relativamente generosos. \citet{cardchettyweber2007cash} fornecem a evidência de que o \textit{cash-on-hand} afeta a duração da busca, sustentando o canal de liquidez.
+O arcabouço moderno do SD ótimo origina-se em \citet{baily1978optimal}, que formaliza o \textit{trade-off} entre suavização de consumo e distorção da busca. \citet{chetty2008moral} reformula o problema decompondo o efeito do benefício sobre a duração do desemprego em uma parcela de \textbf{liquidez} (desejável, corrige mercados de crédito incompletos) e uma parcela de \textbf{risco moral} (do inglês \textit{moral hazard}, a distorção de incentivo); estima que cerca de 60\% do efeito é liquidez, o que justifica benefícios relativamente generosos. \citet{cardchettyweber2007cash} fornecem a evidência de que o dinheiro em mãos (do inglês \textit{cash-on-hand}) afeta a duração da busca, sustentando o canal de liquidez.
 
 \subsection{Evidência quase-experimental internacional}
-A fronteira empírica é quase-experimental. \citet{schmiedervonwachter2016effects} sintetizam duas décadas de estimativas (sobretudo RD na Alemanha) e concluem que os efeitos de nível e duração do benefício são pequenos a modestos, com efeito aproximadamente nulo sobre a qualidade média do emprego; extensões em recessão não elevam a duração de forma duradoura. \citet{nekoeiweber2017does}, por sua vez, encontram que estender o SD pode \textit{melhorar} a qualidade do reemprego (melhor \textit{match}). Os padrões de \textit{hazard} de saída e os \textit{spikes} na exaustão do benefício foram estabelecidos por \citet{katzmeyer1990impact} e \citet{meyer1990unemployment}; \citet{lalive2008how} é um template clássico de RD sobre regras de duração.
+A fronteira empírica é quase-experimental. \citet{schmiedervonwachter2016effects} sintetizam duas décadas de estimativas (sobretudo por regressão descontínua na Alemanha) e concluem que os efeitos de nível e duração do benefício são pequenos a modestos, com efeito aproximadamente nulo sobre a qualidade média do emprego; extensões em recessão não elevam a duração de forma duradoura. \citet{nekoeiweber2017does}, por sua vez, encontram que estender o SD pode \textit{melhorar} a qualidade do reemprego (melhor compatibilização trabalhador-firma, o \textit{match}). Os padrões de taxa de saída (\textit{hazard}) e os picos (\textit{spikes}) na exaustão do benefício foram estabelecidos por \citet{katzmeyer1990impact} e \citet{meyer1990unemployment}; \citet{lalive2008how} é um modelo clássico de regressão descontínua sobre regras de duração.
 
 \subsection{Seguro-desemprego no Brasil}
-A agenda brasileira foi transformada pelos microdados administrativos ligados (RAIS/CAGED/registro do SD). O tema dominante é a \textbf{margem informal}: \citet{gerardgonzaga2021informal} mostram que o custo de eficiência do SD é \textit{menor} em mercados mais informais; \citet{britto2022employment} compara proteção \textit{lump-sum} (FGTS/multa) e contingente (SD), concluindo que o SD induz transição para a informalidade mas ainda assim é preferível; \citet{brittopinottisampaio2022crime} usam RD na elegibilidade e mostram que o SD anula o aumento de criminalidade pós-demissão enquanto o benefício dura. Esse último desenho --- \textbf{RD na descontinuidade de elegibilidade} --- é diretamente transponível para a reforma de 2015. No plano descritivo, \citet{amorim2024perfil} perfilam o acesso repetido ao SD na BGSD e documentam a redução de beneficiários após 2015; \citet{balbinottozylberstajn2002uso} e \citet{gonzaga2003labor} fornecem o pano de fundo histórico (reincidência e rotatividade elevada).
+A agenda brasileira foi transformada pelos microdados administrativos ligados --- a Relação Anual de Informações Sociais (RAIS), o Cadastro Geral de Empregados e Desempregados (CAGED) e o registro do SD. O tema dominante é a \textbf{margem informal}: \citet{gerardgonzaga2021informal} mostram que o custo de eficiência do SD é \textit{menor} em mercados mais informais; \citet{britto2022employment} compara proteção de pagamento único (do inglês \textit{lump-sum}, como o Fundo de Garantia do Tempo de Serviço, FGTS) e contingente (SD), concluindo que o SD induz transição para a informalidade mas ainda assim é preferível; \citet{brittopinottisampaio2022crime} usam regressão descontínua na elegibilidade e mostram que o SD anula o aumento de criminalidade pós-demissão enquanto o benefício dura. Esse último desenho --- \textbf{regressão descontínua (RD) na descontinuidade de elegibilidade} --- é diretamente transponível para a reforma de 2015. No plano descritivo, \citet{amorim2024perfil} perfilam o acesso repetido ao SD na BGSD e documentam a redução de beneficiários após 2015; \citet{balbinottozylberstajn2002uso} e \citet{gonzaga2003labor} fornecem o pano de fundo histórico (reincidência e rotatividade elevada).
 
 \subsection{Métodos de avaliação em séries agregadas}
-Quando o desenho de microdados não está disponível, a avaliação recorre a séries temporais interrompidas (ITS). O modelo ARIMA de intervenção remonta a \citet{boxtiao1975intervention}; o tutorial de \citet{bernal2017interrupted} sistematiza o uso de ITS em avaliação de políticas; a implementação automática de seleção de ordem está em \citet{hyndmankhandakar2008forecast}. O \textit{CausalImpact} \citep{brodersen2015causalimpact} generaliza a ITS para um modelo estrutural bayesiano de séries temporais (BSTS) com contrafactual, acomodando covariáveis de controle. A lacuna que todos esses métodos agregados enfrentam --- e que este artigo torna explícita --- é o confundidor macroeconômico contemporâneo à intervenção; a saída reconhecida pela literatura brasileira é a RD na elegibilidade \citep{leelemieux2010rdd,calonico2014robust,brittopinottisampaio2022crime} e o DiD com múltiplos períodos \citep{callawaysantanna2021did}.
+Quando o desenho de microdados não está disponível, a avaliação recorre a séries temporais interrompidas (ITS). O modelo autorregressivo integrado de médias móveis (ARIMA) de intervenção remonta a \citet{boxtiao1975intervention}; o tutorial de \citet{bernal2017interrupted} sistematiza o uso de ITS em avaliação de políticas; a implementação automática de seleção de ordem está em \citet{hyndmankhandakar2008forecast}. \citet{menchetti2023carima} formalizam esse procedimento no arcabouço de resultados potenciais (o \textbf{ARIMA causal}, ou C-ARIMA), com inferência por reamostragem (\textit{bootstrap}) sobre os efeitos pontual, médio e acumulado. O \textit{CausalImpact} \citep{brodersen2015causalimpact} segue a mesma lógica com um modelo estrutural bayesiano de séries temporais (BSTS), acomodando covariáveis de controle. A lacuna que todos esses métodos agregados enfrentam --- e que este artigo torna explícita --- é o confundidor macroeconômico contemporâneo à intervenção; a saída reconhecida pela literatura brasileira é a RD na elegibilidade \citep{leelemieux2010rdd,calonico2014robust,brittopinottisampaio2022crime} e as diferenças em diferenças (do inglês \textit{difference-in-differences}, DiD) com múltiplos períodos \citep{callawaysantanna2021did}.
 
 % =====================================================================
 \section{Dados}
 % =====================================================================
 
-A variável de interesse é o \textbf{número mensal de requerentes do seguro-desemprego} (trabalhador formal, Brasil), extraído da \textit{Série Histórica do Seguro-Desemprego} da Base de Gestão do Seguro-Desemprego (BGSD), MTE/SPPE. A cobertura é \textbf{mensal, de janeiro de 2000 a abril de 2025} (304 observações), por UF de demissão e para o agregado nacional. A série é contínua, sem lacunas ou valores ausentes.
+A variável de interesse é o \textbf{número mensal de requerentes do seguro-desemprego} (trabalhador formal, Brasil), extraído da \textit{Série Histórica do Seguro-Desemprego} da Base de Gestão do Seguro-Desemprego (BGSD), do Ministério do Trabalho e Emprego (MTE). A cobertura é \textbf{mensal, de janeiro de 2000 a abril de 2025} (304 observações), por Unidade da Federação (UF) de demissão e para o agregado nacional. A série é contínua, sem lacunas ou valores ausentes.
 
 A escolha da série mensal é deliberada. O estudo descritivo que motivou o projeto \citep{amorim2024perfil} usa apenas o agregado \textit{anual} até 2019, insuficiente para modelagem de série temporal --- o que torna a série mensal completa (até 2025) a "necessidade de completar a série".
 
-Como \textbf{controle} para a dinâmica do mercado de trabalho na especificação do \textit{CausalImpact}, usamos as admissões e demissões mensais do \textbf{CAGED antigo} (séries \texttt{CAGED12\_ADMIS} e \texttt{CAGED12\_DESLIG}, IPEADATA/MTE, 1999-05 a 2019-12). O controle só se aplica à janela da Lei de 2015 (toda pré-2020, antes da quebra do Novo CAGED). A correlação pré-intervenção entre demissões e requerentes é de \textbf{0,93}, o que torna as demissões um preditor forte do contrafactual.
+Como \textbf{controle} para a dinâmica do mercado de trabalho, usamos as admissões e demissões mensais do \textbf{CAGED antigo} (Instituto de Pesquisa Econômica Aplicada --- IPEADATA/MTE, maio/1999 a dezembro/2019). O controle só se aplica à janela da Lei de 2015 (toda pré-2020, antes da quebra metodológica do Novo CAGED). A correlação pré-intervenção entre demissões e requerentes é de \textbf{0,93}, o que torna as demissões um preditor forte do contrafactual.
 
-A Figura~\ref{fig:serie} apresenta a série de requerentes com as duas intervenções datadas, e a Figura~\ref{fig:stl} sua decomposição STL (tendência, sazonalidade, resíduo).
+A Figura~\ref{fig:serie} apresenta a série de requerentes com as duas intervenções datadas, e a Figura~\ref{fig:stl} sua decomposição sazonal-tendência por \textit{loess} (do inglês \textit{seasonal-trend decomposition using loess}, STL).
 
 \begin{figure}[H]
 \centering
@@ -105,12 +105,16 @@ A Figura~\ref{fig:serie} apresenta a série de requerentes com as duas interven�
 
 Avaliamos duas intervenções: a \textbf{Lei 13.134/2015} (jul/2015), esperada como um degrau permanente de queda, e o \textbf{choque pandêmico} (mar/2020), esperado como pulso agudo seguido de vale. A estratégia é de \textbf{triangulação}: dois métodos ITS independentes, com janelas idênticas, cujas concordâncias e discordâncias são informativas.
 
-\subsection{ARIMA de intervenção (contrafactual)}
-A série de requerentes é não estacionária em nível: o teste ADF não rejeita a raiz unitária ($p = 0{,}27$) e o KPSS rejeita a estacionariedade ($p < 0{,}01$); os critérios automáticos sugerem uma diferença regular ($d=1$) e nenhuma sazonal ($D=0$). Ajustamos um modelo SARIMA \textbf{apenas na janela pré-intervenção} e projetamos o contrafactual para o período pós-intervenção. O efeito é a diferença entre o observado e o contrafactual previsto,
+\subsection{ARIMA causal (C-ARIMA)}
+O método principal é o ARIMA causal de \citet{menchetti2023carima}. A ideia, no arcabouço de resultados potenciais, é simples: ajusta-se um modelo ARIMA sazonal \textbf{apenas na janela pré-intervenção} e projeta-se a série que teria ocorrido na ausência da intervenção --- o resultado potencial de controle $\widehat{Y}_t(0)$. O efeito causal em cada mês é a diferença entre o observado e esse contrafactual,
 \[
-\widehat{\tau}_t = y_t - \widehat{y}_t^{\,\text{contraf}}, \qquad t > T_0,
+\widehat{\tau}_t = Y_t - \widehat{Y}_t(0), \qquad t > T_0,
 \]
-com intervalos derivados da distribuição preditiva. Para a Lei de 2015 o modelo selecionado foi um ARIMA(0,1,4)(1,0,0)[12] (186 meses de pré-período); para o COVID, um ARIMA(3,1,1)(1,0,0)[12]. Como robustez, estimamos também um modelo Box--Tiao com \textit{dummies} de intervenção \citep{boxtiao1975intervention}; ressalve-se que, sob $d=1$, o termo de \textbf{degrau} é mal identificado, ao passo que o \textbf{pulso} (COVID) é estimado com confiança.
+e reportamos o \textbf{efeito médio temporal} $\bar{\tau} = \frac{1}{H}\sum_{t>T_0}\widehat{\tau}_t$ sobre o horizonte de avaliação de $H$ meses. A ordem do ARIMA é selecionada automaticamente por critério de informação \citep{hyndmankhandakar2008forecast}.
+
+A vantagem do C-ARIMA sobre a ITS-contrafactual "manual" é a \textbf{inferência}: em vez de intervalos ingênuos, a incerteza do efeito é obtida por reamostragem (\textit{bootstrap}, 1.000 réplicas) da distribuição preditiva, o que propaga corretamente a incerteza de previsão ao longo de todo o horizonte. Essa distinção é material: a aproximação normal para o efeito \textit{médio} é anticonservadora (subestima o erro-padrão), ao passo que o \textit{bootstrap} revela a verdadeira dispersão --- como se verá, decisivo para o diagnóstico de (não-)identificação. O método admite covariáveis de controle ($x_t$) que entram na projeção do contrafactual; usamos as demissões do CAGED nessa função.
+
+A série de requerentes é não estacionária em nível: o teste aumentado de Dickey-Fuller (do inglês \textit{augmented Dickey-Fuller}, ADF) não rejeita a raiz unitária ($p = 0{,}27$) e o teste KPSS (Kwiatkowski--Phillips--Schmidt--Shin) rejeita a estacionariedade ($p < 0{,}01$); os critérios automáticos sugerem uma diferença regular ($d=1$) e nenhuma sazonal. Para a Lei de 2015 (sem controle) o modelo selecionado foi um ARIMA(3,1,1)(0,0,2)$_{12}$ (186 meses de pré-período; 56 meses de avaliação, encerrando antes da pandemia).
 
 \subsection{CausalImpact (BSTS)}
 O segundo método é o modelo estrutural bayesiano de séries temporais de \citet{brodersen2015causalimpact}, com componente de tendência local e sazonalidade mensal. Na especificação \textbf{sem controle}, o contrafactual é projetado a partir da própria dinâmica pré-intervenção. Na especificação \textbf{com controle}, incluímos as demissões do CAGED como série preditora, de modo que o contrafactual passa a condicionar na trajetória contemporânea do mercado de trabalho. A comparação entre as duas é o teste decisivo do artigo: se o efeito de $-16\%$ é um artefato da recessão, ele deve atenuar-se ao controlar pelas demissões.
@@ -124,69 +128,63 @@ Como verificação adicional, modelamos a \textbf{taxa de habilitação} --- a r
 \section{Resultados}
 % =====================================================================
 
-\subsection{Efeito bruto: os dois métodos convergem em $-16\%$}
-Em nível, ARIMA-ITS e CausalImpact concordam de forma marcante (Tabela~\ref{tab:triang}). Para a Lei de 2015, o ARIMA-ITS estima $-$\num{113056} requerentes/mês ($-16{,}2\%$; IC 95\% $[-$\num{276750}$, +$\num{50638}$]$) e o CausalImpact estima $-$\num{115142} requerentes/mês ($-16{,}4\%$; IC 95\% $[-$\num{173436}$, -$\num{59941}]$, $p\approx0{,}001$). As figuras de ajuste constam das Figuras~\ref{fig:its2015}--\ref{fig:ci2015}.
+\subsection{Efeito bruto: estimativas pontuais convergem, mas a incerteza não}
+Em nível, as estimativas pontuais dos dois métodos concordam de forma marcante (Tabela~\ref{tab:triang}, linhas "sem controle"). Para a Lei de 2015, o C-ARIMA estima $-$\num{107779} requerentes/mês ($-15{,}6\%$) e o \textit{CausalImpact} estima $-$\num{115142} ($-16{,}4\%$) --- a mesma ordem de grandeza. A \textbf{inferência}, porém, diverge radicalmente. O intervalo de confiança por \textit{bootstrap} do C-ARIMA é $[-$\num{232965}$, +$\num{30157}]$ e \textbf{cobre o zero} ($p\approx0{,}13$): uma vez propagada a incerteza de previsão ao longo de 56 meses, o método não consegue rejeitar "efeito nulo". Já o intervalo bayesiano do \textit{CausalImpact} é muito mais estreito ($[-$\num{173436}$, -$\num{59941}]$, $p\approx0{,}001$). Essa discordância não é um detalhe técnico: a aparente precisão do $-16\%$ depende de quanto cada método admite de incerteza no contrafactual (Figuras~\ref{fig:carima2015}--\ref{fig:ci2015}).
 
 \begin{table}[H]
 \centering
-\caption{Triangulação dos efeitos médios sobre requerentes/mês.}
+\caption{Triangulação dos efeitos médios sobre requerentes/mês, por método e especificação.}
 \label{tab:triang}
 \small
 \begin{tabular}{llrrr}
 \toprule
-Intervenção & Método & Efeito médio & IC 95\% & Efeito \% \\
+Intervenção / especificação & Método & Efeito médio & IC 95\% & Efeito \% \\
 \midrule
-Lei 13.134/2015 & ARIMA-ITS       & $-$\num{113056} & $[-$\num{276750}$, +$\num{50638}]$ & $-16{,}2\%$ \\
-Lei 13.134/2015 & CausalImpact    & $-$\num{115142} & $[-$\num{173436}$, -$\num{59941}]$ & $-16{,}4\%$ \\
-COVID/2020      & ARIMA-ITS       & $+$\num{31241}  & $[-$\num{78972}$, +$\num{141453}]$ & $+5{,}9\%$ \\
-COVID/2020      & CausalImpact    & $+$\num{15406}  & $[-$\num{32595}$, +$\num{65495}]$  & $+3{,}1\%$ \\
+Lei 2015 --- sem controle & C-ARIMA        & $-$\num{107779} & $[-$\num{232965}$, +$\num{30157}]$  & $-15{,}6\%$ \\
+Lei 2015 --- sem controle & CausalImpact   & $-$\num{115142} & $[-$\num{173436}$, -$\num{59941}]$ & $-16{,}4\%$ \\[2pt]
+Lei 2015 --- com controle & C-ARIMA        & $+$\num{13631}  & $[-$\num{26404}$, +$\num{56788}]$  & $+2{,}4\%$  \\
+Lei 2015 --- com controle & CausalImpact   & $+$\num{14267}  & $[-$\num{14611}$, +$\num{42909}]$  & $+2{,}6\%$  \\[2pt]
+COVID/2020                & C-ARIMA        & $+$\num{41007}  & $[-$\num{37428}$, +$\num{126766}]$ & $+7{,}9\%$  \\
+COVID/2020                & CausalImpact   & $+$\num{15406}  & $[-$\num{32595}$, +$\num{65495}]$  & $+3{,}1\%$  \\
 \bottomrule
 \end{tabular}
 \\[4pt]
-\footnotesize Fonte: elaboração própria. IC do CausalImpact = intervalo de credibilidade bayesiano a 95\%.
+\footnotesize Fonte: elaboração própria. C-ARIMA: intervalo por \textit{bootstrap} (1.000 réplicas); \textit{CausalImpact}: intervalo de credibilidade bayesiano. Ambos a 95\%.
 \end{table}
 
 \begin{figure}[H]
 \centering
 \begin{subfigure}{0.49\textwidth}
-\includegraphics[width=\textwidth]{04_its_lei2015.png}
-\caption{ARIMA-ITS: observado vs. contrafactual.}
-\label{fig:its2015}
+\includegraphics[width=\textwidth]{12_carima_lei2015.png}
+\caption{C-ARIMA: observado vs. contrafactual.}
+\label{fig:carima2015}
 \end{subfigure}\hfill
 \begin{subfigure}{0.49\textwidth}
 \includegraphics[width=\textwidth]{06_causalimpact_lei2015.png}
 \caption{CausalImpact (sem controle).}
 \label{fig:ci2015}
 \end{subfigure}
-\caption{Lei 13.134/2015: efeito estimado sobre os requerentes pelos dois métodos ITS, sem controle de demissões.}
+\caption{Lei 13.134/2015: efeito estimado sobre os requerentes pelos dois métodos ITS, sem controle de demissões. As estimativas pontuais coincidem; a banda de incerteza do C-ARIMA (\textit{bootstrap}) é substancialmente mais larga.}
 \label{fig:lei2015}
 \end{figure}
 
 \subsection{Efeito condicional: o $-16\%$ desaparece ao controlar demissões}
-O achado central está na Tabela~\ref{tab:controle}. Ao incluir as demissões do CAGED como controle no CausalImpact, o efeito estimado da Lei \textbf{muda de sinal e perde significância}: de $-16{,}4\%$ ($p\approx0{,}001$) para $+2{,}6\%$ ($p\approx0{,}15$), com o intervalo de credibilidade atravessando zero e \textbf{encolhendo pela metade} (de $\approx$\num{113495} para $\approx$\num{57520} de largura). Em outras palavras, uma vez que o contrafactual "sabe" o que aconteceu com as demissões, a queda de requerentes deixa de ser atribuível à reforma: ela é, em grande medida, a sombra da recessão de 2015--16 sobre o fluxo de separações (Figura~\ref{fig:cicontrole}).
-
-\begin{table}[H]
-\centering
-\caption{CausalImpact da Lei 13.134/2015: sem vs. com controle de demissões (CAGED).}
-\label{tab:controle}
-\small
-\begin{tabular}{lrrrr}
-\toprule
-Modelo & Efeito médio & Efeito \% & $p$-valor & Largura IC \\
-\midrule
-Sem controle            & $-$\num{115142} & $-16{,}4\%$ & 0,001 & \num{113495} \\
-Com controle CAGED      & $+$\num{14267}  & $+2{,}6\%$  & 0,154 & \num{57520}  \\
-\bottomrule
-\end{tabular}
-\\[4pt]
-\footnotesize Fonte: elaboração própria. O controle reduz o efeito a zero estatístico e corta a incerteza pela metade.
-\end{table}
+O achado central está nas linhas "com controle" da Tabela~\ref{tab:triang}. Ao incluir as demissões do CAGED como controle, o efeito estimado da Lei \textbf{muda de sinal e perde qualquer significância} em ambos os métodos: o C-ARIMA vai de $-15{,}6\%$ para $+2{,}4\%$ ($p\approx0{,}50$) e o \textit{CausalImpact} de $-16{,}4\%$ para $+2{,}6\%$ ($p\approx0{,}15$); nos dois casos o intervalo atravessa o zero. Em outras palavras, uma vez que o contrafactual "sabe" o que aconteceu com as demissões, a queda de requerentes deixa de ser atribuível à reforma: ela é, em grande medida, a sombra da recessão de 2015--16 sobre o fluxo de separações (Figura~\ref{fig:controle}).
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.85\textwidth]{09_causalimpact_lei2015_controle.png}
-\caption{CausalImpact da Lei 13.134/2015 \textbf{com} controle das demissões do CAGED. O efeito pontual aproxima-se de zero e o intervalo de credibilidade cobre o nulo.}
-\label{fig:cicontrole}
+\begin{subfigure}{0.49\textwidth}
+\includegraphics[width=\textwidth]{13_carima_lei2015_controle.png}
+\caption{C-ARIMA com controle de demissões.}
+\label{fig:carimactrl}
+\end{subfigure}\hfill
+\begin{subfigure}{0.49\textwidth}
+\includegraphics[width=\textwidth]{09_causalimpact_lei2015_controle.png}
+\caption{CausalImpact com controle de demissões.}
+\label{fig:cictrl}
+\end{subfigure}
+\caption{Lei 13.134/2015 \textbf{com} controle das demissões do CAGED. Nos dois métodos o efeito pontual aproxima-se de zero e o intervalo cobre o nulo.}
+\label{fig:controle}
 \end{figure}
 
 \subsection{Taxa de habilitação: especificações divergem em sinal}
@@ -219,25 +217,62 @@ Taxa requerentes/demissões (médias simples pré$\to$pós) & $-2\%$ \\
 \end{figure}
 
 \subsection{COVID/2020: efeito líquido nulo}
-Para completude, o choque pandêmico tem efeito líquido no primeiro ano estatisticamente indistinguível de zero em ambos os métodos ($+5{,}9\%$ no ARIMA-ITS, $+3{,}1\%$ no CausalImpact, $p\approx0{,}24$). Isso reflete a compensação entre o surto de demissões (abr--jun/2020) e a supressão posterior de desligamentos pela MP~936/BEm --- o pulso agudo é bem capturado pelo modelo com \textit{dummies} (coeficiente do pulso $\approx +$\num{301558}, altamente significativo), mas o efeito médio anual se cancela.
+Para completude, o choque pandêmico tem efeito líquido no primeiro ano estatisticamente indistinguível de zero em ambos os métodos ($+7{,}9\%$ no C-ARIMA, $p\approx0{,}31$; $+3{,}1\%$ no \textit{CausalImpact}, $p\approx0{,}24$). Isso reflete a compensação entre o surto de demissões (abr--jun/2020) e a supressão posterior de desligamentos pela MP~936 e pelo Benefício Emergencial (BEm) --- o pulso agudo de demissões é absorvido pela recuperação subsequente, e o efeito médio anual se cancela.
+
+% =====================================================================
+\section{Robustez: o mesmo "efeito" aparece nas demissões}
+\label{sec:robustez}
+% =====================================================================
+
+Se a queda de $-16\%$ nos requerentes sem controle fosse realmente a reforma, ela \textbf{não} deveria aparecer numa série que a Lei não tocou. A Lei 13.134/2015 alterou a elegibilidade do \textit{trabalhador} (tempo de vínculo para solicitar o benefício), não o comportamento de demissão do \textit{empregador}. As demissões do CAGED funcionam, portanto, como uma \textbf{série-placebo}: rodamos sobre elas exatamente os mesmos modelos (C-ARIMA e \textit{CausalImpact}, sem controle), na mesma janela em que medimos o efeito sobre os requerentes.
+
+Para uma comparação direta, reestimamos as duas séries na \textbf{janela idêntica} imposta pelo fim do CAGED antigo (pré jan/2000--jun/2015; pós jul/2015--dez/2019). O resultado é inequívoco (Tabela~\ref{tab:robustez}): as demissões exibem uma queda \textbf{igual ou maior} que a dos requerentes --- $-17{,}9\%$ (C-ARIMA) e $-21{,}9\%$ (\textit{CausalImpact}), contra $-15{,}3\%$ e $-16{,}1\%$ dos requerentes --- e com o \textbf{mesmo padrão de inferência} (o \textit{bootstrap} do C-ARIMA cobre o zero, $p\approx0{,}13$; o intervalo bayesiano é estreito, $p\approx0{,}001$). A Figura~\ref{fig:robdem} mostra o contrafactual das demissões: o mesmo mergulho pós-2015 que atribuiríamos à "Lei" se olhássemos só os requerentes.
+
+\begin{table}[H]
+\centering
+\caption{Robustez: efeito da "Lei 2015" (sem controle) sobre requerentes vs. demissões, janela idêntica (pós jul/2015--dez/2019).}
+\label{tab:robustez}
+\small
+\begin{tabular}{llrrr}
+\toprule
+Série & Método & Efeito médio & IC 95\% & Efeito \% \\
+\midrule
+Requerentes & C-ARIMA      & $-$\num{105673} & $[-$\num{237112}$, +$\num{30090}]$  & $-15{,}3\%$ \\
+Requerentes & CausalImpact & $-$\num{113102} & $[-$\num{169156}$, -$\num{56222}]$ & $-16{,}1\%$ \\[2pt]
+Demissões   & C-ARIMA      & $-$\num{273711} & $[-$\num{620830}$, +$\num{72355}]$  & $-17{,}9\%$ \\
+Demissões   & CausalImpact & $-$\num{356959} & $[-$\num{528058}$, -$\num{190316}]$ & $-21{,}9\%$ \\
+\bottomrule
+\end{tabular}
+\\[4pt]
+\footnotesize Fonte: elaboração própria. Demissões = CAGED antigo (IPEADATA/MTE). C-ARIMA: \textit{bootstrap}; \textit{CausalImpact}: credibilidade bayesiana; ambos a 95\%. A Lei não alterou o comportamento de demissão do empregador --- logo, o efeito sobre as demissões é um placebo.
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{14_carima_demissoes.png}
+\caption{Robustez --- C-ARIMA sobre as \textbf{demissões} do CAGED. A série que a Lei não tocou exibe o mesmo mergulho pós-jul/2015 que atribuiríamos à reforma olhando apenas os requerentes: evidência de que o "efeito" sem controle é a dinâmica de demissões da recessão.}
+\label{fig:robdem}
+\end{figure}
+
+A conclusão do exercício é direta: o "efeito da Lei" estimado sem controle \textbf{não é específico dos requerentes}. Ele reaparece --- com magnitude percentual ainda maior --- numa série que a reforma não poderia ter afetado. Isso corrobora, por um caminho independente do controle da Seção~5.2, que o sinal agregado capta a recessão de 2015--16, não o aperto de elegibilidade.
 
 % =====================================================================
 \section{Discussão: por que o agregado não identifica a Lei}
 % =====================================================================
 
-A convergência dos dois métodos em $-16\%$ é sedutora, mas enganosa. A reforma (jul/2015) coincidiu com a \textbf{maior recessão recente} do Brasil, que moveu \textit{simultaneamente} três coisas que se confundem no agregado: (i) o volume de demissões; (ii) a \textit{composição} das separações (mais dispensas involuntárias, elegíveis ao SD); e (iii) o \textit{take-up} do benefício. Cada especificação agregada carrega esse confundidor de uma forma diferente --- o que explica a divergência de sinal da Tabela~\ref{tab:taxa}. O teste decisivo (Tabela~\ref{tab:controle}) mostra que, uma vez condicionado o contrafactual na trajetória das demissões, a reforma não deixa pegada distinguível.
+A convergência das estimativas pontuais em $-16\%$ é sedutora, mas enganosa. A reforma (jul/2015) coincidiu com a \textbf{maior recessão recente} do Brasil, que moveu \textit{simultaneamente} três coisas que se confundem no agregado: (i) o volume de demissões; (ii) a \textit{composição} das separações (mais dispensas involuntárias, elegíveis ao SD); e (iii) a adesão ao benefício (\textit{take-up}). Cada especificação agregada carrega esse confundidor de uma forma diferente --- o que explica a divergência de sinal da Tabela~\ref{tab:taxa}. O estudo mostra isso em três camadas convergentes: (i) já a inferência honesta de um único método (o \textit{bootstrap} do C-ARIMA) é incapaz de separar o $-16\%$ do zero; (ii) ao condicionar o contrafactual na trajetória das demissões, a reforma não deixa pegada distinguível em nenhum dos dois métodos; e (iii) o mesmo "efeito" reaparece na série-placebo de demissões, que a Lei não poderia ter afetado (Seção~\ref{sec:robustez}).
 
 A leitura é consistente com \citet{schmiedervonwachter2016effects}, para quem efeitos de regras de SD estimados em janelas recessivas são particularmente difíceis de separar do ciclo. A implicação não é que a Lei não teve efeito, mas que \textbf{dados agregados nacionais não conseguem isolá-lo} da macroeconomia contemporânea.
 
-\paragraph{O caminho para a identificação.} A solução reconhecida pela literatura brasileira \citep{brittopinottisampaio2022crime,gerardgonzaga2021informal} é explorar a \textbf{descontinuidade de elegibilidade} que a própria Lei criou. O desenho recomendado compara, em microdados ligados por PIS (RAIS/CAGED/BGSD), trabalhadores de primeira solicitação com vínculo logo abaixo do novo limiar (faixa $[6,12)$ meses --- que \textit{perdem} elegibilidade) contra trabalhadores com vínculo $\geq 12$ meses (sempre elegíveis), usando a terceira solicitação (regra inalterada) como placebo. Um grupo de controle que enfrenta a \textit{mesma} recessão faz o \textit{differencing-out} do confundidor macro --- precisamente o que o agregado não permite. Esse desenho (RD na elegibilidade e/ou diff-in-discontinuities, via \citealp{calonico2014robust,leelemieux2010rdd,callawaysantanna2021did}) permitiria, ademais, estimar desfechos de bem-estar (tempo até reemprego, salário no reemprego, transição para informalidade), e não apenas a contagem de solicitações.
+\paragraph{O caminho para a identificação.} A solução reconhecida pela literatura brasileira \citep{brittopinottisampaio2022crime,gerardgonzaga2021informal} é explorar a \textbf{descontinuidade de elegibilidade} que a própria Lei criou. O desenho recomendado compara, em microdados ligados pelo Programa de Integração Social (PIS) --- RAIS/CAGED/BGSD --- trabalhadores de primeira solicitação com vínculo logo abaixo do novo limiar (faixa $[6,12)$ meses, que \textit{perdem} elegibilidade) contra trabalhadores com vínculo $\geq 12$ meses (sempre elegíveis), usando a terceira solicitação (regra inalterada) como placebo. Um grupo de controle que enfrenta a \textit{mesma} recessão faz a diferenciação (\textit{differencing-out}) do confundidor macroeconômico --- precisamente o que o agregado não permite. Esse desenho (regressão descontínua na elegibilidade e/ou diferenças-em-descontinuidades, via \citealp{calonico2014robust,leelemieux2010rdd,callawaysantanna2021did}) permitiria, ademais, estimar desfechos de bem-estar (tempo até reemprego, salário no reemprego, transição para informalidade), e não apenas a contagem de solicitações.
 
 % =====================================================================
 \section{Conclusão}
 % =====================================================================
 
-Este artigo oferece a primeira avaliação quantitativa da reforma do seguro-desemprego de 2015 sobre o fluxo de requerentes, usando a série mensal completa (2000--2025) e a triangulação de dois métodos de série temporal interrompida. O resultado principal é uma \textbf{nota de não-identificação}: o efeito aparente de $-16\%$ em nível é um artefato da recessão de 2015--16 e não sobrevive ao controle pela dinâmica de demissões, com especificações concorrentes divergindo em sinal. O estudo delimita, assim, com rigor, o que os dados agregados conseguem sustentar e o que exige um desenho quase-experimental.
+Este artigo oferece a primeira avaliação quantitativa da reforma do seguro-desemprego de 2015 sobre o fluxo de requerentes, usando a série mensal completa (2000--2025) e a triangulação do ARIMA causal (C-ARIMA) com o \textit{CausalImpact}. O resultado principal é uma \textbf{nota de não-identificação}: o efeito aparente de $-16\%$ em nível é um artefato da recessão de 2015--16 --- ele não sobrevive nem à inferência honesta por \textit{bootstrap} de um único método, nem ao controle pela dinâmica de demissões, e especificações concorrentes divergem em sinal. O estudo delimita, assim, com rigor, o que os dados agregados conseguem sustentar e o que exige um desenho quase-experimental.
 
-A contribuição é tanto substantiva --- documentar que a reforma de 2015 \textit{não} é identificável no agregado --- quanto metodológica: um estudo de caso de como a coincidência entre uma reforma e um choque macroeconômico corrói a identificação em ITS, e de como diagnosticá-la por triangulação e controle. O caminho à frente é o desenho de microdados na descontinuidade de elegibilidade $6\to12$ meses, apto a separar a Lei da recessão e a medir os desfechos de bem-estar que a literatura de desenho do SD considera centrais.
+A contribuição é tanto substantiva --- documentar que a reforma de 2015 \textit{não} é identificável no agregado --- quanto metodológica: um estudo de caso de como a coincidência entre uma reforma e um choque macroeconômico corrói a identificação em ITS, e de como diagnosticá-la por triangulação, inferência honesta e controle. O caminho à frente é o desenho de microdados na descontinuidade de elegibilidade $6\to12$ meses, apto a separar a Lei da recessão e a medir os desfechos de bem-estar que a literatura de desenho do seguro-desemprego considera centrais.
 
 % =====================================================================
 \bibliography{bib}

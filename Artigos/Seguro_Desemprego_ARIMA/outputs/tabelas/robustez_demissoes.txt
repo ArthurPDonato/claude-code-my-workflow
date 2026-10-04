@@ -1,0 +1,15 @@
+=== Robustez: mesmos modelos (sem controle) sobre REQUERENTES vs DEMISSÕES ===
+Janela idêntica: pré 2000-01..2015-06 ; pós 2015-07..2019-12 (fim do CAGED antigo).
+Hipótese: se as demissões caem ~o mesmo % que os requerentes, o 'efeito da Lei'
+sem controle é a dinâmica de demissões (recessão), não a reforma.
+
+       serie       metodo                             modelo efeito_medio
+   Demissões      C-ARIMA            ARIMA(0,1,2)(1,0,1)[12]      -273711
+   Demissões CausalImpact BSTS (tendência local + sazon. 12)      -356959
+ Requerentes      C-ARIMA            ARIMA(3,1,1)(0,0,2)[12]      -105673
+ Requerentes CausalImpact BSTS (tendência local + sazon. 12)      -113102
+  ic_inf    ic_sup efeito_pct    p_valor
+ -620830   72355.3   -17.8504 0.13200000
+ -528058 -190316.0   -21.8504 0.00145985
+ -237112   30089.5   -15.2876 0.14000000
+ -169156  -56221.6   -16.0617 0.00101833
