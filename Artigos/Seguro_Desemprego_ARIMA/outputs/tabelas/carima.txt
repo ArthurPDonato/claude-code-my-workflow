@@ -1,0 +1,51 @@
+=== C-ARIMA (CausalArima) — efeito médio temporal sobre requerentes/mês ===
+Inferência: 1000 réplicas bootstrap; IC 95%.
+
+         cenario                  modelo            controle efeito_medio
+ Lei 13.134/2015 ARIMA(3,1,1)(0,0,2)[12]                 nao    -107779.2
+ Lei 13.134/2015 ARIMA(3,0,0)(2,0,0)[12] sim (desligamentos)      13631.4
+      COVID/2020 ARIMA(1,1,1)(0,0,2)[12]                 nao      41007.4
+    ic_inf   ic_sup efeito_pct p_valor nboot
+ -232964.7  30157.4  -15.59287   0.132  1000
+  -26404.1  56788.1    2.38341   0.504  1000
+  -37428.2 126765.6    7.92862   0.310  1000
+
+--- summary completo (sem controle, Lei 2015) ---
+                                           
+Point causal effect            -207378.242 
+Standard error                 71612.677   
+Left-sided p-value             0.002       
+Bidirectional p-value          0.004       
+Right-sided p-value            0.998       
+                                           
+Cumulative causal effect       -6035634.309
+Standard error                 121514.268  
+Left-sided p-value             0           
+Bidirectional p-value          0           
+Right-sided p-value            1           
+                                           
+Temporal average causal effect -107779.184 
+Standard error                 2169.898    
+Left-sided p-value             0           
+Bidirectional p-value          0           
+Right-sided p-value            1           
+
+--- summary completo (com controle, Lei 2015) ---
+                                          
+Point causal effect            -138139.965
+Standard error                 51232.749  
+Left-sided p-value             0.004      
+Bidirectional p-value          0.007      
+Right-sided p-value            0.996      
+                                          
+Cumulative causal effect       736097.346 
+Standard error                 1081416.902
+Left-sided p-value             0.752      
+Bidirectional p-value          0.496      
+Right-sided p-value            0.248      
+                                          
+Temporal average causal effect 13631.432  
+Standard error                 20026.239  
+Left-sided p-value             0.752      
+Bidirectional p-value          0.496      
+Right-sided p-value            0.248      
