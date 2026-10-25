@@ -232,9 +232,13 @@ class IssueDetector:
         """Parse the R script. Returns True (ok), False (syntax error), or
         None (could-not-verify: timed out or Rscript missing — NOT a failure)."""
         limit = _timeout("QUALITY_RSCRIPT_TIMEOUT", 10)
+        # Use forward slashes: R accepts them on Windows, and embedding a
+        # backslashed Windows path in the R string ("C:\Users\...\SDID") makes
+        # R choke on \U, \S, etc. as invalid escapes (false syntax error).
+        r_path = str(filepath).replace('\\', '/')
         try:
             result = subprocess.run(
-                ['Rscript', '-e', f'parse("{filepath}")'],
+                ['Rscript', '-e', f'parse("{r_path}")'],
                 capture_output=True,
                 text=True,
                 timeout=limit
@@ -249,15 +253,20 @@ class IssueDetector:
 
     @staticmethod
     def check_hardcoded_paths(content: str) -> List[int]:
-        """Detect absolute paths in R scripts."""
+        """Detect absolute paths hardcoded in R *code* (comments are ignored).
+
+        Flags a quoted string literal beginning with a Unix-absolute path
+        ("/home/...", "/c/...") or a Windows drive ("C:\\...", "C:/..."). Does
+        NOT flag relative paths ("Artigos/SDID/...") nor escape sequences at the
+        start of a string ("\\n===", "\\t"): the previous regex matched a quote
+        followed by any backslash, so every cat("\\n...") was a false positive.
+        """
         issues = []
-        lines = content.split('\n')
-
-        for i, line in enumerate(lines, 1):
-            if re.search(r'["\'][/\\]|["\'][A-Za-z]:[/\\]', line):
-                if not re.search(r'http:|https:|file://|/tmp/', line):
+        for i, line in enumerate(content.split('\n'), 1):
+            code = line.split('#', 1)[0]  # drop R comment (documented invocations are OK)
+            if re.search(r'''["'](/[A-Za-z]|[A-Za-z]:[/\\])''', code):
+                if not re.search(r'http://|https://|file://|/tmp/', code):
                     issues.append(i)
-
         return issues
 
     @staticmethod
