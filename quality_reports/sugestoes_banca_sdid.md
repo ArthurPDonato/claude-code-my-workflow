@@ -16,9 +16,9 @@
 |---|----------|-----------------|--------|------|
 | 1 | Outros limiares de dano (35/40/45%) | Varredura de limiares (contagem + separação + SDiD) | Baixar o limiar amplia o conjunto tratado mas **dilui** o efeito; variável separadora muda com o limiar | 1 ✅ |
 | 2 | Variável defasada no controle sintético | SC clássico de Abadie (`Synth`) com lags + covariáveis | **Replica o synthdid**; Vale do Taquari robusto (Roca Sales p=0.00) | 1 ✅ |
-| 3 | Controles fora do RS + PSM | Baixar CAGED nacional + PSM | Pendente (Onda 2) | 2 ⏳ |
+| 3 | Controles fora do RS + PSM | CAGED nacional + matching Mahalanobis (40 doadores) | **Corrobora**: MULTI ATT −4.08; os 4 do Vale do Taquari robustos | 2 ✅ |
 | 4 | Dados trimestrais | Painel mensal → trimestral, SDiD | Efeito **sobrevive e fica mais nítido**; MULTI significativo | 1 ✅ |
-| 5 | Heterogeneidade por setor | RAIS/CAGED por CNAE | Pendente (Onda 2); há `Base_Mensal_CNAE_RS_Final.csv` que pode viabilizar sem download | 2 ⏳ |
+| 5 | Heterogeneidade por setor | SDiD por seção CNAE (mensal, 2020+) | **Ind. transformação** domina a queda (ATT −1.36); reforça canal industrial | 2 ✅ |
 
 ---
 
@@ -101,7 +101,50 @@ Saídas: `sc_classico_tratados.csv`, `sc_classico_placebo_ratios.csv`, `sc_class
 
 ---
 
-## Onda 2 (pendente — dependem de download)
+## Item 5 — Heterogeneidade por setor (CNAE)
+**Script:** `Artigos/SDID/Scripts/sdid_setorial_cnae.R`
+**Saídas:** `Artigos/SDID/Resultados/SDID setorial CNAE/setorial_cnae_{att.csv,forest.png}`
 
-- **Item 3 (fora do RS + PSM):** baixar CAGED nacional via BigQuery/basedosdados (caminho de `rais_download_basedosdados.R`); PSM nas covariáveis pré-tratamento; pool doador nacional pareado. Plano próprio após download.
-- **Item 5 (setorial):** RAIS por seção CNAE anual (estender SQL), rodar `sdid_rais_anual.R` por setor. **Alternativa sem download:** `Base de Dados/Primárias/Base_Mensal_CNAE_RS_Final.csv` (mensal por CNAE, RS) — verificar colunas.
+Dado em casa (`Base de Dados/Primárias/Base_Mensal_CNAE_RS_Final.csv`): admissões mensais por seção CNAE, RS. Janela 2020+ (série "Novo", evita a quebra CAGED Antigo/Novo); 68 meses; desfecho = admissões da seção por mil hab. (grade muni×mês×seção completada com 0); critério populacional (6 tratados vs 278 doadores donut); evento maio/2024. SDiD + triangulação SC/DiD + permutação, por seção (20 seções elegíveis, adm. no pool ≥ 200).
+
+| Setor (CNAE) | ATT | IC 95% | SC | DiD | p permut. | Sig? |
+|---|---|---|---|---|---|---|
+| **C — Ind. transformação** | **−1.363** | [−2.79; 0.07] | −1.68 | −1.46 | 0.086 | marginal |
+| N — Adm./serviços de apoio | −0.341 | [−0.49; −0.19] | +0.30 | −0.40 | 0.040 | ✅ |
+| Q — Saúde | −0.103 | [−0.17; −0.04] | −0.09 | −0.09 | 0.126 | ✅ |
+| H — Transporte | −0.060 | [−0.37; 0.25] | 0.00 | −0.01 | 0.529 | não |
+| (demais seções) | ~0 | cruzam 0 | | | | não |
+| G — Comércio | +0.051 | [−0.30; 0.40] | +0.04 | +0.04 | 0.889 | não |
+| M — Prof./científico | +0.128 | [−0.16; 0.42] | +0.07 | +0.07 | 0.255 | não |
+
+**Achado item 5:** a **indústria de transformação (C)** é o maior motor da queda (ATT −1.36, triangulação consistente, p=0.086) — concentra ~⅔ do efeito agregado (soma setorial ≈ −1.9/mil, da ordem do ATT total). Administração/serviços de apoio (N) e saúde (Q) têm efeitos pequenos mas significativos (IC<0). Comércio, serviços profissionais e alojamento/alimentação não caem. **Reforça o canal estrutural-industrial** do item 1b (participação industrial é a covariável que mais separa afetados). Ressalva: admissões por seção são números pequenos → a maioria das seções é fina demais para detectar; o sinal agregado é carregado pela indústria.
+
+---
+
+## Item 3 — Controles de fora do RS + matching
+**Scripts:** `caged_nacional_download.R` (download) + `sdid_fora_rs_psm.R` (matching + SDiD)
+**Saídas:** `Artigos/SDID/Resultados/SDID fora do RS PSM/{fora_rs_individual.csv, fora_rs_multi.csv, doadores_pareados.csv, fora_rs_forest.png}`
+**Fundamentação das covariáveis:** `quality_reports/item3_covariaveis_literatura.md`.
+
+Baixou-se o **CAGED nacional** (basedosdados/BigQuery, service account): admissões mensais por município, 2021-01→2025-03, 5.571 municípios, 28 UFs; + população (IBGE 2022), PIB (2021) e IDHM (Atlas 2010) para 5.565 municípios. Desfecho = admissões/mil (grade completada com 0). Os 6 tratados são os do critério populacional; candidatos = 5.069 municípios não-RS com covariáveis completas.
+
+**Matching (literatura, Abadie/Kaul):** distância de **Mahalanobis** ao centroide dos tratados nas covariáveis: resumo do pré de admissões/mil (média + tendência — preditor nº 1), shares setoriais (agro/ind/serv), log-população, PIB per capita, IDHM. (Densidade caiu — sem fonte limpa de área no basedosdados; crédito ficou de fora por parcimônia.) Selecionados os **40 mais próximos**.
+
+**Doadores pareados (40):** SC 15, PR 6, SP 6, MG 5, GO 3, ES 2, MT 2, MS 1 — Sul/Sudeste/Centro-Oeste, com Santa Catarina (vizinha) dominando. Distâncias Mahalanobis 0.81–1.44.
+
+| Município | ATT | IC 95% | p permut. | Sig? |
+|---|---|---|---|---|
+| Muçum | −6.68 | [−8.78; −4.46] | 0.000 | sim |
+| Roca Sales | −5.56 | [−7.66; −3.34] | 0.000 | sim |
+| Eldorado do Sul | −4.94 | [−7.03; −2.71] | 0.000 | sim |
+| Travesseiro | −4.94 | [−7.03; −2.71] | 0.000 | sim |
+| Igrejinha | −2.21 | [−4.31; 0.01] | 0.075 | marginal |
+| Arambaré | −0.05 | [−2.15; 2.17] | 0.975 | não |
+| **MULTI** | **−4.08** | [−5.14; −3.03] | — | sim (SC −4.23, DiD −3.39) |
+
+**Achado item 3:** controles de fora do RS, pareados por características, dão a **mesma conclusão** — e mais nítida (IC mais apertado, 4/6 municípios individualmente significativos vs 2/6 no trimestral). Os 4 do Vale do Taquari (Muçum, Roca Sales, Eldorado, Travesseiro) são robustos a p=0.000; Igrejinha marginal e Arambaré nulo, como em todas as checagens. Responde à objeção de que os doadores só-RS fossem poucos ou contaminados: **reforça a identificação**.
+
+---
+
+## Onda 2 — status
+Itens 3 e 5 **concluídos**. Robustez adicional possível (não executada): densidade (precisa de área municipal), crédito, e o SDiD fora-do-RS por setor.
