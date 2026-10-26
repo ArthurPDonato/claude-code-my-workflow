@@ -89,3 +89,10 @@ scripts/R/_outputs/
 # SDID_RAIS — raw RAIS microdata for all RS municipalities (large, not versioned)
 Artigos/SDID_RAIS/Base de Dados/Raw/*
 !Artigos/SDID_RAIS/Base de Dados/Raw/.gitkeep
+
+# CAGED nacional — painel mensal nacional (12 MB, reproduzível via caged_nacional_download.R)
+Artigos/SDID/Base de Dados/Final/caged_nacional_mensal.csv
+
+# Chaves de service account do BigQuery (NUNCA versionar)
+*sdid-rais-encchentes*.json
+*service-account*.json
